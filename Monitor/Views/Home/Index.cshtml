@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-controller="HomeCtrl">
+    <div class='selector'>
+        <ul>
+            <li>
+                <input id='1' type='checkbox'>
+                <label for='1'>Option 1</label>
+            </li>
+            <li>
+                <input id='2' type='checkbox'>
+                <label for='2'>Option 2</label>
+            </li>
+            <li>
+                <input id='3' type='checkbox'>
+                <label for='3'>Option 3</label>
+            </li>
+            <li>
+                <input id='4' type='checkbox'>
+                <label for='4'>Option 4</label>
+            </li>
+            <li>
+                <input id='5' type='checkbox'>
+                <label for='5'>Option 5</label>
+            </li>
+            <li>
+                <input id='6' type='checkbox'>
+                <label for='6'>Option 6</label>
+            </li>
+            <li>
+                <input id='7' type='checkbox'>
+                <label for='7'>Option 7</label>
+            </li>
+            <li>
+                <input id='8' type='checkbox'>
+                <label for='8'>Option 8</label>
+            </li>
+        </ul>
+        <button id="haha">Menu</button>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2">
+            <br/>
+            <div style="width: 250px; height: 600px; margin-left: 20px; background: whitesmoke; border: 1px solid lightgray; border-radius: 5px; overflow-y: scroll;">
+                <span ng-if="doing_async">...loading...</span>
+                <abn-tree tree-data="my_data" tree-control="my_tree" on-select="vm.myTreeHandler(branch)"
+                          expand-level="2" initial-selection="Granny Smith" icon-leaf="fa"
+                          icon-expand="fa fa-angle-right" icon-collapse="fa fa-angle-down" context-menu="otherMenuOptions">
+                </abn-tree>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a>
+            </p>
+            <button class="btn btn-default"
+                    context-menu="otherMenuOptions">
+                Right Click
+            </button>
+            <p>{{output}}</p>
+            <p>{{output}}</p>
+            <p>{{output}}</p>
+        </div>
+        <div class="col-md-4">
+            <img width="370" height="240" src="http://pica.zol-img.com.cn/2016/06/8756bb1c5118babff723a1c5b7ef7b90.jpg">
+            <img width="370" height="240" src="http://localhost:7782/pic/1.jpg">
+            <img width="370" height="240" ng-src="{{src}}">
+        </div>
+    </div>
+</div>

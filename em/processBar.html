@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body ng-app="app" ng-controller="ctrl">
+<div class="progress">
+  <div id="pb" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="10000"
+  	 ng-style="{width: getPercentage() + '%'}">
+    {{width1}} % Complete
+  </div>
+</div>
+
+	<div class="btn-group" role="group" aria-label="...">
+		<button type="button" class="btn btn-default">Left</button>
+		<button type="button" class="btn btn-default">Middle</button>
+		<button type="button" class="btn btn-default">Right</button>
+	</div>
+
+	<!-- <div class="progress">
+		s<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{width: getPercentage() + '%'}">
+		{{getPercentage()}} %
+		</div>
+	</div> -->
+
+	<div class="btn-group dropup">
+	<button type="button" class="btn btn-default">Dropup</button>
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  <span class="caret"></span>
+	  <span class="sr-only">Toggle Dropdown</span>
+	</button>
+	<ul class="dropdown-menu">
+	  <!-- Dropdown menu links -->
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+	angular.module("app", [])
+	.controller("ctrl", function($scope, $interval){
+		$scope.width1 = 10;
+		// $scope.progress = function() {
+		// 	while (true) {
+		// 		$scope.width += 5;
+		// 		console.log($scope.width);
+		// 		if ($scope.width >= 100)
+		// 			$scope.width = 0;
+		// 	}
+		// };
+		// $scope.progress();
+		// $scope.getPercentage = function() {
+		// 	var stop = $interval(function () {
+		//         //document.getElementById("pb").clientWidth = document.getElementById("pb").clientWidth + 10;
+		//         //console.log(document.getElementById("pb").clientWidth);
+		//         $scope.width += 5;
+		//         console.log($scope.width);
+		//         if ($scope.width > 100)
+		//         	$scope.width = 0;
+		//         	//$interval.cancel(stop);
+		//     }, 3000);
+		// 	// if ($scope.width > 100)
+		//  //        	$interval.cancel(stop);
+		// 	return $scope.width;
+		// };
+		//console.log(document.getElementById("pb").clientWidth);
+		var stop = $interval(function () {
+		        //document.getElementById("pb").clientWidth = document.getElementById("pb").clientWidth + 10;
+		        //console.log(document.getElementById("pb").clientWidth);
+		        $scope.width1 += 5;
+		        console.log($scope.width1);
+		        if ($scope.width1 >= 100)
+		        	$interval.cancel(stop);
+		    }, 1000);
+
+		$scope.getPercentage = function() {
+			return $scope.width1;
+		};
+	});
+</script>
+</html>
+
+<!--   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
