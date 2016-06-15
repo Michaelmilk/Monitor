@@ -11,12 +11,12 @@ namespace Monitor.Controllers
 {
     public class MonitorController : ApiController
     {
-        [HttpGet]
-        [Route("api/monitor/get-maps")]
-        public async Task<IHttpActionResult> getMaps()
-        {
+        //[HttpGet]
+        //[Route("api/monitor/get-maps")]
+        //public async Task<IHttpActionResult> getMaps()
+        //{
             
-        }
+        //}
 
         public static void TraverseTree(string root)
         {

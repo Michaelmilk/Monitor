@@ -1,0 +1,5 @@
+D:\E\new\Monitor-v2\Monitor.Data\bin\Debug\Monitor.Data.dll
+D:\E\new\Monitor-v2\Monitor.Data\bin\Debug\Monitor.Data.pdb
+D:\E\new\Monitor-v2\Monitor.Data\bin\Debug\Newtonsoft.Json.dll
+D:\E\new\Monitor-v2\Monitor.Data\obj\Debug\Monitor.Data.dll
+D:\E\new\Monitor-v2\Monitor.Data\obj\Debug\Monitor.Data.pdb
