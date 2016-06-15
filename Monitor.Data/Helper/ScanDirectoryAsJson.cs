@@ -8,21 +8,21 @@ using System.IO;
 
 namespace Monitor.Data.Helper
 {
-    class ScanDirectoryAsJson
+    public class ScanDirectoryAsJson
     {
         public string label { get; set; }
         public bool isFolder { get; set; }
         public string key { get; set; }
         public List<ScanDirectoryAsJson> children { get; set; }//child directory tree
-        public ScanDirectoryAsJson(FileSystemInfo fsi)
+        public ScanDirectoryAsJson(FileSystemInfo fileSystemInfo)
         {
-            label = fsi.Name;
+            label = fileSystemInfo.Name;
             children = new List<ScanDirectoryAsJson>();
 
-            if (fsi.Attributes == FileAttributes.Directory)
+            if (fileSystemInfo.Attributes == FileAttributes.Directory)
             {
                 isFolder = true;
-                foreach (FileSystemInfo f in (fsi as DirectoryInfo).GetFileSystemInfos())
+                foreach (FileSystemInfo f in (fileSystemInfo as DirectoryInfo).GetFileSystemInfos())
                 {
                     children.Add(new ScanDirectoryAsJson(f));
                 }
