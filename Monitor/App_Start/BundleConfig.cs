@@ -9,27 +9,27 @@ namespace Monitor
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/lib/jquery-{version}.js",
-                        "~/Scripts/lib/jquery-ui.js"));
+                        "~/Scripts/libs/jquery-{version}.js",
+                        "~/Scripts/libs/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/lib/jquery.validate*"));
+                        "~/Scripts/libs/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/lib/modernizr-*"));
+                        "~/Scripts/libs/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/lib/bootstrap.js",
-                      "~/Scripts/lib/respond.js"));
+                      "~/Scripts/libs/bootstrap.js",
+                      "~/Scripts/libs/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                      "~/Scripts/lib/angular.js",
-                      "~/Scripts/lib/angular-animate.js",
-                      "~/Scripts/lib/abn_tree_directive.js",
-                      "~/Scripts/lib/contextMenu.js",
-                      "~/Scripts/directive/right-click.js",
+                      "~/Scripts/libs/angular.js",
+                      "~/Scripts/libs/angular-animate.js",
+                      "~/Scripts/libs/abn_tree_directive.js",
+                      "~/Scripts/libs/contextMenu.js",
+                      "~/Scripts/directives/right-click.js",
                       "~/dist/menu_component.js"
                       //"~/dist/right_menu.js"
                       
@@ -45,13 +45,17 @@ namespace Monitor
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      // services
-                      
+                      //interfaces
+                      "~/Scripts/interfaces/IMapNode.js",
+                      "~/Scripts/interfaces/IMapNodeResource.js",
+
+                      //services
+                      "~/Scripts/services/NetResourceService.js",
 
                       // directives
                   
                       // controllers
-                      "~/Scripts/controller/homeCtrl.js",
+                      "~/Scripts/controllers/homeCtrl.js",
 
                       // app
                       "~/Scripts/app.js"

@@ -1,32 +1,32 @@
-/// <reference path="../_all_ts_ref.ts"/>
-var App;
-(function (App) {
+﻿/// <reference path="../_all_ts_ref.ts"/>
+
+module App {
     'use strict';
-    //export interface IHomeScope extends ng.IScope {
-    //    vm: any;
-    //    my_data: any;
-    //    my_tree: any;
-    //    output: string;
-    //    otherMenuOptions: any;
-    //    doing_async: boolean;
-    //    appleSelected: any;
-    //}
-    var HomeCtrl = (function () {
-        function HomeCtrl($scope, $timeout) {
-            var _this = this;
-            this.$scope = $scope;
-            this.$timeout = $timeout;
+
+    export class HomeCtrl {
+        public static $inject = [
+            '$scope',
+            '$timeout'
+        ];
+        
+        
+        private treedataAvm;
+        private treedataGeography;
+        
+        private tree;
+        constructor(private $scope, private $timeout) {
+
             // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
             // for its methods to be accessible from view / HTML
             $scope.vm = this;
-            $scope.appleSelected = function (branch) {
-                return _this.$scope.output = "APPLE! : " + branch.label;
-            };
+            $scope.appleSelected = (branch) => {
+                return this.$scope.output = "APPLE! : " + branch.label;
+            }
             //context menu
             $scope.otherMenuOptions = [
-                ['Favorite Color', function ($itemScope, $event, color) {
-                        alert(color);
-                    }]
+                ['Favorite Color', ($itemScope, $event, color) => {
+                    alert(color);
+                }]
             ];
             this.treedataAvm = [
                 {
@@ -59,8 +59,8 @@ var App;
                         definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
                         data_can_contain_anything: true
                     },
-                    onSelect: function (branch) {
-                        return _this.$scope.output = "Vegetable: " + branch.data.definition;
+                    onSelect: (branch) => {
+                        return this.$scope.output = "Vegetable: " + branch.data.definition;
                     },
                     children: [
                         {
@@ -105,6 +105,7 @@ var App;
                     ]
                 }
             ];
+
             this.treedataGeography = [
                 {
                     label: 'North America',
@@ -139,9 +140,12 @@ var App;
             $scope.my_data = this.treedataAvm;
             $scope.my_tree = this.tree = {};
             $scope.output = "dsfsdfss";
+
+
             console.log("constructor");
         }
-        HomeCtrl.prototype.myTreeHandler = function (branch) {
+
+        myTreeHandler(branch) {
             console.log("myhandler");
             var ref;
             this.$scope.output = "You selected: " + branch.label;
@@ -150,13 +154,43 @@ var App;
             if ((ref = branch.data) != null ? ref.description : void 0) {
                 return this.$scope.output += '(' + branch.data.description + ')';
             }
-        };
-        HomeCtrl.$inject = [
-            '$scope',
-            '$timeout'
-        ];
-        return HomeCtrl;
-    })();
-    App.HomeCtrl = HomeCtrl;
-})(App || (App = {}));
-//# sourceMappingURL=homeCtrl.js.map
+        }
+
+        //appleSelected(branch) {
+        //    return this.$scope.output = "APPLE! : " + branch.label;
+        //}
+
+        //tryChangingTheTreeData() {
+        //    if (this.$scope.my_data === this.treedataAvm) {
+        //        return this.$scope.my_data = this.treedataGeography;
+        //    } else {
+        //        return this.$scope.my_data = this.treedataAvm;
+        //    }
+        //}
+
+        //tryAsyncLoad() {
+        //    this.$scope.my_data = [];
+        //    this.$scope.doing_async = true;
+        //    return this.$timeout(() => {
+        //        if (Math.random() + 10 < 0.5) {
+        //            this.$scope.my_data = this.treedataAvm;
+        //        } else {
+        //            this.$scope.my_data = this.treedataGeography;
+        //        }
+        //        this.$scope.doing_async = false;
+        //        return this.tree.expand_all();
+        //    }, 1000);
+        //}
+
+        //tryAddingABranch() {
+        //    var b = this.tree.get_selected_branch();
+        //    return this.tree.add_branch(b, {
+        //        label: 'New Branch',
+        //        data: {
+        //            something: 42,
+        //            "else": 43
+        //        }
+        //    });
+        //}
+    }
+}

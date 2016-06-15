@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor", "Monitor\Monitor.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Data", "Monitor.Data\Monitor.Data.csproj", "{AE5BCDD6-B1B2-49AF-8A1D-934AB2D7AFC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor.Data.Test", "Monitor.Data.Test\Monitor.Data.Test.csproj", "{925B973C-AF17-4A9E-9974-65F4A0A88F02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AE5BCDD6-B1B2-49AF-8A1D-934AB2D7AFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE5BCDD6-B1B2-49AF-8A1D-934AB2D7AFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE5BCDD6-B1B2-49AF-8A1D-934AB2D7AFC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925B973C-AF17-4A9E-9974-65F4A0A88F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925B973C-AF17-4A9E-9974-65F4A0A88F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925B973C-AF17-4A9E-9974-65F4A0A88F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925B973C-AF17-4A9E-9974-65F4A0A88F02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

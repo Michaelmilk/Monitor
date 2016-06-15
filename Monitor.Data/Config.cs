@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Monitor.Data
 {
-    public class Class1
+    public class Config
     {
+        public static string MapDirectory = @"./map";
     }
 }

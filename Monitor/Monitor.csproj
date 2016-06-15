@@ -141,17 +141,17 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="dist\menu_component.js" />
     <Content Include="dist\right_menu.js" />
-    <Content Include="Scripts\lib\abn_tree_directive-v2.js" />
-    <Content Include="Scripts\lib\abn_tree_directive.js" />
+    <Content Include="Scripts\libs\abn_tree_directive-v2.js" />
+    <Content Include="Scripts\libs\abn_tree_directive.js" />
     <Content Include="dist\tree_component.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\lib\angular-animate.js" />
-    <Content Include="Scripts\lib\angular.js" />
-    <Content Include="Scripts\lib\bootstrap.js" />
-    <Content Include="Scripts\lib\bootstrap.min.js" />
+    <Content Include="Scripts\libs\angular-animate.js" />
+    <Content Include="Scripts\libs\angular.js" />
+    <Content Include="Scripts\libs\bootstrap.js" />
+    <Content Include="Scripts\libs\bootstrap.min.js" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
@@ -171,19 +171,19 @@
     <Content Include="Content\font-awesome\less\screen-reader.less" />
     <Content Include="Content\font-awesome\less\stacked.less" />
     <Content Include="Content\font-awesome\less\variables.less" />
-    <None Include="Scripts\lib\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\lib\contextMenu.js" />
-    <Content Include="Scripts\lib\jquery-1.10.2.js" />
-    <Content Include="Scripts\lib\jquery-1.10.2.min.js" />
-    <None Include="Scripts\lib\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\lib\jquery-ui.js" />
-    <Content Include="Scripts\lib\jquery.validate.js" />
-    <Content Include="Scripts\lib\jquery.validate.min.js" />
-    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\lib\modernizr-2.6.2.js" />
-    <Content Include="Scripts\lib\respond.js" />
-    <Content Include="Scripts\lib\respond.min.js" />
+    <None Include="Scripts\libs\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\libs\contextMenu.js" />
+    <Content Include="Scripts\libs\jquery-1.10.2.js" />
+    <Content Include="Scripts\libs\jquery-1.10.2.min.js" />
+    <None Include="Scripts\libs\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\libs\jquery-ui.js" />
+    <Content Include="Scripts\libs\jquery.validate.js" />
+    <Content Include="Scripts\libs\jquery.validate.min.js" />
+    <Content Include="Scripts\libs\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\libs\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\modernizr-2.6.2.js" />
+    <Content Include="Scripts\libs\respond.js" />
+    <Content Include="Scripts\libs\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -199,7 +199,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\lib\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\libs\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -214,8 +214,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\app.ts" />
-    <TypeScriptCompile Include="Scripts\controller\homeCtrl.ts" />
-    <TypeScriptCompile Include="Scripts\directive\right-click.ts" />
+    <TypeScriptCompile Include="Scripts\controllers\homeCtrl.ts" />
+    <TypeScriptCompile Include="Scripts\directives\right-click.ts" />
+    <TypeScriptCompile Include="Scripts\interfaces\IMapNode.ts" />
+    <TypeScriptCompile Include="Scripts\interfaces\IMapNodeResource.ts" />
+    <TypeScriptCompile Include="Scripts\services\NetResourceService.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-resource.d.ts" />
@@ -226,6 +229,12 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\tsd.d.ts" />
     <TypeScriptCompile Include="Scripts\_all_ts_ref.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Monitor.Data\Monitor.Data.csproj">
+      <Project>{ae5bcdd6-b1b2-49af-8a1d-934ab2d7afc0}</Project>
+      <Name>Monitor.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

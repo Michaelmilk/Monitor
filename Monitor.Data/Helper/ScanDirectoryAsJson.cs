@@ -34,10 +34,14 @@ namespace Monitor.Data.Helper
             key = label.Replace(" ", "").ToLower();
         }
 
-        public string JsonToDynatree()
+        public new string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
+        public static string GetMapJsonString()
+        {
+            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapDirectory)).ToString();
+        }
     }
 }
