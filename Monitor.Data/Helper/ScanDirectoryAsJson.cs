@@ -11,8 +11,8 @@ namespace Monitor.Data.Helper
     public class ScanDirectoryAsJson
     {
         public string label { get; set; }
-        public bool isFolder { get; set; }
-        public string key { get; set; }
+        //public bool isFolder { get; set; }
+        //public string key { get; set; }
         public List<ScanDirectoryAsJson> children { get; set; }//child directory tree
         public ScanDirectoryAsJson(FileSystemInfo fileSystemInfo)
         {
@@ -21,7 +21,7 @@ namespace Monitor.Data.Helper
 
             if (fileSystemInfo.Attributes == FileAttributes.Directory)
             {
-                isFolder = true;
+                //isFolder = true;
                 foreach (FileSystemInfo f in (fileSystemInfo as DirectoryInfo).GetFileSystemInfos())
                 {
                     children.Add(new ScanDirectoryAsJson(f));
@@ -29,9 +29,9 @@ namespace Monitor.Data.Helper
             }
             else
             {
-                isFolder = false;
+                //isFolder = false;
             }
-            key = label.Replace(" ", "").ToLower();
+            //key = label.Replace(" ", "").ToLower();
         }
 
         public new string ToString()
@@ -42,6 +42,11 @@ namespace Monitor.Data.Helper
         public static string GetMapJsonString()
         {
             return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapDirectory)).ToString();
+        }
+
+        public static ScanDirectoryAsJson GetMapTree()
+        {
+            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapDirectory));
         }
     }
 }

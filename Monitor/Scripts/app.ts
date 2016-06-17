@@ -8,9 +8,9 @@
 
 module App {
     'use strict';
-    var app = angular.module('MonitorApp', ['angularBootstrapNavTree', 'ui.bootstrap.contextMenu'])
+    var app = angular.module('MonitorApp', ['ngResource', 'angularBootstrapNavTree', 'ui.bootstrap.contextMenu'])
         // Services
-
+        .service('NetResourceService', NetResourceService)
 
         // Directives
 

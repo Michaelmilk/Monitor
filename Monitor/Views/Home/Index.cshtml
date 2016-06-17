@@ -62,13 +62,16 @@
                     context-menu="otherMenuOptions">
                 Right Click
             </button>
+
+            <button ng-click="vm.tryChangingTheTreeData()" class="btn btn-default btn-sm">Change The Tree Definition</button>
+            <button ng-click="vm.tryAsyncLoad()" class="btn btn-default btn-sm">Load Tree Data Asynchronously</button>
             <p>{{output}}</p>
             <p>{{output}}</p>
             <p>{{output}}</p>
         </div>
         <div class="col-md-4">
-            <img width="370" height="240" src="http://pica.zol-img.com.cn/2016/06/8756bb1c5118babff723a1c5b7ef7b90.jpg">
-            <img width="370" height="240" src="http://localhost:7782/pic/1.jpg">
+            @*<img width="370" height="240" src="http://pica.zol-img.com.cn/2016/06/8756bb1c5118babff723a1c5b7ef7b90.jpg">
+            <img width="370" height="240" src="http://localhost:7782/pic/1.jpg">*@
             <img width="370" height="240" ng-src="{{src}}">
         </div>
     </div>

@@ -149,6 +149,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\libs\angular-animate.js" />
+    <Content Include="Scripts\libs\angular-resource.js" />
     <Content Include="Scripts\libs\angular.js" />
     <Content Include="Scripts\libs\bootstrap.js" />
     <Content Include="Scripts\libs\bootstrap.min.js" />

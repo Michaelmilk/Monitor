@@ -13,10 +13,10 @@ namespace Monitor.Controllers
     public class MonitorController : ApiController
     {
         [HttpGet]
-        [Route("api/monitor/get-location-map")]
+        [Route("api/monitor/get-map-tree")]
         public async Task<IHttpActionResult> GetMaps()
         {
-            var locationMap = await Task.FromResult(ScanDirectoryAsJson.GetMapJsonString());
+            var locationMap = await Task.FromResult(ScanDirectoryAsJson.GetMapTree());
             return Ok(locationMap);
         }
     }

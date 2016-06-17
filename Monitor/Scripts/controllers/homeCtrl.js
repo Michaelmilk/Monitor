@@ -3,10 +3,13 @@ var App;
 (function (App) {
     'use strict';
     var HomeCtrl = (function () {
-        function HomeCtrl($scope, $timeout) {
+        function HomeCtrl($scope, NetResourceService, $timeout) {
             var _this = this;
             this.$scope = $scope;
+            this.NetResourceService = NetResourceService;
             this.$timeout = $timeout;
+            //the $resource in angular to derive the map tree node info
+            this.mapResourceService = NetResourceService.getMapTreeResource();
             // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
             // for its methods to be accessible from view / HTML
             $scope.vm = this;
@@ -111,29 +114,18 @@ var App;
                             children: ['Mexico City', 'Guadalajara']
                         }
                     ]
-                }, {
-                    label: 'South America',
-                    children: [
-                        {
-                            label: 'Venezuela',
-                            children: ['Caracas', 'Maracaibo']
-                        }, {
-                            label: 'Brazil',
-                            children: ['Sao Paulo', 'Rio de Janeiro']
-                        }, {
-                            label: 'Argentina',
-                            children: ['Buenos Aires', 'Cordoba']
-                        }
-                    ]
                 }
             ];
-            $scope.my_data = this.treedataAvm;
+            console.log(this.treedataGeography);
+            this.getMapTree();
+            this.$scope.my_data = this.treedataAvm;
+            this.tryAsyncLoad();
             $scope.my_tree = this.tree = {};
             $scope.output = "dsfsdfss";
+            //this.getMapTree();
             console.log("constructor");
         }
         HomeCtrl.prototype.myTreeHandler = function (branch) {
-            console.log("myhandler");
             var ref;
             this.$scope.output = "You selected: " + branch.label;
             if (branch.label === "Dog")
@@ -141,9 +133,61 @@ var App;
             if ((ref = branch.data) != null ? ref.description : void 0) {
                 return this.$scope.output += '(' + branch.data.description + ')';
             }
+            console.log("myhandler");
+        };
+        HomeCtrl.prototype.getMapTree = function () {
+            var _this = this;
+            console.log("getMapTree");
+            this.mapResourceService.getMapTree()
+                .$promise.then(function (mapTree) {
+                _this.$scope.mapTree = mapTree;
+                var array = [];
+                array.push(angular.fromJson(angular.toJson(mapTree)));
+                //this.$scope.my_data = array;
+                _this.treedataAvm = array;
+                //console.log("$scope.mapTree", mapTree);
+                //console.log("treedataAvm", this.treedataAvm);
+                //console.log(angular.toJson(mapTree));
+                //console.log(angular.fromJson(angular.toJson(mapTree)));
+                //var array = [];
+                //array.push(angular.fromJson(angular.toJson(mapTree)));
+                //this.$scope.my_data = array;
+                //console.log("my_data", this.$scope.my_data);
+                //this.$timeout(() => {
+                //    this.$scope.my_data = array;
+                //}, 1);
+            });
+        };
+        //appleSelected(branch) {
+        //    return this.$scope.output = "APPLE! : " + branch.label;
+        //}
+        HomeCtrl.prototype.tryChangingTheTreeData = function () {
+            console.log("my_data", this.$scope.my_data);
+            if (this.$scope.my_data === this.treedataAvm) {
+                return this.$scope.my_data = this.treedataGeography;
+            }
+            else {
+                return this.$scope.my_data = this.treedataAvm;
+            }
+        };
+        HomeCtrl.prototype.tryAsyncLoad = function () {
+            var _this = this;
+            this.$scope.my_data = [];
+            this.$scope.doing_async = true;
+            return this.$timeout(function () {
+                //if (Math.random() + 10 < 0.5) {
+                //    this.$scope.my_data = this.treedataAvm;
+                //} else {
+                //    this.$scope.my_data = this.treedataGeography;
+                //}
+                _this.$scope.my_data = _this.treedataAvm;
+                _this.$scope.doing_async = false;
+                return _this.tree.expand_all();
+            }, 1000);
         };
         HomeCtrl.$inject = [
             '$scope',
+            'NetResourceService',
             '$timeout'
         ];
         return HomeCtrl;

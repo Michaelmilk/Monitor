@@ -13,15 +13,15 @@ module App {
 
         constructor(private $resource: ng.resource.IResourceService) { }
 
-        getMapTreeNodeResource(): IMapNodeResource {
-            var getMapNode: ng.resource.IActionDescriptor = {
+        getMapTreeResource(): IMapNodeResource {
+            var getMapTree: ng.resource.IActionDescriptor = {
                 method: 'GET',
-                params: { action: "get-map-node" },
-                isArray: true
+                params: { action: "get-map-tree" },
+                isArray: false
             };
 
-            return <IMapNodeResource>this.$resource("/api/map/:id/:label", {}, {
-                getMapNode: getMapNode
+            return <IMapNodeResource>this.$resource("/api/monitor/:action/:id/:label", {}, {
+                getMapTree: getMapTree
             });
         }
     }

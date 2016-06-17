@@ -1,0 +1,3 @@
+d:\src\KnowledgeEnrichment\private\EntityMatching\Tools\SelfServeConflationV2\SelfServeConflationV2.sln
+
+d:\src\KnowledgeEnrichment\scratch\SatoriCSG\CSGPortal>CSGPortal.sln

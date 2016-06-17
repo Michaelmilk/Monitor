@@ -9,14 +9,14 @@ var App;
         function NetResourceService($resource) {
             this.$resource = $resource;
         }
-        NetResourceService.prototype.getMapTreeNodeResource = function () {
-            var getMapNode = {
+        NetResourceService.prototype.getMapTreeResource = function () {
+            var getMapTree = {
                 method: 'GET',
-                params: { action: "get-map-node" },
-                isArray: true
+                params: { action: "get-map-tree" },
+                isArray: false
             };
-            return this.$resource("/api/map/:id/:label", {}, {
-                getMapNode: getMapNode
+            return this.$resource("/api/monitor/:action/:id/:label", {}, {
+                getMapTree: getMapTree
             });
         };
         NetResourceService.$inject = [

@@ -26,6 +26,7 @@ namespace Monitor
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/libs/angular.js",
+                      "~/Scripts/libs/angular-resource.js",
                       "~/Scripts/libs/angular-animate.js",
                       "~/Scripts/libs/abn_tree_directive.js",
                       "~/Scripts/libs/contextMenu.js",

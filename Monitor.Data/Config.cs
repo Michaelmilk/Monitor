@@ -8,6 +8,6 @@ namespace Monitor.Data
 {
     public class Config
     {
-        public static string MapDirectory = @"./map";
+        public static string MapDirectory = @"D:\work";
     }
 }
