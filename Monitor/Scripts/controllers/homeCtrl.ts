@@ -13,7 +13,7 @@ module App {
         private mapResourceService;
         private treedataAvm;
         private treedataGeography;
-        
+        private tt;
         private tree;
         constructor(private $scope, private NetResourceService, private $timeout) {
             //the $resource in angular to derive the map tree node info
@@ -31,83 +31,83 @@ module App {
                     alert(color);
                 }]
             ];
-            this.treedataAvm = [
-                {
-                    label: 'Animal',
-                    children: [
-                        {
-                            label: 'Dog',
-                            data: {
-                                description: "man's best friend",
-                                src: "http://localhost:7782/pic/1.jpg"
-                            }
-                        }, {
-                            label: 'Cat',
-                            data: {
-                                description: "Felis catus"
-                            }
-                        }, {
-                            label: 'Hippopotamus',
-                            data: {
-                                description: "hungry, hungry"
-                            }
-                        }, {
-                            label: 'Chicken',
-                            children: ['White Leghorn', 'Rhode Island Red', 'Jersey Giant']
-                        }
-                    ]
-                }, {
-                    label: 'Vegetable',
-                    data: {
-                        definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
-                        data_can_contain_anything: true
-                    },
-                    onSelect: (branch) => {
-                        return this.$scope.output = "Vegetable: " + branch.data.definition;
-                    },
-                    children: [
-                        {
-                            label: 'Oranges'
-                        }, {
-                            label: 'Apples',
-                            children: [
-                                {
-                                    label: 'Granny Smith',
-                                    onSelect: $scope.appleSelected
-                                }, {
-                                    label: 'Red Delicous',
-                                    onSelect: $scope.appleSelected
-                                }, {
-                                    label: 'Fuji',
-                                    onSelect: $scope.appleSelected
-                                }
-                            ]
-                        }
-                    ]
-                }, {
-                    label: 'Mineral',
-                    children: [
-                        {
-                            label: 'Rock',
-                            children: ['Igneous', 'Sedimentary', 'Metamorphic']
-                        }, {
-                            label: 'Metal',
-                            children: ['Aluminum', 'Steel', 'Copper']
-                        }, {
-                            label: 'Plastic',
-                            children: [
-                                {
-                                    label: 'Thermoplastic',
-                                    children: ['polyethylene', 'polypropylene', 'polystyrene', ' polyvinyl chloride']
-                                }, {
-                                    label: 'Thermosetting Polymer',
-                                    children: ['polyester', 'polyurethane', 'vulcanized rubber', 'bakelite', 'urea-formaldehyde']
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ];
+            //this.treedataAvm = [
+            //    {
+            //        label: 'Animal',
+            //        children: [
+            //            {
+            //                label: 'Dog',
+            //                data: {
+            //                    description: "man's best friend",
+            //                    src: "http://localhost:7782/pic/1.jpg"
+            //                }
+            //            }, {
+            //                label: 'Cat',
+            //                data: {
+            //                    description: "Felis catus"
+            //                }
+            //            }, {
+            //                label: 'Hippopotamus',
+            //                data: {
+            //                    description: "hungry, hungry"
+            //                }
+            //            }, {
+            //                label: 'Chicken',
+            //                children: ['White Leghorn', 'Rhode Island Red', 'Jersey Giant']
+            //            }
+            //        ]
+            //    }, {
+            //        label: 'Vegetable',
+            //        data: {
+            //            definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
+            //            data_can_contain_anything: true
+            //        },
+            //        onSelect: (branch) => {
+            //            return this.$scope.output = "Vegetable: " + branch.data.definition;
+            //        },
+            //        children: [
+            //            {
+            //                label: 'Oranges'
+            //            }, {
+            //                label: 'Apples',
+            //                children: [
+            //                    {
+            //                        label: 'Granny Smith',
+            //                        onSelect: $scope.appleSelected
+            //                    }, {
+            //                        label: 'Red Delicous',
+            //                        onSelect: $scope.appleSelected
+            //                    }, {
+            //                        label: 'Fuji',
+            //                        onSelect: $scope.appleSelected
+            //                    }
+            //                ]
+            //            }
+            //        ]
+            //    }, {
+            //        label: 'Mineral',
+            //        children: [
+            //            {
+            //                label: 'Rock',
+            //                children: ['Igneous', 'Sedimentary', 'Metamorphic']
+            //            }, {
+            //                label: 'Metal',
+            //                children: ['Aluminum', 'Steel', 'Copper']
+            //            }, {
+            //                label: 'Plastic',
+            //                children: [
+            //                    {
+            //                        label: 'Thermoplastic',
+            //                        children: ['polyethylene', 'polypropylene', 'polystyrene', ' polyvinyl chloride']
+            //                    }, {
+            //                        label: 'Thermosetting Polymer',
+            //                        children: ['polyester', 'polyurethane', 'vulcanized rubber', 'bakelite', 'urea-formaldehyde']
+            //                    }
+            //                ]
+            //            }
+            //        ]
+            //    }
+            //];
 
             this.treedataGeography = [
                 {
@@ -141,10 +141,11 @@ module App {
                 //    ]
                 //}
             ];
-            console.log(this.treedataGeography);
+            //console.log(this.treedataGeography);
             this.getMapTree();
 
-            this.$scope.my_data = this.treedataAvm;
+            this.$scope.my_data = null;
+            //this.$scope.my_data = this.treedataAvm;
             this.tryAsyncLoad();
 
             $scope.my_tree = this.tree = {};
@@ -175,7 +176,9 @@ module App {
                     //this.$scope.my_data = array;
                     this.treedataAvm = array;
                     //console.log("$scope.mapTree", mapTree);
-                    //console.log("treedataAvm", this.treedataAvm);
+                    console.log("treedataAvm", this.treedataAvm);
+                    //this.$timeout.cancel(this.tt);
+                    console.log("wwww");
                     //console.log(angular.toJson(mapTree));
                     //console.log(angular.fromJson(angular.toJson(mapTree)));
                     //var array = [];
@@ -204,7 +207,7 @@ module App {
         tryAsyncLoad() {
             this.$scope.my_data = [];
             this.$scope.doing_async = true;
-            return this.$timeout(() => {
+            return this.tt = this.$timeout(() => {
                 //if (Math.random() + 10 < 0.5) {
                 //    this.$scope.my_data = this.treedataAvm;
                 //} else {

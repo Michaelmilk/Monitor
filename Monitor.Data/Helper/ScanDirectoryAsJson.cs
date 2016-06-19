@@ -41,12 +41,12 @@ namespace Monitor.Data.Helper
 
         public static string GetMapJsonString()
         {
-            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapDirectory)).ToString();
+            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapPath)).ToString();
         }
 
         public static ScanDirectoryAsJson GetMapTree()
         {
-            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapDirectory));
+            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapPath));
         }
     }
 }
