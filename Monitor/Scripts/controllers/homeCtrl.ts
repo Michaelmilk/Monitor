@@ -11,10 +11,9 @@ module App {
         ];
         
         private mapResourceService;
-        private treedataAvm;
-        private treedataGeography;
-        private tt;
-        private tree;
+        private mapTreeData;
+        private mapTree;
+
         constructor(private $scope, private NetResourceService, private $timeout) {
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
@@ -25,137 +24,27 @@ module App {
             $scope.appleSelected = (branch) => {
                 return this.$scope.output = "APPLE! : " + branch.label;
             }
+
             //context menu
             $scope.otherMenuOptions = [
                 ['Favorite Color', ($itemScope, $event, color) => {
                     alert(color);
                 }]
             ];
-            //this.treedataAvm = [
-            //    {
-            //        label: 'Animal',
-            //        children: [
-            //            {
-            //                label: 'Dog',
-            //                data: {
-            //                    description: "man's best friend",
-            //                    src: "http://localhost:7782/pic/1.jpg"
-            //                }
-            //            }, {
-            //                label: 'Cat',
-            //                data: {
-            //                    description: "Felis catus"
-            //                }
-            //            }, {
-            //                label: 'Hippopotamus',
-            //                data: {
-            //                    description: "hungry, hungry"
-            //                }
-            //            }, {
-            //                label: 'Chicken',
-            //                children: ['White Leghorn', 'Rhode Island Red', 'Jersey Giant']
-            //            }
-            //        ]
-            //    }, {
-            //        label: 'Vegetable',
-            //        data: {
-            //            definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
-            //            data_can_contain_anything: true
-            //        },
-            //        onSelect: (branch) => {
-            //            return this.$scope.output = "Vegetable: " + branch.data.definition;
-            //        },
-            //        children: [
-            //            {
-            //                label: 'Oranges'
-            //            }, {
-            //                label: 'Apples',
-            //                children: [
-            //                    {
-            //                        label: 'Granny Smith',
-            //                        onSelect: $scope.appleSelected
-            //                    }, {
-            //                        label: 'Red Delicous',
-            //                        onSelect: $scope.appleSelected
-            //                    }, {
-            //                        label: 'Fuji',
-            //                        onSelect: $scope.appleSelected
-            //                    }
-            //                ]
-            //            }
-            //        ]
-            //    }, {
-            //        label: 'Mineral',
-            //        children: [
-            //            {
-            //                label: 'Rock',
-            //                children: ['Igneous', 'Sedimentary', 'Metamorphic']
-            //            }, {
-            //                label: 'Metal',
-            //                children: ['Aluminum', 'Steel', 'Copper']
-            //            }, {
-            //                label: 'Plastic',
-            //                children: [
-            //                    {
-            //                        label: 'Thermoplastic',
-            //                        children: ['polyethylene', 'polypropylene', 'polystyrene', ' polyvinyl chloride']
-            //                    }, {
-            //                        label: 'Thermosetting Polymer',
-            //                        children: ['polyester', 'polyurethane', 'vulcanized rubber', 'bakelite', 'urea-formaldehyde']
-            //                    }
-            //                ]
-            //            }
-            //        ]
-            //    }
-            //];
 
-            this.treedataGeography = [
-                {
-                    label: 'North America',
-                    children: [
-                        {
-                            label: 'Canada',
-                            children: ['Toronto', 'Vancouver']
-                        }, {
-                            label: 'USA',
-                            children: ['New York', 'Los Angeles']
-                        }, {
-                            label: 'Mexico',
-                            children: ['Mexico City', 'Guadalajara']
-                        }
-                    ]
-                }
-                //}, {
-                //    label: 'South America',
-                //    children: [
-                //        {
-                //            label: 'Venezuela',
-                //            children: ['Caracas', 'Maracaibo']
-                //        }, {
-                //            label: 'Brazil',
-                //            children: ['Sao Paulo', 'Rio de Janeiro']
-                //        }, {
-                //            label: 'Argentina',
-                //            children: ['Buenos Aires', 'Cordoba']
-                //        }
-                //    ]
-                //}
-            ];
-            //console.log(this.treedataGeography);
             this.getMapTree();
 
-            this.$scope.my_data = null;
-            //this.$scope.my_data = this.treedataAvm;
-            this.tryAsyncLoad();
+            //this.$scope.mapTreeData = null;
+            this.$scope.mapTreeData = [];//must assign [], or error to load tree control
+            //this.tryAsyncLoad();
 
-            $scope.my_tree = this.tree = {};
+            $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
 
-            //this.getMapTree();
             console.log("constructor");
         }
 
-        myTreeHandler(branch) {
+        showSelectedTreeNodeInfo(branch) {
             var ref;
             this.$scope.output = "You selected: " + branch.label;
             if (branch.label === "Dog")
@@ -166,28 +55,25 @@ module App {
             console.log("myhandler");
         }
 
+        tryAsyncLoad() {
+            //this.$scope.mapTreeData = [];
+            this.$scope.doing_async = true;
+            return this.$timeout(() => {
+                this.$scope.mapTreeData = this.mapTreeData;
+                this.$scope.doing_async = false;
+                return this.mapTree.expand_all();
+            }, 1000);
+        }
+
         getMapTree() {
-            console.log("getMapTree");
             this.mapResourceService.getMapTree()
-                .$promise.then((mapTree) => {
-                    this.$scope.mapTree = mapTree;
+                .$promise.then((mapTreeData) => {
                     var array = [];
-                    array.push(angular.fromJson(angular.toJson(mapTree)));
-                    //this.$scope.my_data = array;
-                    this.treedataAvm = array;
-                    //console.log("$scope.mapTree", mapTree);
-                    console.log("treedataAvm", this.treedataAvm);
-                    //this.$timeout.cancel(this.tt);
-                    console.log("wwww");
-                    //console.log(angular.toJson(mapTree));
-                    //console.log(angular.fromJson(angular.toJson(mapTree)));
-                    //var array = [];
-                    //array.push(angular.fromJson(angular.toJson(mapTree)));
-                    //this.$scope.my_data = array;
-                    //console.log("my_data", this.$scope.my_data);
-                    //this.$timeout(() => {
-                    //    this.$scope.my_data = array;
-                    //}, 1);
+                    array.push(angular.fromJson(angular.toJson(mapTreeData)));
+                    //this.mapTreeData = array;
+                    this.$scope.mapTreeData = array;
+                    //this.$scope.$apply();
+                    console.log("treeData", this.mapTreeData);
                 });
         }
 
@@ -195,29 +81,14 @@ module App {
         //    return this.$scope.output = "APPLE! : " + branch.label;
         //}
 
-        tryChangingTheTreeData() {
-            console.log("my_data", this.$scope.my_data);
-            if (this.$scope.my_data === this.treedataAvm) {
-                return this.$scope.my_data = this.treedataGeography;
-            } else {
-                return this.$scope.my_data = this.treedataAvm;
-            }
-        }
-
-        tryAsyncLoad() {
-            this.$scope.my_data = [];
-            this.$scope.doing_async = true;
-            return this.tt = this.$timeout(() => {
-                //if (Math.random() + 10 < 0.5) {
-                //    this.$scope.my_data = this.treedataAvm;
-                //} else {
-                //    this.$scope.my_data = this.treedataGeography;
-                //}
-                this.$scope.my_data = this.treedataAvm;
-                this.$scope.doing_async = false;
-                return this.tree.expand_all();
-            }, 1000);
-        }
+        //tryChangingTheTreeData() {
+        //    console.log("mapTree", this.$scope.mapTree);
+        //    if (this.$scope.mapTree === this.treeData) {
+        //        return this.$scope.mapTree = this.treedataGeography;
+        //    } else {
+        //        return this.$scope.mapTree = this.treedataAvm;
+        //    }
+        //}
 
         //tryAddingABranch() {
         //    var b = this.tree.get_selected_branch();
