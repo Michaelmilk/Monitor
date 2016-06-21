@@ -14,6 +14,7 @@ var App;
             // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
             // for its methods to be accessible from view / HTML
             $scope.vm = this;
+            $scope.currentMapPicLink = null;
             $scope.appleSelected = function (branch) {
                 return _this.$scope.output = "APPLE! : " + branch.label;
             };
