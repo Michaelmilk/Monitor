@@ -7,7 +7,15 @@
 var App;
 (function (App) {
     'use strict';
-    var app = angular.module('MonitorApp', ['ngResource', 'angularBootstrapNavTree', 'ui.bootstrap.contextMenu'])
+    var app = angular.module('MonitorApp', ['ngResource', 'ngAnimate', 'angularBootstrapNavTree',
+        'ui.bootstrap.contextMenu', 'angular-loading-bar'])
+        .config(function (cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.parentSelector = '#lad';
+        cfpLoadingBarProvider.includeSpinner = false;
+        cfpLoadingBarProvider.includeBar = true;
+        //cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading-bar"><div class="bar"><div class="peg">tttt</div></div></div>';
+        //cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
+    })
         .service('NetResourceService', App.NetResourceService)
         .controller('HomeCtrl', App.HomeCtrl);
 })(App || (App = {}));

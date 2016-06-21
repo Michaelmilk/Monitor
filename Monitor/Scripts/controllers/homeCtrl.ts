@@ -7,14 +7,15 @@ module App {
         public static $inject = [
             '$scope',
             'NetResourceService',
-            '$timeout'
+            '$timeout',
+            'cfpLoadingBar'
         ];
         
         private mapResourceService;
         private mapTreeData;
         private mapTree;
 
-        constructor(private $scope, private NetResourceService, private $timeout) {
+        constructor(private $scope, private NetResourceService, private $timeout, private cfpLoadingBar) {
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
 
@@ -40,6 +41,25 @@ module App {
 
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
+
+            ////////////////////////////////////////////////////////
+            //$scope.start = function () {
+            //    cfpLoadingBar.start();
+            //};
+
+            //$scope.complete = function () {
+            //    cfpLoadingBar.complete();
+            //}
+
+
+            //// fake the initial load so first time users can see it right away:
+            //$scope.start();
+            //$scope.fakeIntro = true;
+            //$timeout(function () {
+            //    $scope.complete();
+            //    $scope.fakeIntro = false;
+            //}, 115000);
+            ////////////////////////////////////////////////////////
 
             console.log("constructor");
         }

@@ -43,7 +43,7 @@
 
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-4">
             <br/>
             <div style="width: 250px; height: 600px; margin-left: 20px; background: whitesmoke; border: 1px solid lightgray; border-radius: 5px; overflow-y: scroll;">
                 <span ng-if="doing_async">...loading...</span>
@@ -53,11 +53,14 @@
                 </abn-tree>
             </div>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a>
-            </p>
+
+        <div class=" col-md-4">
+            <div>
+                <h1>Angular Loading Bar</h1>
+                <p>An automatic loading bar using angular interceptors.<small>  It works automatically, so simply include it as a dependency and it will automatically display the progress of your $http requests.</small></p>
+                <div id="lad"></div>
+            </div>
+            
             <button class="btn btn-default"
                     context-menu="otherMenuOptions">
                 Right Click
@@ -69,6 +72,7 @@
             <p>{{output}}</p>
             <p>{{output}}</p>
         </div>
+
         <div class="col-md-4">
             @*<img width="370" height="240" src="http://pica.zol-img.com.cn/2016/06/8756bb1c5118babff723a1c5b7ef7b90.jpg">
             <img width="370" height="240" src="http://localhost:7782/pic/1.jpg">*@

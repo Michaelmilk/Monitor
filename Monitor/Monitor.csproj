@@ -139,6 +139,14 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\abn_tree.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\loading-bar.css" />
+    <Content Include="Content\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\main.less" />
+    <Content Include="Content\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="dist\menu_component.js" />
     <Content Include="dist\right_menu.js" />
     <Content Include="Scripts\libs\abn_tree_directive-v2.js" />
@@ -172,6 +180,7 @@
     <Content Include="Content\font-awesome\less\screen-reader.less" />
     <Content Include="Content\font-awesome\less\stacked.less" />
     <Content Include="Content\font-awesome\less\variables.less" />
+    <None Include="Content\_component-helper.less" />
     <None Include="Scripts\libs\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\libs\contextMenu.js" />
     <Content Include="Scripts\libs\jquery-1.10.2.js" />
@@ -182,6 +191,7 @@
     <Content Include="Scripts\libs\jquery.validate.min.js" />
     <Content Include="Scripts\libs\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\libs\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\loading-bar.js" />
     <Content Include="Scripts\libs\modernizr-2.6.2.js" />
     <Content Include="Scripts\libs\respond.js" />
     <Content Include="Scripts\libs\respond.min.js" />

@@ -8,7 +8,18 @@
 
 module App {
     'use strict';
-    var app = angular.module('MonitorApp', ['ngResource', 'angularBootstrapNavTree', 'ui.bootstrap.contextMenu'])
+    var app = angular.module('MonitorApp', ['ngResource', 'ngAnimate', 'angularBootstrapNavTree',
+        'ui.bootstrap.contextMenu', 'angular-loading-bar'])
+
+        .config((cfpLoadingBarProvider) => {
+            cfpLoadingBarProvider.parentSelector = '#lad';
+            cfpLoadingBarProvider.includeSpinner = false;
+            cfpLoadingBarProvider.includeBar = true;
+            //cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading-bar"><div class="bar"><div class="peg">tttt</div></div></div>';
+            //cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
+        })
+
+
         // Services
         .service('NetResourceService', NetResourceService)
 

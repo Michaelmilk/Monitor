@@ -3,11 +3,12 @@ var App;
 (function (App) {
     'use strict';
     var HomeCtrl = (function () {
-        function HomeCtrl($scope, NetResourceService, $timeout) {
+        function HomeCtrl($scope, NetResourceService, $timeout, cfpLoadingBar) {
             var _this = this;
             this.$scope = $scope;
             this.NetResourceService = NetResourceService;
             this.$timeout = $timeout;
+            this.cfpLoadingBar = cfpLoadingBar;
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
             // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
@@ -28,6 +29,21 @@ var App;
             //this.tryAsyncLoad();
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
+            ////////////////////////////////////////////////////////
+            //$scope.start = function () {
+            //    cfpLoadingBar.start();
+            //};
+            //$scope.complete = function () {
+            //    cfpLoadingBar.complete();
+            //}
+            //// fake the initial load so first time users can see it right away:
+            //$scope.start();
+            //$scope.fakeIntro = true;
+            //$timeout(function () {
+            //    $scope.complete();
+            //    $scope.fakeIntro = false;
+            //}, 115000);
+            ////////////////////////////////////////////////////////
             console.log("constructor");
         }
         HomeCtrl.prototype.showSelectedTreeNodeInfo = function (branch) {
@@ -65,7 +81,8 @@ var App;
         HomeCtrl.$inject = [
             '$scope',
             'NetResourceService',
-            '$timeout'
+            '$timeout',
+            'cfpLoadingBar'
         ];
         return HomeCtrl;
     })();

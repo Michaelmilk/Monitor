@@ -46,9 +46,10 @@
         <div class="col-md-4">
             <br />
             <div style="width: 250px; height: 600px; margin-left: 20px; background: whitesmoke; border: 1px solid lightgray; border-radius: 5px; overflow-y: scroll;">
-                <div style="display: flex; justify-content:center">
+                @*<div style="display: flex; justify-content: center">
                     <i class="fa fa-spinner fa-pulse fa-5x fa-fw" ng-if="doing_async"></i>
-                </div>
+                </div>*@
+                <div id="lad"></div>
                 <abn-tree tree-data="mapTreeData" tree-control="mapTree" on-select="vm.showSelectedTreeNodeInfo(branch)"
                           expand-level="2" initial-selection="Granny Smith" icon-leaf="fa"
                           icon-expand="fa fa-angle-right" icon-collapse="fa fa-angle-down" context-menu="otherMenuOptions">
@@ -56,6 +57,12 @@
             </div>
         </div>
         <div class="col-md-4">
+            <div>
+                <h1>Angular Loading Bar</h1>
+                <p>An automatic loading bar using angular interceptors.<small>  It works automatically, so simply include it as a dependency and it will automatically display the progress of your $http requests.</small></p>
+                
+            </div>
+
             <h2>Get more libraries</h2>
             <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
             <p>

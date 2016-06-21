@@ -30,6 +30,7 @@ namespace Monitor
                       "~/Scripts/libs/angular-animate.js",
                       "~/Scripts/libs/abn_tree_directive.js",
                       "~/Scripts/libs/contextMenu.js",
+                      "~/Scripts/libs/loading-bar.js",
                       "~/Scripts/directives/right-click.js",
                       "~/dist/menu_component.js"
                       //"~/dist/right_menu.js"
@@ -43,6 +44,8 @@ namespace Monitor
                       "~/Content/abn_tree.css",
                       "~/Content/cyclemenu.css",
                       "~/Content/jquery-ui.css",
+                      "~/Content/loading-bar.css",
+                      "~/Content/main.css",
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
