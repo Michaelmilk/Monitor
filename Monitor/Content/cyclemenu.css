@@ -4,8 +4,10 @@ body {
     overflow:auto;*/
 }
 body {
-  margin: 0;
-  background: linear-gradient(#eeeeee, #cccccc);
+  /*margin: 0;*/
+  background-color: #eeeeee;
+  /*background: linear-gradient(141deg, #0fb8ad 30%, #1fc8db 51%, #2cb5e8 75%)*/
+  /*background: linear-gradient(#eeeeee, #cccccc);*/
   /*overflow: hidden;*/
 }
 .selector {

@@ -1,5 +1,4 @@
-﻿
-$(function() {
+﻿$(function() {
     var angleStart = -360;
 
     // jquery rotate animation

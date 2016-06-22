@@ -3,12 +3,13 @@ var App;
 (function (App) {
     'use strict';
     var HomeCtrl = (function () {
-        function HomeCtrl($scope, NetResourceService, $timeout, cfpLoadingBar) {
+        function HomeCtrl($scope, NetResourceService, $timeout, cfpLoadingBar, usSpinnerService) {
             var _this = this;
             this.$scope = $scope;
             this.NetResourceService = NetResourceService;
             this.$timeout = $timeout;
             this.cfpLoadingBar = cfpLoadingBar;
+            this.usSpinnerService = usSpinnerService;
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
             // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
@@ -45,6 +46,7 @@ var App;
             //    $scope.fakeIntro = false;
             //}, 115000);
             ////////////////////////////////////////////////////////
+            //usSpinnerService.spin('spinner-my');
             console.log("constructor");
         }
         HomeCtrl.prototype.showSelectedTreeNodeInfo = function (branch) {
@@ -76,6 +78,7 @@ var App;
                 //this.mapTreeData = array;
                 _this.$scope.mapTreeData = array;
                 //this.$scope.$apply();
+                _this.usSpinnerService.spin('spinner-my');
                 console.log("treeData", _this.mapTreeData);
             });
         };
@@ -83,7 +86,8 @@ var App;
             '$scope',
             'NetResourceService',
             '$timeout',
-            'cfpLoadingBar'
+            'cfpLoadingBar',
+            'usSpinnerService'
         ];
         return HomeCtrl;
     })();

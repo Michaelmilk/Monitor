@@ -158,6 +158,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\libs\angular-animate.js" />
     <Content Include="Scripts\libs\angular-resource.js" />
+    <Content Include="Scripts\libs\angular-spinner.js" />
     <Content Include="Scripts\libs\angular.js" />
     <Content Include="Scripts\libs\bootstrap.js" />
     <Content Include="Scripts\libs\bootstrap.min.js" />
@@ -187,6 +188,7 @@
     <Content Include="Scripts\libs\jquery-1.10.2.min.js" />
     <None Include="Scripts\libs\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\libs\jquery-ui.js" />
+    <Content Include="Scripts\libs\jquery.js" />
     <Content Include="Scripts\libs\jquery.validate.js" />
     <Content Include="Scripts\libs\jquery.validate.min.js" />
     <Content Include="Scripts\libs\jquery.validate.unobtrusive.js" />
@@ -195,6 +197,7 @@
     <Content Include="Scripts\libs\modernizr-2.6.2.js" />
     <Content Include="Scripts\libs\respond.js" />
     <Content Include="Scripts\libs\respond.min.js" />
+    <Content Include="Scripts\libs\spin.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

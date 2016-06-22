@@ -10,6 +10,7 @@ namespace Monitor
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/libs/jquery-{version}.js",
+                        //"~/Scripts/libs/jquery.js",
                         "~/Scripts/libs/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -31,6 +32,8 @@ namespace Monitor
                       "~/Scripts/libs/abn_tree_directive.js",
                       "~/Scripts/libs/contextMenu.js",
                       "~/Scripts/libs/loading-bar.js",
+                      "~/Scripts/libs/spin.js",
+                      "~/Scripts/libs/angular-spinner.js",
                       "~/Scripts/directives/right-click.js",
                       "~/dist/menu_component.js"
                       //"~/dist/right_menu.js"

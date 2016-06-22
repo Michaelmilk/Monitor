@@ -8,7 +8,7 @@ var App;
 (function (App) {
     'use strict';
     var app = angular.module('MonitorApp', ['ngResource', 'ngAnimate', 'angularBootstrapNavTree',
-        'ui.bootstrap.contextMenu', 'angular-loading-bar'])
+        'ui.bootstrap.contextMenu', 'angular-loading-bar', 'angularSpinner'])
         .config(function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.parentSelector = '#lad';
         cfpLoadingBarProvider.includeSpinner = false;

@@ -8,14 +8,16 @@ module App {
             '$scope',
             'NetResourceService',
             '$timeout',
-            'cfpLoadingBar'
+            'cfpLoadingBar',
+            'usSpinnerService'
         ];
         
         private mapResourceService;
         private mapTreeData;
         private mapTree;
 
-        constructor(private $scope, private NetResourceService, private $timeout, private cfpLoadingBar) {
+        constructor(private $scope, private NetResourceService, private $timeout,
+            private cfpLoadingBar, private usSpinnerService) {
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
 
@@ -63,7 +65,7 @@ module App {
             //    $scope.fakeIntro = false;
             //}, 115000);
             ////////////////////////////////////////////////////////
-
+            //usSpinnerService.spin('spinner-my');
             console.log("constructor");
         }
 
@@ -96,6 +98,7 @@ module App {
                     //this.mapTreeData = array;
                     this.$scope.mapTreeData = array;
                     //this.$scope.$apply();
+                    this.usSpinnerService.spin('spinner-my');
                     console.log("treeData", this.mapTreeData);
                 });
         }

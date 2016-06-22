@@ -9,7 +9,7 @@
 module App {
     'use strict';
     var app = angular.module('MonitorApp', ['ngResource', 'ngAnimate', 'angularBootstrapNavTree',
-        'ui.bootstrap.contextMenu', 'angular-loading-bar'])
+        'ui.bootstrap.contextMenu', 'angular-loading-bar', 'angularSpinner'])
 
         .config((cfpLoadingBarProvider) => {
             cfpLoadingBarProvider.parentSelector = '#lad';

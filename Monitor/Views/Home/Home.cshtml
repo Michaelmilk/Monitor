@@ -43,12 +43,9 @@
 
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <br />
             <div style="width: 250px; height: 600px; margin-left: 20px; background: whitesmoke; border: 1px solid lightgray; border-radius: 5px; overflow-y: scroll;">
-                @*<div style="display: flex; justify-content: center">
-                    <i class="fa fa-spinner fa-pulse fa-5x fa-fw" ng-if="doing_async"></i>
-                </div>*@
                 <div id="lad"></div>
                 <abn-tree tree-data="mapTreeData" tree-control="mapTree" on-select="vm.showSelectedTreeNodeInfo(branch)"
                           expand-level="2" initial-selection="Granny Smith" icon-leaf="fa"
@@ -56,9 +53,18 @@
                 </abn-tree>
             </div>
         </div>
-        <div class="col-md-9">
-            <br />
-            <img style="height:600px; width:900px;" ng-src="currentMapPicLink" err-src="C:\jixge\pic\icon\bing.ico" />
+        <div class="col-md-6">
+            <br/>
+            @*<img style="height:600px; width:900px;" ng-src="currentMapPicLink" err-src="C:\jixge\pic\icon\bing.ico" />*@
+            <img style="width: 900px; height: 600px;" ng-src="{{ currentMapPicLink || '//:0'}}"/><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
         </div>
+        <div class="col-md-4">
+            <div><span us-spinner></span></div>
+            <div style="margin-top: 550px;">
+                <span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
+            </div>
+            <div style="margin-top: 550px;">
+                <span us-spinner="{radius:80, width:8, length: 50}" spinner-key="spinner-my"></span>
+            </div>
     </div>
 </div>
