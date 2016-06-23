@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -11,6 +8,8 @@ namespace Monitor.Data.Helper
     public class ScanDirectoryAsJson
     {
         public string label { get; set; }
+        public string picturePath { get; set; }
+        //public string pictureName { get; set; }
         //public bool isFolder { get; set; }
         //public string key { get; set; }
         public List<ScanDirectoryAsJson> children { get; set; }//child directory tree
@@ -30,6 +29,10 @@ namespace Monitor.Data.Helper
             else
             {
                 //isFolder = false;
+                if (Array.IndexOf(new string[] { ".jpg", ".bmp", ".png" }, fileSystemInfo.Extension) != -1)
+                {
+                    picturePath = fileSystemInfo.FullName;
+                }
             }
             //key = label.Replace(" ", "").ToLower();
         }
