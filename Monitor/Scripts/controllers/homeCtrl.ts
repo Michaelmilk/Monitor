@@ -13,7 +13,7 @@ module App {
         ];
         
         private mapResourceService;
-        private mapTreeData;
+        //private mapTreeData;
         private mapTree;
 
         constructor(private $scope, private NetResourceService, private $timeout,
@@ -47,47 +47,20 @@ module App {
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
 
-            ////////////////////////////////////////////////////////
-            //$scope.start = function () {
-            //    cfpLoadingBar.start();
-            //};
-
-            //$scope.complete = function () {
-            //    cfpLoadingBar.complete();
-            //}
-
-
-            //// fake the initial load so first time users can see it right away:
-            //$scope.start();
-            //$scope.fakeIntro = true;
-            //$timeout(function () {
-            //    $scope.complete();
-            //    $scope.fakeIntro = false;
-            //}, 115000);
-            ////////////////////////////////////////////////////////
-            //usSpinnerService.spin('spinner-my');
             console.log("constructor");
         }
 
         showSelectedTreeNodeInfo(branch) {
-            var ref;
-            this.$scope.output = "You selected: " + branch.label;
-            if (branch.label === "Dog")
-                this.$scope.src = branch.data.src;
-            if ((ref = branch.data) != null ? ref.description : void 0) {
-                return this.$scope.output += '(' + branch.data.description + ')';
-            }
+            //var ref;
+            //this.$scope.output = "You selected: " + branch.label;
+            //if (branch.label === "Dog")
+            //    this.$scope.src = branch.data.src;
+            //if ((ref = branch.data) != null ? ref.description : void 0) {
+            //    return this.$scope.output += '(' + branch.data.description + ')';
+            //}
+            this.$scope.currentMapPicLink = branch.picturePath;
+            console.log(this.$scope.currentMapPicLink);
             console.log("myhandler");
-        }
-
-        tryAsyncLoad() {
-            //this.$scope.mapTreeData = [];
-            this.$scope.doing_async = true;
-            return this.$timeout(() => {
-                this.$scope.mapTreeData = this.mapTreeData;
-                this.$scope.doing_async = false;
-                return this.mapTree.expand_all();
-            }, 1000);
         }
 
         getMapTree() {
@@ -95,13 +68,22 @@ module App {
                 .$promise.then((mapTreeData) => {
                     var array = [];
                     array.push(angular.fromJson(angular.toJson(mapTreeData)));
-                    //this.mapTreeData = array;
                     this.$scope.mapTreeData = array;
-                    //this.$scope.$apply();
-                    this.usSpinnerService.spin('spinner-my');
-                    console.log("treeData", this.mapTreeData);
+                    //this.usSpinnerService.spin('spinner-my');
+                    console.log("treeData", this.$scope.mapTreeData);
                 });
         }
+        //tryAsyncLoad() {
+        //    //this.$scope.mapTreeData = [];
+        //    this.$scope.doing_async = true;
+        //    return this.$timeout(() => {
+        //        this.$scope.mapTreeData = this.mapTreeData;
+        //        this.$scope.doing_async = false;
+        //        return this.mapTree.expand_all();
+        //    }, 1000);
+        //}
+
+        
 
         //appleSelected(branch) {
         //    return this.$scope.output = "APPLE! : " + branch.label;

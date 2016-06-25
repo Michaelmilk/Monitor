@@ -12,6 +12,7 @@ namespace Monitor.Data
 {
     public class Config
     {
+        public static bool LocalDevelop = true;
         //public static string MapDirectory = GetCurrentSolutionDirectory() + "map";//
         static string GetCurrentSolutionLocalPath()
         {
@@ -25,7 +26,8 @@ namespace Monitor.Data
             //solutionDirectory = System.IO.Path.GetDirectoryName(solutionDirectory);
 
             //var debugPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;//debug path
-            var solutionPath = Path.GetFullPath(@"..\..\..\");
+            //var solutionPath = Path.GetFullPath(@"..\..\..\");
+            var solutionPath = Path.GetFullPath(@"..\..\");
             var mapPath = Path.Combine(solutionPath, "map");
             return mapPath;
         }
@@ -44,7 +46,12 @@ namespace Monitor.Data
                 projectPath += @"\";
 
             projectPath = projectPath.TrimEnd('\\');
-            var solutionPath = Directory.GetParent(projectPath).FullName;
+            //map folder locate at Monitor/Monitor
+            var solutionPath = projectPath;
+
+            //map folder locate at Monitor
+            //var solutionPath = Directory.GetParent(projectPath).FullName;
+
             var mapPath = Path.Combine(solutionPath, "map");
             return mapPath;
         }

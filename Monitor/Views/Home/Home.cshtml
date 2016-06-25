@@ -43,7 +43,7 @@
 
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <br />
             <div style="width: 100%; height: 600px; margin-left: 20px; background: whitesmoke; border: 1px solid lightgray; border-radius: 5px; overflow-y: scroll;">
                 <div id="lad"></div>
@@ -53,15 +53,16 @@
                 </abn-tree>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-9">
             <br/>
             @*<img style="height:600px; width:900px;" ng-src="currentMapPicLink" err-src="C:\jixge\pic\icon\bing.ico" />*@
             @*<img style="width: 900px; height: 600px;" ng-src="{{ currentMapPicLink || '//:0'}}" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
-            <img style="width: 900px; height: 600px;" ng-src="http://pica.zol-img.com.cn/2016/06/ac9af14456caa793e8f55e39f4a280cg.jpg" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
+            @*<img style="width: 900px; height: 600px;" ng-src="http://pica.zol-img.com.cn/2016/06/ac9af14456caa793e8f55e39f4a280cg.jpg" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
+            <img style="width: 900px; height: 600px;" ng-src="{{currentMapPicLink || '//:0'}}" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
             @*<img style=" max-width: 100%; width: auto; height: auto;" ng-src="http://i3.bbs.fd.zol-img.com.cn/t_s1200x5000/g5/M00/0D/04/ChMkJldnsW2Ie0L_AALfmS8enX8AASygwDGfzkAAt-x959.jpg" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
 
         </div>
-        <div class="col-md-4">
+        @*<div class="col-md-4">
             <div><span us-spinner></span></div>
             <div style="margin-top: 550px;">
                 <span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
@@ -69,5 +70,6 @@
             <div style="margin-top: 550px;">
                 <span us-spinner="{radius:80, width:8, length: 50}" spinner-key="spinner-my"></span>
             </div>
+        </div>*@
     </div>
 </div>

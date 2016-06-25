@@ -31,43 +31,19 @@ var App;
             //this.tryAsyncLoad();
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
-            ////////////////////////////////////////////////////////
-            //$scope.start = function () {
-            //    cfpLoadingBar.start();
-            //};
-            //$scope.complete = function () {
-            //    cfpLoadingBar.complete();
-            //}
-            //// fake the initial load so first time users can see it right away:
-            //$scope.start();
-            //$scope.fakeIntro = true;
-            //$timeout(function () {
-            //    $scope.complete();
-            //    $scope.fakeIntro = false;
-            //}, 115000);
-            ////////////////////////////////////////////////////////
-            //usSpinnerService.spin('spinner-my');
             console.log("constructor");
         }
         HomeCtrl.prototype.showSelectedTreeNodeInfo = function (branch) {
-            var ref;
-            this.$scope.output = "You selected: " + branch.label;
-            if (branch.label === "Dog")
-                this.$scope.src = branch.data.src;
-            if ((ref = branch.data) != null ? ref.description : void 0) {
-                return this.$scope.output += '(' + branch.data.description + ')';
-            }
+            //var ref;
+            //this.$scope.output = "You selected: " + branch.label;
+            //if (branch.label === "Dog")
+            //    this.$scope.src = branch.data.src;
+            //if ((ref = branch.data) != null ? ref.description : void 0) {
+            //    return this.$scope.output += '(' + branch.data.description + ')';
+            //}
+            this.$scope.currentMapPicLink = branch.picturePath;
+            console.log(this.$scope.currentMapPicLink);
             console.log("myhandler");
-        };
-        HomeCtrl.prototype.tryAsyncLoad = function () {
-            var _this = this;
-            //this.$scope.mapTreeData = [];
-            this.$scope.doing_async = true;
-            return this.$timeout(function () {
-                _this.$scope.mapTreeData = _this.mapTreeData;
-                _this.$scope.doing_async = false;
-                return _this.mapTree.expand_all();
-            }, 1000);
         };
         HomeCtrl.prototype.getMapTree = function () {
             var _this = this;
@@ -75,11 +51,9 @@ var App;
                 .$promise.then(function (mapTreeData) {
                 var array = [];
                 array.push(angular.fromJson(angular.toJson(mapTreeData)));
-                //this.mapTreeData = array;
                 _this.$scope.mapTreeData = array;
-                //this.$scope.$apply();
-                _this.usSpinnerService.spin('spinner-my');
-                console.log("treeData", _this.mapTreeData);
+                //this.usSpinnerService.spin('spinner-my');
+                console.log("treeData", _this.$scope.mapTreeData);
             });
         };
         HomeCtrl.$inject = [

@@ -38,7 +38,7 @@ namespace Monitor.Data.Test
             Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
             String rootPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             Console.WriteLine(rootPath);
-            var rptPath = Path.GetFullPath(@"..\..\..\");
+            var rptPath = Path.GetFullPath(@"..\..\");
             Console.WriteLine(rptPath);
 
             string solutionDirectory = ((EnvDTE.DTE)System.Runtime
