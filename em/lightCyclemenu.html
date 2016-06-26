@@ -110,9 +110,25 @@
 	  items[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
 	}
 	
-	$('.menu-button').click(function(){
+	$('.menu-button').click(function(e){
+    console.log("menu click");
 	   $('.circle').toggleClass('open');
+     e.stopPropagation();
 	});
+
+  // $("body").click(function(event){
+  //   console.log("body click");
+  //    $('.circle').toggleClass('open', false);
+  // });
+
+  $(document).click(function(e){
+        e = window.event || e;
+        var obj = e.srcElement || e.target;
+        if(!$(obj).is(".circle")) {
+          console.log("1111111111");
+          $('.circle').toggleClass('open', false);
+        }
+      });
 
 </script>
 </body>
