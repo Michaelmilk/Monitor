@@ -2,3 +2,14 @@
   position: relative;
   background: lime;
 }
+._map {
+  position: absolute;
+  width: 900px;
+  height: 600px;
+  z-index: -1;
+}
+._icon {
+  position: absolute;
+  width: 20px;
+  height: 25px;
+}

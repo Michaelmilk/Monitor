@@ -69,7 +69,7 @@ module App {
                     var array = [];
                     array.push(angular.fromJson(angular.toJson(mapTreeData)));
                     this.$scope.mapTreeData = array;
-                    //this.usSpinnerService.spin('spinner-my');
+                    //this.usSpinnerService.spin('spinner-my');//show spinner
                     console.log("treeData", this.$scope.mapTreeData);
                 });
         }

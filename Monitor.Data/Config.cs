@@ -26,10 +26,10 @@ namespace Monitor.Data
             //solutionDirectory = System.IO.Path.GetDirectoryName(solutionDirectory);
 
             //var debugPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;//debug path
-            //var solutionPath = Path.GetFullPath(@"..\..\..\");
-            var solutionPath = Path.GetFullPath(@"..\..\");
-            var mapPath = Path.Combine(solutionPath, "map");
-            return mapPath;
+            //var solutionPath = Path.GetFullPath(@"..\..\..\");//map folder on Monitor/map
+            var solutionPath = Path.GetFullPath(@"..\..\");//map folder on Monitor/Monitor/map
+            //var mapPath = Path.Combine(solutionPath, "map");
+            return solutionPath;
         }
 
         static string GetCurrentSolutionWebServerPath(HttpContext httpContext)
@@ -52,12 +52,28 @@ namespace Monitor.Data
             //map folder locate at Monitor
             //var solutionPath = Directory.GetParent(projectPath).FullName;
 
-            var mapPath = Path.Combine(solutionPath, "map");
-            return mapPath;
+            //var mapPath = Path.Combine(solutionPath, "map");
+            return solutionPath;
         }
 
 
         public static string MapPath
+        {
+            get
+            {
+                var httpRequest = System.Web.HttpContext.Current;
+                if (httpRequest == null)//it's local run
+                {
+                    return Path.Combine(GetCurrentSolutionLocalPath(), "map"); ;
+                }
+                else
+                {
+                    return Path.Combine(GetCurrentSolutionWebServerPath(httpRequest), "map");
+                }
+            }
+        }
+
+        public static string XmlPath
         {
             get
             {
