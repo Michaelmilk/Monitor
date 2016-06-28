@@ -16,6 +16,7 @@ var App;
             // for its methods to be accessible from view / HTML
             $scope.vm = this;
             $scope.currentMapPicLink = null;
+            $scope.currentMapConfig = null;
             $scope.appleSelected = function (branch) {
                 return _this.$scope.output = "APPLE! : " + branch.label;
             };

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Monitor.Data.Helper;
+using Monitor.Data.Model;
+using Monitor.Data.Interface;
 using EnvDTE;
 using EnvDTE100;
 
@@ -49,6 +52,19 @@ namespace Monitor.Data.Test
                                    .FullName;
             solutionDirectory = System.IO.Path.GetDirectoryName(solutionDirectory);
             Console.WriteLine(solutionDirectory);
+        }
+
+
+        [TestMethod]
+        public void XMLTest()
+        {
+            LocationIcon icon1 = new LocationIcon();
+            LocationIcon icon2 = new LocationIcon();
+            MapConfig mapConfig = new MapConfig();
+            mapConfig.AddIcon(icon1);
+            mapConfig.AddIcon(icon2);
+            XmlHelper.SerializeToXmlFile(mapConfig);
+            XmlHelper.DeserializeToXmlFile();
         }
     }
 }

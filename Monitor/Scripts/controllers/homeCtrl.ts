@@ -26,6 +26,7 @@ module App {
             $scope.vm = this;
 
             $scope.currentMapPicLink = null;
+            $scope.currentMapConfig = null;
 
             $scope.appleSelected = (branch) => {
                 return this.$scope.output = "APPLE! : " + branch.label;

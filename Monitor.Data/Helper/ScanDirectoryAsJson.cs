@@ -115,7 +115,7 @@ namespace Monitor.Data.Helper
 
         public string GetLocalPictureParh(string fullNamePath)
         {
-            int pos = fullNamePath.IndexOf("map");
+            int pos = fullNamePath.IndexOf("map", StringComparison.Ordinal);
             return fullNamePath.Substring(pos);
         }
 

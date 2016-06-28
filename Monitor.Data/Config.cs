@@ -80,11 +80,11 @@ namespace Monitor.Data
                 var httpRequest = System.Web.HttpContext.Current;
                 if (httpRequest == null)//it's local run
                 {
-                    return GetCurrentSolutionLocalPath();
+                    return Path.Combine(GetCurrentSolutionLocalPath(), "xml", "test.xml");
                 }
                 else
                 {
-                    return GetCurrentSolutionWebServerPath(httpRequest);
+                    return Path.Combine(GetCurrentSolutionWebServerPath(httpRequest), "xml", "test.xml");
                 }
             }
         }
