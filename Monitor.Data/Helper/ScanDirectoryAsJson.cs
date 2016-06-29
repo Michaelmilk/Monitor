@@ -119,7 +119,7 @@ namespace Monitor.Data.Helper
             return fullNamePath.Substring(pos);
         }
 
-        public new string ToString()
+        public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

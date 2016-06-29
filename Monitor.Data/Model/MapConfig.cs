@@ -28,7 +28,7 @@ namespace Monitor.Data.Model
             iconList.Remove(icon);
         }
 
-        public new string ToString()
+        public override string ToString()
         {
             var nodes = "";
             foreach (var icon in iconList)
