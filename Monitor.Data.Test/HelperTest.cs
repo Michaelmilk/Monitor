@@ -63,8 +63,8 @@ namespace Monitor.Data.Test
             MapConfig mapConfig = new MapConfig();
             mapConfig.AddIcon(icon1);
             mapConfig.AddIcon(icon2);
-            XmlHelper.SerializeToXmlFile(mapConfig);
-            XmlHelper.DeserializeToXmlFile();
+            XmlHelper.SerializeToFile(mapConfig);
+            XmlHelper.DeserializeToFile();
         }
     }
 }

@@ -10,12 +10,13 @@ namespace Monitor.Data.Interface
 {
     public class LocationIcon
     {
-        public Point location { get; set; }
+        public int id { get; set; }
+        public Point locationCoordinate { get; set; }
         public string iconUrl { get; set; }
 
         public LocationIcon()
         {
-            location = new Point(0, 0);
+            locationCoordinate = new Point(0, 0);
             iconUrl = "http://";
         }
     }

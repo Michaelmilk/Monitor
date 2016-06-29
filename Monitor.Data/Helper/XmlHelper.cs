@@ -9,7 +9,7 @@ namespace Monitor.Data.Helper
 {
     public class XmlHelper
     {
-        public static void SerializeToXmlFile(MapConfig obj)
+        public static void SerializeToFile(MapConfig obj)
         {
             System.Xml.Serialization.XmlSerializer writer =
                 new System.Xml.Serialization.XmlSerializer(typeof(MapConfig));
@@ -20,7 +20,7 @@ namespace Monitor.Data.Helper
             file.Close();
         }
 
-        public static void DeserializeToXmlFile()
+        public static void DeserializeToFile()
         {
             System.Xml.Serialization.XmlSerializer reader =
                 new System.Xml.Serialization.XmlSerializer(typeof(MapConfig));

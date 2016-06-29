@@ -9,10 +9,12 @@ namespace Monitor.Data.Model
 {
     public class MapConfig
     {
+        public int iconCount { get; set; }
         public List<LocationIcon> iconList { get; set; }
 
         public MapConfig()
         {
+            iconCount = 0;
             iconList = new List<LocationIcon>();
         }
 
@@ -31,7 +33,7 @@ namespace Monitor.Data.Model
             var nodes = "";
             foreach (var icon in iconList)
             {
-                nodes += string.Format("Pointer:{0}, {1}, url:{2} \n", icon.location.X, icon.location.Y, icon.iconUrl);
+                nodes += string.Format("Pointer:{0}, {1}, url:{2} \n", icon.locationCoordinate.X, icon.locationCoordinate.Y, icon.iconUrl);
             }
             return nodes;
         }
