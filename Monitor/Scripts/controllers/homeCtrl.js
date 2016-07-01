@@ -17,6 +17,7 @@ var App;
             $scope.vm = this;
             $scope.currentMapPicLink = null;
             $scope.currentMapConfig = null;
+            $scope.currentIconList = null;
             $scope.appleSelected = function (branch) {
                 return _this.$scope.output = "APPLE! : " + branch.label;
             };
@@ -32,6 +33,9 @@ var App;
             //this.tryAsyncLoad();
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
+            $scope.currentIconList = [
+                { location: { X: 100, Y: 100 }, iconUrl: "icon/green.png" },
+                { location: { X: 200, Y: 300 }, iconUrl: "icon/green.png" }];
             console.log("constructor");
         }
         HomeCtrl.prototype.showSelectedTreeNodeInfo = function (branch) {
@@ -43,8 +47,7 @@ var App;
             //    return this.$scope.output += '(' + branch.data.description + ')';
             //}
             this.$scope.currentMapPicLink = branch.picturePath;
-            console.log(this.$scope.currentMapPicLink);
-            console.log("myhandler");
+            console.log("$scope.currentMapPicLink", this.$scope.currentMapPicLink);
         };
         HomeCtrl.prototype.getMapTree = function () {
             var _this = this;

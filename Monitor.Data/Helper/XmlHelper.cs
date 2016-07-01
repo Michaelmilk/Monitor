@@ -20,15 +20,16 @@ namespace Monitor.Data.Helper
             file.Close();
         }
 
-        public static void DeserializeToFile()
+        public static MapConfig DeserializeToFile()
         {
             System.Xml.Serialization.XmlSerializer reader =
                 new System.Xml.Serialization.XmlSerializer(typeof(MapConfig));
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\E\github\Monitor\xml\test.xml");
-            MapConfig overview = (MapConfig)reader.Deserialize(file);
+            MapConfig mapConfig = (MapConfig)reader.Deserialize(file);
             file.Close();
 
-            Console.WriteLine(overview.ToString());
+            Console.WriteLine(mapConfig.ToString());
+            return mapConfig;
         }
 
         public static void AddNode()

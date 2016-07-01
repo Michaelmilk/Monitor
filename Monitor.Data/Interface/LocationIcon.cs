@@ -17,7 +17,7 @@ namespace Monitor.Data.Interface
         public LocationIcon()
         {
             locationCoordinate = new Point(0, 0);
-            iconUrl = "http://";
+            iconUrl = "icon/green.png";
         }
     }
 }

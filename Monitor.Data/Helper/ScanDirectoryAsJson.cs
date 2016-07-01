@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
+using Monitor.Data.Interface;
 
 namespace Monitor.Data.Helper
 {
@@ -63,6 +64,7 @@ namespace Monitor.Data.Helper
         //public string key { get; set; }
         public string configPath { get; set; }
         public List<ScanDirectoryAsJson> children { get; set; }//child directory tree
+        public List<LocationIcon> LocationIconList { get; set; }//location info list
 
         //public ScanDirectoryAsJson2(ScanDirectoryAsJson2 parent, FileSystemInfo fileSystemInfo)
         public ScanDirectoryAsJson(FileSystemInfo fileSystemInfo)
@@ -79,10 +81,11 @@ namespace Monitor.Data.Helper
                     {
                         children.Add(new ScanDirectoryAsJson(f));
                     }
-
                     else
                     {
                         //isFolder = false;
+                        //Todo: picturePath = Config.LocalDevelop ? GetLocalPictureParh(f.FullName) : f.FullName;
+                        //if local develop, then use local picture path
                         if (Config.LocalDevelop)
                         {
                             if (Array.IndexOf(new string[] { ".jpg", ".bmp", ".png" }, f.Extension) != -1)
@@ -113,6 +116,8 @@ namespace Monitor.Data.Helper
             }
         }
 
+        //get local picture path, the map folder is in root of Monitor directory(Monitor/map/...),
+        //so just get the path start from map/...
         public string GetLocalPictureParh(string fullNamePath)
         {
             int pos = fullNamePath.IndexOf("map", StringComparison.Ordinal);

@@ -27,6 +27,7 @@ module App {
 
             $scope.currentMapPicLink = null;
             $scope.currentMapConfig = null;
+            $scope.currentIconList = null;
 
             $scope.appleSelected = (branch) => {
                 return this.$scope.output = "APPLE! : " + branch.label;
@@ -47,7 +48,9 @@ module App {
 
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
-
+            $scope.currentIconList = [
+            { location: { X: 100, Y: 100 }, iconUrl: "icon/green.png"},
+                { location:{X: 200, Y: 300}, iconUrl: "icon/green.png" }];
             console.log("constructor");
         }
 
@@ -60,8 +63,7 @@ module App {
             //    return this.$scope.output += '(' + branch.data.description + ')';
             //}
             this.$scope.currentMapPicLink = branch.picturePath;
-            console.log(this.$scope.currentMapPicLink);
-            console.log("myhandler");
+            console.log("$scope.currentMapPicLink", this.$scope.currentMapPicLink);
         }
 
         getMapTree() {

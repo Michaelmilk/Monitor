@@ -56,9 +56,12 @@
         <div class="col-md-9">
             <br/>
             <div class="_map">
-                <img class="_map" style="max-height: 100%; max-width: 100%" ng-src="{{ currentMapPicLink || '//:0'}}" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
-                <img class="_icon" src="http://www.runoob.com/images/sun.gif" style="left:50px; top:150px" />
+                <img class="_map" style="max-height: 100%; max-width: 100%" ng-src="{{ currentMapPicLink || '//:0'}}"/><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
+                <img class="_icon img-circle" src="http://www.runoob.com/images/sun.gif" style="left: 50px; top: 150px"/>
+                <img class="_icon img-circle" src="{{icon.iconUrl}}" style="left: {{icon.location.X}}px; top: {{icon.location.Y}}px"
+                     ng-repeat="icon in currentIconList"/>
             </div>
+            
             @*<img style="height:600px; width:900px;" ng-src="currentMapPicLink" err-src="C:\jixge\pic\icon\bing.ico" />*@
             @*<img style="width: 900px; height: 600px;" ng-src="{{ currentMapPicLink || '//:0'}}" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
             @*<img style="width: 900px; height: 600px;" ng-src="http://pica.zol-img.com.cn/2016/06/ac9af14456caa793e8f55e39f4a280cg.jpg" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
