@@ -49,8 +49,9 @@ module App {
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-            { location: { X: 100, Y: 100 }, iconUrl: "icon/green.png"},
-                { location:{X: 200, Y: 300}, iconUrl: "icon/green.png" }];
+                {name:"first", shape: "circle", location: { X: 100, Y: 100 }, coords:"100, 100, 8", iconUrl: "icon/green.png"},
+                {name:"second", shape: "circle", location: { X: 190, Y: 290 }, coords: "200, 300, 8",iconUrl: "icon/green.png" }
+            ];
             console.log("constructor");
         }
 
@@ -111,5 +112,9 @@ module App {
         //        }
         //    });
         //}
+
+        test() {
+            alert("abcdefg");
+        }
     }
 }

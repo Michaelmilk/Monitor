@@ -34,8 +34,9 @@ var App;
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-                { location: { X: 100, Y: 100 }, iconUrl: "icon/green.png" },
-                { location: { X: 200, Y: 300 }, iconUrl: "icon/green.png" }];
+                { name: "first", shape: "circle", location: { X: 100, Y: 100 }, coords: "100, 100, 8", iconUrl: "icon/green.png" },
+                { name: "second", shape: "circle", location: { X: 190, Y: 290 }, coords: "200, 300, 8", iconUrl: "icon/green.png" }
+            ];
             console.log("constructor");
         }
         HomeCtrl.prototype.showSelectedTreeNodeInfo = function (branch) {
@@ -59,6 +60,39 @@ var App;
                 //this.usSpinnerService.spin('spinner-my');//show spinner
                 console.log("treeData", _this.$scope.mapTreeData);
             });
+        };
+        //tryAsyncLoad() {
+        //    //this.$scope.mapTreeData = [];
+        //    this.$scope.doing_async = true;
+        //    return this.$timeout(() => {
+        //        this.$scope.mapTreeData = this.mapTreeData;
+        //        this.$scope.doing_async = false;
+        //        return this.mapTree.expand_all();
+        //    }, 1000);
+        //}
+        //appleSelected(branch) {
+        //    return this.$scope.output = "APPLE! : " + branch.label;
+        //}
+        //tryChangingTheTreeData() {
+        //    console.log("mapTree", this.$scope.mapTree);
+        //    if (this.$scope.mapTree === this.treeData) {
+        //        return this.$scope.mapTree = this.treedataGeography;
+        //    } else {
+        //        return this.$scope.mapTree = this.treedataAvm;
+        //    }
+        //}
+        //tryAddingABranch() {
+        //    var b = this.tree.get_selected_branch();
+        //    return this.tree.add_branch(b, {
+        //        label: 'New Branch',
+        //        data: {
+        //            something: 42,
+        //            "else": 43
+        //        }
+        //    });
+        //}
+        HomeCtrl.prototype.test = function () {
+            alert("abcdefg");
         };
         HomeCtrl.$inject = [
             '$scope',

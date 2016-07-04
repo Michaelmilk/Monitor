@@ -44,7 +44,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <br />
+            <br/>
             <div style="width: 100%; height: 600px; margin-left: 20px; background: whitesmoke; border: 1px solid lightgray; border-radius: 5px; overflow-y: scroll;">
                 <div id="lad"></div>
                 <abn-tree tree-data="mapTreeData" tree-control="mapTree" on-select="vm.showSelectedTreeNodeInfo(branch)"
@@ -53,15 +53,41 @@
                 </abn-tree>
             </div>
         </div>
+
         <div class="col-md-9">
-            <br/>
+            <br />
             <div class="_map">
-                <img class="_map" style="max-height: 100%; max-width: 100%" ng-src="{{ currentMapPicLink || '//:0'}}"/><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
-                <img class="_icon img-circle" src="http://www.runoob.com/images/sun.gif" style="left: 50px; top: 150px"/>
-                <img class="_icon img-circle" src="{{icon.iconUrl}}" style="left: {{icon.location.X}}px; top: {{icon.location.Y}}px"
-                     ng-repeat="icon in currentIconList"/>
+                <img class="_map" style="max-height: 100%; max-width: 100%"
+                     ng-src="{{ currentMapPicLink || '//:0'}}" usemap="#monitormap" />
+                @*<span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
+
+                <img class="_icon img-circle" ng-src="http://www.runoob.com/images/sun.gif" style="left: 50px; top: 150px" />
+                <img class="_icon img-circle" ng-src="{{icon.iconUrl || '//:0'}}" alt="Smiley face" style="left: {{icon.location.X}}px; top: {{icon.location.Y}}px"
+                     ng-repeat="icon in currentIconList" />
+
+                <map style="position: absolute;" name="monitormap">
+                    <area style="position: absolute;" shape="circle" coords="0,0,82,126" alt="Sun" href="http://www.runoob.com/images/sun.gif">
+                    <area style="position: absolute;" shape="circle" coords="50,150,8" alt="Mercury" href="http://www.w3schools.com/tags/planets.gif">
+                    <area style="position: absolute;" shape="circle" coords="200,300,8" alt="Venus" href="http://www.runoob.com/images/sun.gif">
+                </map>
+
+                @*<map style="position: absolute;" name="monitormap" >
+                <area ng-repeat="icon in currenticonlist" s shape="{{icon.shape}}" coords="{{icon.coor}}" title="{{icon.name}}"
+                      ng-click="vm.test()"/>
+            </map>*@
+            </div>
+
+            <div style="position: absolute;">
+                <img style="position: absolute;" src="http://www.w3schools.com/tags/planets.gif" width="145" height="126" usemap="#planetmap">
+
+                <map name="planetmap">
+                    <area style="position: absolute;" shape="rect" coords="0,0,82,126" ng-click="vm.test()">
+                    <area shape="circle" coords="90,58,3" alt="Mercury" href="www.baidu.com">
+                    <area shape="circle" coords="124,58,8" alt="Venus" href="www.baidu.com">
+                </map>
             </div>
             
+
             @*<img style="height:600px; width:900px;" ng-src="currentMapPicLink" err-src="C:\jixge\pic\icon\bing.ico" />*@
             @*<img style="width: 900px; height: 600px;" ng-src="{{ currentMapPicLink || '//:0'}}" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
             @*<img style="width: 900px; height: 600px;" ng-src="http://pica.zol-img.com.cn/2016/06/ac9af14456caa793e8f55e39f4a280cg.jpg" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
@@ -70,13 +96,13 @@
             @*http://wholesale-european-beads.com/upload/adv/2016/3/2116552443f.jpg*@
         </div>
         @*<div class="col-md-4">
-            <div><span us-spinner></span></div>
-            <div style="margin-top: 550px;">
-                <span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
-            </div>
-            <div style="margin-top: 550px;">
-                <span us-spinner="{radius:80, width:8, length: 50}" spinner-key="spinner-my"></span>
-            </div>
-        </div>*@
+                <div><span us-spinner></span></div>
+                <div style="margin-top: 550px;">
+                    <span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>
+                </div>
+                <div style="margin-top: 550px;">
+                    <span us-spinner="{radius:80, width:8, length: 50}" spinner-key="spinner-my"></span>
+                </div>
+            </div>*@
     </div>
 </div>
