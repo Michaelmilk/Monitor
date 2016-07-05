@@ -1,0 +1,43 @@
+<div class="col-md-9">
+            <br />
+            <div style="position:absolute;">
+                <img class="" style="max-height: 100%; max-width: 100%;width: 900px;height: 600px;"
+                     ng-src="{{ currentMapPicLink || '//:0'}}" usemap="#monitormap" />
+                @*<span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
+
+                <img class="_icon img-circle" ng-src="http://www.runoob.com/images/sun.gif" style="left: 45px; top: 145px" />
+                <img class="_icon img-circle" ng-src="{{icon.iconUrl || '//:0'}}" alt="Smiley face" style="left: {{icon.location.X}}px; top: {{icon.location.Y}}px; "
+                     ng-repeat="icon in currentIconList" />
+                <div style="position:absolute;z-index: 1000;">
+                    <map style="z-index: 1000;" name="monitormap">
+                        <area style="z-index: 1000;" shape="circle" coords="0,0,82,126" alt="Sun" href="http://www.runoob.com/images/sun.gif">
+                        <area style="z-index: 1000;" shape="circle" coords="50,150,18" alt="Mercury" href="http://www.w3schools.com/tags/planets.gif">
+                        <area style="z-index: 1000;" shape="circle" coords="200,300,18" alt="Venus" href="http://www.runoob.com/images/sun.gif">
+                    </map>
+                </div>
+                
+
+                @*<map style="position: absolute;" name="monitormap" >
+                <area ng-repeat="icon in currenticonlist" s shape="{{icon.shape}}" coords="{{icon.coor}}" title="{{icon.name}}"
+                      ng-click="vm.test()"/>
+            </map>*@
+            </div>
+
+            <div style="position: absolute;">
+                <img style="position: absolute;" src="http://www.w3schools.com/tags/planets.gif" width="145" height="126" usemap="#planetmap">
+
+                <map name="planetmap">
+                    <area style="position: absolute; z-index: 1000;" shape="rect" coords="0,0,82,126" ng-click="vm.test()">
+                    <area style="position: absolute; z-index: 1000;" shape="circle" coords="90,58,3" alt="Mercury" href="www.baidu.com">
+                    <area style="position: absolute; z-index: 1000;" shape="circle" coords="124,58,8" alt="Venus" href="www.baidu.com">
+                </map>
+            </div>
+            
+
+            @*<img style="height:600px; width:900px;" ng-src="currentMapPicLink" err-src="C:\jixge\pic\icon\bing.ico" />*@
+            @*<img style="width: 900px; height: 600px;" ng-src="{{ currentMapPicLink || '//:0'}}" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
+            @*<img style="width: 900px; height: 600px;" ng-src="http://pica.zol-img.com.cn/2016/06/ac9af14456caa793e8f55e39f4a280cg.jpg" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
+            @*<img style="width: 900px; height: 600px;" ng-src="{{currentMapPicLink || '//:0'}}" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
+            @*<img style=" max-width: 100%; width: auto; height: auto;" ng-src="http://i3.bbs.fd.zol-img.com.cn/t_s1200x5000/g5/M00/0D/04/ChMkJldnsW2Ie0L_AALfmS8enX8AASygwDGfzkAAt-x959.jpg" /><span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
+            @*http://wholesale-european-beads.com/upload/adv/2016/3/2116552443f.jpg*@
+        </div>

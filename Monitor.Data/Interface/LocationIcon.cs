@@ -11,6 +11,7 @@ namespace Monitor.Data.Interface
     public class LocationIcon
     {
         public int id { get; set; }
+        public string name { get; set; }
         public Point locationCoordinate { get; set; }
         public string iconUrl { get; set; }
 
