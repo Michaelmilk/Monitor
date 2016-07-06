@@ -3,7 +3,6 @@
   background: lime;
 }
 ._map {
-  position: absolute;
   width: 900px;
   height: 600px;
 }
@@ -11,4 +10,12 @@
   position: absolute;
   width: 20px;
   height: 20px;
+}
+/*position*/
+._pos-absolute {
+  position: absolute;
+}
+/*cursor*/
+._cursor-pointer {
+  cursor: pointer;
 }

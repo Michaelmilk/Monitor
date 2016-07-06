@@ -183,6 +183,7 @@
     <Content Include="Content\font-awesome\less\variables.less" />
     <None Include="Content\_component-helper.less" />
     <Content Include="Content\_map-releated.less" />
+    <Content Include="Content\_custom-css.less" />
     <None Include="Scripts\libs\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\libs\contextMenu.js" />
     <Content Include="Scripts\libs\jquery-1.10.2.js" />

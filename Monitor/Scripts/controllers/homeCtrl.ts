@@ -40,6 +40,17 @@ module App {
                 }]
             ];
 
+
+            //$scope.locateIcon = ($event) => {
+            //    var x = $event.x;
+            //    var y = $event.y;
+            //    var offsetX = $event.offsetX;
+            //    var offsetY = $event.offsetY;
+
+            //    // you have lots of things to try here, not sure what you want to calculate
+            //    console.log($event, x, y, offsetX, offsetY);
+            //}
+
             this.getMapTree();
 
             //this.$scope.mapTreeData = null;
@@ -49,8 +60,8 @@ module App {
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-                {name:"first", shape: "circle", location: { X: 100, Y: 100 }, coords:"100, 100, 8", iconUrl: "icon/green.png"},
-                {name:"second", shape: "circle", location: { X: 190, Y: 290 }, coords: "200, 300, 8",iconUrl: "icon/green.png" }
+                {name:"first", shape: "circle", location: { X: 100, Y: 100 }, iconUrl: "icon/green.png"},
+                {name:"second", shape: "circle", location: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
             ];
             console.log("constructor");
         }
@@ -77,6 +88,17 @@ module App {
                     console.log("treeData", this.$scope.mapTreeData);
                 });
         }
+
+        locateIcon($event) {
+            var x = $event.x;
+            var y = $event.y;
+            var offsetX = $event.offsetX;
+            var offsetY = $event.offsetY;
+
+            // you have lots of things to try here, not sure what you want to calculate
+            console.log($event, x, y, offsetX, offsetY);
+        }
+
         //tryAsyncLoad() {
         //    //this.$scope.mapTreeData = [];
         //    this.$scope.doing_async = true;

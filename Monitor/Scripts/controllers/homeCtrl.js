@@ -27,6 +27,14 @@ var App;
                         alert(color);
                     }]
             ];
+            //$scope.locateIcon = ($event) => {
+            //    var x = $event.x;
+            //    var y = $event.y;
+            //    var offsetX = $event.offsetX;
+            //    var offsetY = $event.offsetY;
+            //    // you have lots of things to try here, not sure what you want to calculate
+            //    console.log($event, x, y, offsetX, offsetY);
+            //}
             this.getMapTree();
             //this.$scope.mapTreeData = null;
             this.$scope.mapTreeData = []; //must assign [], or error to load tree control
@@ -34,8 +42,8 @@ var App;
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-                { name: "first", shape: "circle", location: { X: 100, Y: 100 }, coords: "100, 100, 8", iconUrl: "icon/green.png" },
-                { name: "second", shape: "circle", location: { X: 190, Y: 290 }, coords: "200, 300, 8", iconUrl: "icon/green.png" }
+                { name: "first", shape: "circle", location: { X: 100, Y: 100 }, iconUrl: "icon/green.png" },
+                { name: "second", shape: "circle", location: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
             ];
             console.log("constructor");
         }
@@ -60,6 +68,14 @@ var App;
                 //this.usSpinnerService.spin('spinner-my');//show spinner
                 console.log("treeData", _this.$scope.mapTreeData);
             });
+        };
+        HomeCtrl.prototype.locateIcon = function ($event) {
+            var x = $event.x;
+            var y = $event.y;
+            var offsetX = $event.offsetX;
+            var offsetY = $event.offsetY;
+            // you have lots of things to try here, not sure what you want to calculate
+            console.log($event, x, y, offsetX, offsetY);
         };
         //tryAsyncLoad() {
         //    //this.$scope.mapTreeData = [];

@@ -56,8 +56,8 @@
 
         <div class="col-md-9">
             <br />
-            <div style="position:absolute;">
-                <img class="" style="max-height: 100%; max-width: 100%;width: 900px;height: 600px;" ng-src="{{ currentMapPicLink || '//:0'}}"/>
+            <div class="_pos-absolute">
+                <img class="_map" ng-src="{{ currentMapPicLink || '//:0'}}" ng-click="vm.locateIcon($event)"/>
                 @*<span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
 
                 <img class="_icon img-circle" ng-src="http://www.runoob.com/images/sun.gif" style="left: 45px; top: 145px" />
