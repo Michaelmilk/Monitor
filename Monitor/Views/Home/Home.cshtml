@@ -52,19 +52,24 @@
                           icon-expand="fa fa-angle-right" icon-collapse="fa fa-angle-down" context-menu="otherMenuOptions">
                 </abn-tree>
             </div>
+            <div>
+                <button class="btn btn-info" ng-click="vm.changeMode()">change mode</button>
+            </div>
         </div>
 
         <div class="col-md-9">
-            <br />
+            <br/>
             <div class="_pos-absolute">
                 <img class="_map" ng-src="{{ currentMapPicLink || '//:0'}}" ng-click="vm.locateIcon($event)"/>
                 @*<span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
 
-                <img class="_icon img-circle" ng-src="http://www.runoob.com/images/sun.gif" style="left: 45px; top: 145px" />
-                <img class="_icon img-circle" ng-click="vm.test()" ng-src="{{icon.iconUrl || '//:0'}}" alt="Smiley face" style="cursor: pointer;left: {{icon.location.X}}px; top: {{icon.location.Y}}px; "
-                     ng-repeat="icon in currentIconList" />
+                <img class="_icon img-circle" ng-src="http://www.runoob.com/images/sun.gif" style="left: 45px; top: 145px"/>
+
+                <img class="_icon img-circle" ng-click="vm.test()" ng-src="{{icon.iconUrl || '//:0'}}" style="left: {{icon.location.X}}px; top: {{icon.location.Y}}px; "
+                     ng-repeat="icon in currentIconList"/>
             </div>
         </div>
+        
         @*<div class="col-md-4">
                 <div><span us-spinner></span></div>
                 <div style="margin-top: 550px;">
