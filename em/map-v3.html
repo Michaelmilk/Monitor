@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.js"></script>
+
+</head>
+<body ng-controller="myCtrl">
+
+<p>Click on the sun or on one of the planets to watch it closer:</p>
+
+<img src="http://www.w3schools.com/tags/planets.gif" width="145" height="126" usemap="#planetmap">
+
+<map name="planetmap">
+  <area shape="rect" coords="0,0,82,126" ng-click="test()" >
+  <area shape="circle" coords="90,58,3" alt="Mercury" href="www.baidu.com">
+  <area shape="circle" coords="124,58,8" alt="Venus" href="www.baidu.com">
+</map>
+
+<i class="fa fa-times" ng-class="{'fa-2x': hover}" ng-mouseenter="hover = true"  ng-mouseleave="hover = false"></i>
+<div ng-class="{'text-danger': hover1}" ng-mouseenter="hover1 = true"  ng-mouseleave="hover1 = false">232323423423</div>
+
+
+<span style="width:300px">22222222222222</span>
+<img src="http://www.w3schools.com/tags/planets.gif" width="400" height="400" ng-click="doClick($event)">
+
+
+<!-- <span style="width:300px">22222222222222</span>
+<div style="position: absolute;height: 400px; width:400px;display: inline-block"  
+	bind-html-compile="trustAsHtml" ng-click="doClick($event);appendText();" ng-bind-html="trustAsHtml">
+</div> -->
+
+<span style="width:300px">22222222222222</span>
+<div style="position: absolute;height: 400px; width:400px;display: inline-block"  
+	bind-html-compile="trustAsHtml" ng-click="appendText($event);" ng-bind-html="trustAsHtml">
+</div>
+
+</body>
+	<script type="text/javascript">
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope, $sce, $interpolate){
+
+			$scope.test = ()=>{
+				alert("dwsafs");
+				console.log("sdafdsafd");
+			}
+			$scope.offsetX = 0;
+			$scope.offsetY = 0;
+			$scope.doClick = function($event){
+			    var x = $event.x;
+			    var y = $event.y;
+			    $scope.offsetX = $event.offsetX;
+			    $scope.offsetY = $event.offsetY;
+
+			    // you have lots of things to try here, not sure what you want to calculate
+			    console.log($event, x, y, $scope.offsetX, $scope.offsetY);
+			};
+
+			$scope.picUrl = "http://www.runoob.com/images/pulpit.jpg";
+			$scope.mapUrl = "http://www.w3schools.com/tags/planets.gif";
+			$scope.divHtmlVar = '<img style="position: absolute;z-index: -1;" src="{{mapUrl}}" width="400" height="400" >';
+			$scope.appendText = function($event) {
+				var x = $event.x;
+			    var y = $event.y;
+			    $scope.offsetX = $event.offsetX;
+			    $scope.offsetY = $event.offsetY;
+
+			    // you have lots of things to try here, not sure what you want to calculate
+			    console.log($event, x, y, $scope.offsetX, $scope.offsetY);
+				console.log("append");
+		    	$scope.divHtmlVar = $scope.divHtmlVar +  
+		    	'<img class="img-circle" style="position: absolute;  left: {{offsetX - 20}}px; top: {{offsetY - 20}}px;" src="{{picUrl}}" width="40" height="40">';
+		    	$scope.divHtmlVar = $interpolate($scope.divHtmlVar)($scope);
+		    	$scope.trustAsHtml = $sce.trustAsHtml($scope.divHtmlVar);
+		    }
+		    $scope.divHtmlVar = $interpolate($scope.divHtmlVar)($scope);
+		    $scope.trustAsHtml = $sce.trustAsHtml($scope.divHtmlVar);
+		});
+	</script>
+</html>
