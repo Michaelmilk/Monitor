@@ -9,15 +9,23 @@ module App {
             'NetResourceService',
             '$timeout',
             'cfpLoadingBar',
-            'usSpinnerService'
+            'usSpinnerService',
+            '$sce',
+            '$interpolate'
         ];
         
         private mapResourceService;
         //private mapTreeData;
         private mapTree;
 
-        constructor(private $scope, private NetResourceService, private $timeout,
-            private cfpLoadingBar, private usSpinnerService) {
+        constructor(private $scope,
+            private NetResourceService,
+            private $timeout,
+            private cfpLoadingBar,
+            private usSpinnerService,
+            private $sce,
+            private $interpolate
+        ) {
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
 
@@ -28,6 +36,10 @@ module App {
             $scope.currentMapPicLink = null;
             $scope.currentMapConfig = null;
             $scope.currentIconList = null;
+            this.$scope.mode = "normal";
+            $scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
+            this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
+            this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
 
             $scope.appleSelected = (branch) => {
                 return this.$scope.output = "APPLE! : " + branch.label;
@@ -99,6 +111,25 @@ module App {
             console.log($event, x, y, offsetX, offsetY);
         }
 
+        changeMode() {
+            if (this.$scope.mode === "setting")
+                this.$scope.mode = "normal";
+            else if (this.$scope.mode === "normal")
+                this.$scope.mode = "setting";
+        }
+
+        disposeIcon($event) {
+            var x = $event.x;
+            var y = $event.y;
+            this.$scope.offsetX = $event.offsetX;
+            this.$scope.offsetY = $event.offsetY;
+
+            console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY);
+            this.$scope.mapHtmlVar = this.$scope.mapHtmlVar +
+                '<img class="_icon img-circle" style="left: {{offsetX - 20}}px; top: {{offsetY - 20}}px;" src="http://www.runoob.com/images/pulpit.jpg">';
+            this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
+            this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
+        }
         //tryAsyncLoad() {
         //    //this.$scope.mapTreeData = [];
         //    this.$scope.doing_async = true;
