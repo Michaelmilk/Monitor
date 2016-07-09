@@ -10,6 +10,10 @@
   position: absolute;
   width: 20px;
   height: 20px;
+  border: 1px solid transparent;
+}
+._icon:hover {
+  border: 1px solid #CFCFCF;
 }
 /*position*/
 ._pos-absolute {

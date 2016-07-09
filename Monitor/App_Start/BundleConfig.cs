@@ -56,9 +56,11 @@ namespace Monitor
                       //interfaces
                       "~/Scripts/interfaces/IMapNode.js",
                       "~/Scripts/interfaces/IMapNodeResource.js",
+                      "~/Scripts/interfaces/ILocationIcon.js",
 
                       //services
                       "~/Scripts/services/NetResourceService.js",
+                      "~/Scripts/services/Constants.js",
 
                       // directives
                   

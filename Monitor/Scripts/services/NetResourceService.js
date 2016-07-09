@@ -23,7 +23,7 @@ var App;
             '$resource'
         ];
         return NetResourceService;
-    })();
+    }());
     App.NetResourceService = NetResourceService;
 })(App || (App = {}));
 //# sourceMappingURL=NetResourceService.js.map

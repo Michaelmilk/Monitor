@@ -60,25 +60,32 @@
 
         <div class="col-md-9" ng-switch="mode">
             <br/>
-            <!--normal map -->
-            <div class="_pos-absolute" ng-switch-when="normal">
-                <img class="_map" ng-src="{{ currentMapPicLink || '//:0'}}"/>
+            <div class="_pos-absolute">
+                <img class="_map" ng-src="{{ currentMapPicLink || '//:0'}}" ng-click="vm.disposeIcon($event)"/>
                 @*<span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
 
                 <img class="_icon img-circle" ng-src="http://www.runoob.com/images/sun.gif" style="left: 45px; top: 145px"/>
+                <!--normal map -->
+                <div ng-switch-when="normal">
+                    <img class="_icon img-circle" ng-click="vm.test()" ng-src="{{icon.iconUrl || '//:0'}}" style="left: {{icon.location.X}}px; top: {{icon.location.Y}}px; "
+                         ng-repeat="icon in currentIconList" />
+                </div><!--normal map -->
 
-                <img class="_icon img-circle" ng-click="vm.test()" ng-src="{{icon.iconUrl || '//:0'}}" style="left: {{icon.location.X}}px; top: {{icon.location.Y}}px; "
-                     ng-repeat="icon in currentIconList"/>
-            </div><!--normal map -->
+                <!--setting map -->
+                <div ng-switch-when="setting"
+                     bind-html-compile="mapHtml"
+                     ng-bind-html="mapHtml">
+                </div><!--setting map -->
+            </div>
 
-            <!--setting map -->
+            <!--setting map
             <div class="_pos-absolute"
                  ng-switch-when="setting"
                  bind-html-compile="mapHtml"
                  ng-bind-html="mapHtml"
                  ng-click="vm.disposeIcon($event)">
-
-            </div><!--setting map -->
+            <div></div>
+            </div>setting map -->
         </div>
         
         @*<div class="col-md-4">

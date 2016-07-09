@@ -11,7 +11,8 @@ module App {
             'cfpLoadingBar',
             'usSpinnerService',
             '$sce',
-            '$interpolate'
+            '$interpolate',
+            'Constants'
         ];
         
         private mapResourceService;
@@ -24,7 +25,8 @@ module App {
             private cfpLoadingBar,
             private usSpinnerService,
             private $sce,
-            private $interpolate
+            private $interpolate,
+            private Constants
         ) {
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
@@ -36,10 +38,13 @@ module App {
             $scope.currentMapPicLink = null;
             $scope.currentMapConfig = null;
             $scope.currentIconList = null;
-            this.$scope.mode = "normal";
-            $scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
-            this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
-            this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
+            $scope.mode = "normal";
+            $scope.mapHtmlVar = "";
+            $scope.currentMapIcon = [];
+            $scope.iconDiameter = this.Constants.iconDiameter;
+            //$scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
+            //this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
+            //this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
 
             $scope.appleSelected = (branch) => {
                 return this.$scope.output = "APPLE! : " + branch.label;
@@ -51,18 +56,7 @@ module App {
                     alert(color);
                 }]
             ];
-
-
-            //$scope.locateIcon = ($event) => {
-            //    var x = $event.x;
-            //    var y = $event.y;
-            //    var offsetX = $event.offsetX;
-            //    var offsetY = $event.offsetY;
-
-            //    // you have lots of things to try here, not sure what you want to calculate
-            //    console.log($event, x, y, offsetX, offsetY);
-            //}
-
+            
             this.getMapTree();
 
             //this.$scope.mapTreeData = null;
@@ -77,6 +71,9 @@ module App {
             ];
             console.log("constructor");
         }
+
+
+        //#region map
 
         showSelectedTreeNodeInfo(branch) {
             //var ref;
@@ -101,6 +98,11 @@ module App {
                 });
         }
 
+        //#endregion
+
+
+        //region icon
+
         locateIcon($event) {
             var x = $event.x;
             var y = $event.y;
@@ -118,18 +120,61 @@ module App {
                 this.$scope.mode = "setting";
         }
 
-        disposeIcon($event) {
-            var x = $event.x;
-            var y = $event.y;
-            this.$scope.offsetX = $event.offsetX;
-            this.$scope.offsetY = $event.offsetY;
-
-            console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY);
-            this.$scope.mapHtmlVar = this.$scope.mapHtmlVar +
-                '<img class="_icon img-circle" style="left: {{offsetX - 20}}px; top: {{offsetY - 20}}px;" src="http://www.runoob.com/images/pulpit.jpg">';
-            this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
-            this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
+        isInsideExistIconScale(xCoord: number, yCoord: number): boolean {
+            if (this.$scope.currentMapIcon.filter(t => {
+                var squared = Math.pow(10 / 2, 2);
+                var point = Math.pow(t.locationCoordinate.X - xCoord, 2) + Math.pow(t.locationCoordinate.Y - yCoord, 2);
+                if (point <= squared)
+                    return true;
+            }).length > 0)
+                return true;
+            return false;
         }
+
+        disposeIcon($event) {
+            if (this.$scope.mode === "setting") {
+                var x = $event.x;
+                var y = $event.y;
+                this.$scope.offsetX = $event.offsetX;
+                this.$scope.offsetY = $event.offsetY;
+                //if (this.$scope.currentMapIcon && this.isInsideExistIconScale(this.$scope.offsetX, this.$scope.offsetX)) {
+                //    alert("This position has exist icon!");
+                //}
+
+                var locationIcon = { locationCoordinate: { X: this.$scope.offsetX, Y: this.$scope.offsetY } };
+                this.$scope.currentMapIcon.push(locationIcon);
+                console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY, this.Constants.iconDiameter);
+                this.$scope.mapHtmlVar = this.$scope.mapHtmlVar +
+                    '<img class="_icon img-circle _cursor-pointer" ' +
+                    'style="left: {{offsetX - iconDiameter}}px; top: {{offsetY - iconDiameter}}px;" ' +
+                    'src="http://www.runoob.com/images/pulpit.jpg" ng-click="clickIcon()">';
+                this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
+                this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
+            }
+        }
+
+        //selectIcon($event) {
+            
+        //}
+
+        clickMap($event) {
+            //if (this.$scope.mode === "normal") {
+            //    this.selectIcon($event);
+            //} else if (this.$scope.mode === "setting") {
+            //    this.disposeIcon($event);
+            //}
+            if (this.$scope.mode === "setting") {
+                this.disposeIcon($event);
+            }
+        }
+
+        clickIcon() {
+            
+        }
+
+        //#endregion
+
+        
         //tryAsyncLoad() {
         //    //this.$scope.mapTreeData = [];
         //    this.$scope.doing_async = true;

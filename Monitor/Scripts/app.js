@@ -16,6 +16,7 @@ var App;
         //cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading-bar"><div class="bar"><div class="peg">tttt</div></div></div>';
         //cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
     })
+        .constant("Constants", App.Constants.Default)
         .service('NetResourceService', App.NetResourceService)
         .controller('HomeCtrl', App.HomeCtrl);
 })(App || (App = {}));

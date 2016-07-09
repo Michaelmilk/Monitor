@@ -21,7 +21,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -182,6 +183,10 @@
     <Content Include="Content\font-awesome\less\screen-reader.less" />
     <Content Include="Content\font-awesome\less\stacked.less" />
     <Content Include="Content\font-awesome\less\variables.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Content\_component-helper.less" />
     <Content Include="Content\_map-releated.less" />
     <Content Include="Content\_custom-css.less" />
@@ -233,8 +238,10 @@
     <TypeScriptCompile Include="Scripts\app.ts" />
     <TypeScriptCompile Include="Scripts\controllers\homeCtrl.ts" />
     <TypeScriptCompile Include="Scripts\directives\right-click.ts" />
+    <TypeScriptCompile Include="Scripts\interfaces\ILocationIcon.ts" />
     <TypeScriptCompile Include="Scripts\interfaces\IMapNode.ts" />
     <TypeScriptCompile Include="Scripts\interfaces\IMapNodeResource.ts" />
+    <TypeScriptCompile Include="Scripts\services\Constants.ts" />
     <TypeScriptCompile Include="Scripts\services\NetResourceService.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />

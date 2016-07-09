@@ -11,6 +11,7 @@ module App {
     var app = angular.module('MonitorApp', ['ngResource', 'ngAnimate', 'angularBootstrapNavTree',
         'ui.bootstrap.contextMenu', 'angular-loading-bar', 'angularSpinner'])
 
+        //config spinner
         .config((cfpLoadingBarProvider) => {
             cfpLoadingBarProvider.parentSelector = '#lad';
             cfpLoadingBarProvider.includeSpinner = false;
@@ -19,6 +20,8 @@ module App {
             //cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
         })
 
+        // Constants
+        .constant("Constants", Constants.Default)
 
         // Services
         .service('NetResourceService', NetResourceService)
