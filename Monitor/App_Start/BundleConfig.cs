@@ -63,7 +63,8 @@ namespace Monitor
                       "~/Scripts/services/Constants.js",
 
                       // directives
-                  
+                      "~/Scripts/directives/angular-compile.js",
+
                       // controllers
                       "~/Scripts/controllers/homeCtrl.js",
 

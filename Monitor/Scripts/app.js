@@ -7,7 +7,7 @@
 var App;
 (function (App) {
     'use strict';
-    var app = angular.module('MonitorApp', ['ngResource', 'ngAnimate', 'angularBootstrapNavTree',
+    var app = angular.module('MonitorApp', ['ngResource', 'ngSanitize', 'ngAnimate', 'angularBootstrapNavTree',
         'ui.bootstrap.contextMenu', 'angular-loading-bar', 'angularSpinner'])
         .config(function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.parentSelector = '#lad';
@@ -18,6 +18,18 @@ var App;
     })
         .constant("Constants", App.Constants.Default)
         .service('NetResourceService', App.NetResourceService)
+        .directive('angularCompile', App.AngularCompile.factory())
+        .directive('dir', function ($compile, $parse) {
+        return {
+            restrict: 'E',
+            link: function (scope, element, attr) {
+                scope.$watch(document.getElementById('dir').getAttribute('content'), function () {
+                    alert(document.getElementById('dir').getAttribute('content'));
+                    element.html($parse(attr.content)(scope));
+                    $compile(element.contents())(scope);
+                }, true);
+            }
+        };
+    })
         .controller('HomeCtrl', App.HomeCtrl);
 })(App || (App = {}));
-//# sourceMappingURL=app.js.map

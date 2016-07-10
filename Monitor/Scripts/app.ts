@@ -8,7 +8,7 @@
 
 module App {
     'use strict';
-    var app = angular.module('MonitorApp', ['ngResource', 'ngAnimate', 'angularBootstrapNavTree',
+    var app = angular.module('MonitorApp', ['ngResource', 'ngSanitize', 'ngAnimate', 'angularBootstrapNavTree',
         'ui.bootstrap.contextMenu', 'angular-loading-bar', 'angularSpinner'])
 
         //config spinner
@@ -27,7 +27,19 @@ module App {
         .service('NetResourceService', NetResourceService)
 
         // Directives
-
+        .directive('angularCompile', AngularCompile.factory())
+        .directive('dir', ($compile, $parse) => {
+            return {
+                restrict: 'E',
+                link: (scope, element, attr: any) => {
+                    scope.$watch(document.getElementById('dir').getAttribute('content'), () => {
+                        alert(document.getElementById('dir').getAttribute('content'));
+                        element.html($parse(attr.content)(scope));
+                        $compile(element.contents())(scope);
+                    }, true);
+                }
+            }
+        })
 
         // Controllers
         .controller('HomeCtrl', HomeCtrl)

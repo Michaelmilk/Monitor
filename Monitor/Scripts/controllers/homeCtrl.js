@@ -113,7 +113,11 @@ var App;
                 this.$scope.mapHtmlVar = this.$scope.mapHtmlVar +
                     '<img class="_icon img-circle _cursor-pointer" ' +
                     'style="left: {{offsetX - iconDiameter}}px; top: {{offsetY - iconDiameter}}px;" ' +
-                    'src="http://www.runoob.com/images/pulpit.jpg" ng-click="clickIcon()">';
+                    'src="http://www.runoob.com/images/pulpit.jpg" ' +
+                    'ng-class="{"_icon-selected": newAddedIcon.selected}" ' +
+                    'ng-model="newAddedIcon" ' +
+                    'ng-init="currentMapIcon.push(newAddedIcon)" ' +
+                    'ng-click="vm.test()" >';
                 this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
                 this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
             }
@@ -130,7 +134,10 @@ var App;
                 this.disposeIcon($event);
             }
         };
-        HomeCtrl.prototype.clickIcon = function () {
+        HomeCtrl.prototype.clickIcon = function (icon) {
+            if (icon)
+                icon.selected = !icon.selected;
+            console.log('currentMapIcon', this.$scope.currentMapIcon);
         };
         //#endregion
         //tryAsyncLoad() {

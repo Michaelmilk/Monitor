@@ -10,10 +10,13 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 ._icon:hover {
-  border: 1px solid #CFCFCF;
+  border: 1px solid transparent;
+}
+._icon-selected {
+  border: 2px dotted black !important;
 }
 /*position*/
 ._pos-absolute {
@@ -22,4 +25,7 @@
 /*cursor*/
 ._cursor-pointer {
   cursor: pointer;
+}
+._cursor-crosshair {
+  cursor: crosshair;
 }
