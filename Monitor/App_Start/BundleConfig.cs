@@ -36,10 +36,11 @@ namespace Monitor
                       "~/Scripts/libs/spin.js",
                       "~/Scripts/libs/angular-spinner.js",
                       "~/Scripts/directives/right-click.js",
-                      "~/dist/menu_component.js"
-                      //"~/dist/right_menu.js"
-                      
-                      //"~/dist/tree_component.js"
+                      "~/dist/menu_component.js",
+                      "~/dist/compile.js"
+                     //"~/dist/right_menu.js"
+
+                     //"~/dist/tree_component.js"
                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

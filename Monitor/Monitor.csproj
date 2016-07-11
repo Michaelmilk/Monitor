@@ -148,6 +148,7 @@
     <Content Include="Content\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="dist\compile.js" />
     <Content Include="dist\menu_component.js" />
     <Content Include="dist\right_menu.js" />
     <Content Include="Scripts\libs\abn_tree_directive-v2.js" />

@@ -8,6 +8,11 @@
 
 module App {
     'use strict';
+
+    interface IAttrs extends ng.IAttributes {
+        content: string;
+    }
+
     var app = angular.module('MonitorApp', ['ngResource', 'ngSanitize', 'ngAnimate', 'angularBootstrapNavTree',
         'ui.bootstrap.contextMenu', 'angular-loading-bar', 'angularSpinner'])
 
@@ -27,15 +32,15 @@ module App {
         .service('NetResourceService', NetResourceService)
 
         // Directives
-        .directive('angularCompile', AngularCompile.factory())
+        //.directive('angularCompile', AngularCompile.factory())
         .directive('dir', ($compile, $parse) => {
             return {
                 restrict: 'E',
-                link: (scope, element, attr: any) => {
-                    scope.$watch(document.getElementById('dir').getAttribute('content'), () => {
-                        alert(document.getElementById('dir').getAttribute('content'));
+                link: (scope, element, attr: IAttrs) => {
+                    scope.$watch(attr.content, () => {
                         element.html($parse(attr.content)(scope));
                         $compile(element.contents())(scope);
+                        console.log("compile");
                     }, true);
                 }
             }
