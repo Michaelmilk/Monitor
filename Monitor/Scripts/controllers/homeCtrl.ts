@@ -10,8 +10,6 @@ module App {
             '$timeout',
             'cfpLoadingBar',
             'usSpinnerService',
-            '$sce',
-            '$interpolate',
             'Constants'
         ];
         
@@ -24,8 +22,6 @@ module App {
             private $timeout,
             private cfpLoadingBar,
             private usSpinnerService,
-            private $sce,
-            private $interpolate,
             private Constants
         ) {
             //the $resource in angular to derive the map tree node info
@@ -41,8 +37,9 @@ module App {
             $scope.mode = "normal";
             $scope.mapHtmlVar = "";
             $scope.currentMapIcon = [];
-            $scope.iconDiameter = this.Constants.iconDiameter;
-            $scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
+            $scope.iconRadius = this.Constants.iconRadius;
+            $scope.currentSettingIconList = [];
+            //$scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
             //this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
             //this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
 
@@ -66,9 +63,10 @@ module App {
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-                {name:"first", shape: "circle", location: { X: 100, Y: 100 }, iconUrl: "icon/green.png"},
-                {name:"second", shape: "circle", location: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
+                { name: "first", shape: "circle", locationCoordinate: { X: 100, Y: 100 }, iconUrl: "icon/green.png"},
+                { name: "second", shape: "circle", locationCoordinate: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
             ];
+            $scope.currentSettingIconList = $scope.currentIconList;
             console.log("constructor");
         }
 
@@ -93,6 +91,7 @@ module App {
                     var array = [];
                     array.push(angular.fromJson(angular.toJson(mapTreeData)));
                     this.$scope.mapTreeData = array;
+                    //this.$scope.currentSettingIconList = this.$scope.currentMapIcon;
                     //this.usSpinnerService.spin('spinner-my');//show spinner
                     console.log("treeData", this.$scope.mapTreeData);
                 });
@@ -101,7 +100,7 @@ module App {
         //#endregion
 
 
-        //region icon
+        //#region icon
 
         locateIcon($event) {
             var x = $event.x;
@@ -114,9 +113,11 @@ module App {
         }
 
         changeMode() {
-            if (this.$scope.mode === "setting")
+            if (this.$scope.mode === "setting") {
+                console.log("currentIconList", this.$scope.currentIconList);
                 this.$scope.mode = "normal";
-            else if (this.$scope.mode === "normal")
+                //this.$scope.currentIconList = this.$scope.currentIconList.map(t => t.selected = false);
+            } else if (this.$scope.mode === "normal")
                 this.$scope.mode = "setting";
         }
 
@@ -141,27 +142,20 @@ module App {
                 //    alert("This position has exist icon!");
                 //}
 
-                var locationIcon = { locationCoordinate: { X: this.$scope.offsetX, Y: this.$scope.offsetY } };
-                this.$scope.currentMapIcon.push(locationIcon);
-                console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY, this.Constants.iconDiameter);
-
-                this.$scope.mapHtmlVar = this.$scope.mapHtmlVar +
-                    '<img class="_icon img-circle _cursor-pointer" ' +
-                    'style="left: {{offsetX - iconDiameter}}px; top: {{offsetY - iconDiameter}}px;" ' +
-                    'src="http://www.runoob.com/images/pulpit.jpg" ' +
-                    'ng-class="{"_icon-selected": newAddedIcon.selected}" ' +
-                    'ng-model="newAddedIcon" ' +
-                    'ng-init="currentMapIcon.push(newAddedIcon)" ' +
-                    'ng-click="vm.test()" >';
-
-                this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
-                this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
+                var locationIcon = {
+                    name: "first", shape: "circle",
+                    locationCoordinate: { X: this.$scope.offsetX - this.$scope.iconRadius, Y: this.$scope.offsetY - this.$scope.iconRadius },
+                    iconUrl: "icon/green.png"
+                };
+                this.$scope.currentSettingIconList.push(locationIcon);
+                console.log(this.$scope.currentSettingIconList);
+                console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY, this.Constants.iconRadius);
             }
         }
 
-        //selectIcon($event) {
-            
-        //}
+        selectIcon(icon) {
+            icon.selected = !icon.selected;
+        }
 
         clickMap($event) {
             //if (this.$scope.mode === "normal") {
@@ -174,10 +168,17 @@ module App {
             }
         }
 
-        clickIcon(icon) {
-            if (icon)
-                icon.selected = !icon.selected;
-            console.log('currentMapIcon', this.$scope.currentMapIcon);
+        clickIcon() {
+            
+        }
+
+        pressKey($event) {
+            var key = $event.keyCode || $event.which;
+            console.log("key", key);
+            if (key === this.Constants.keyCodes.Delete) {
+                this.$scope.currentSettingIconList = this.$scope.currentSettingIconList.filter(t => !t.selected);
+            }
+            console.log('currentSettingIconList', this.$scope.currentSettingIconList);
         }
 
         //#endregion

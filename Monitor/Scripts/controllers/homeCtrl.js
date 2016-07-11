@@ -3,15 +3,13 @@ var App;
 (function (App) {
     'use strict';
     var HomeCtrl = (function () {
-        function HomeCtrl($scope, NetResourceService, $timeout, cfpLoadingBar, usSpinnerService, $sce, $interpolate, Constants) {
+        function HomeCtrl($scope, NetResourceService, $timeout, cfpLoadingBar, usSpinnerService, Constants) {
             var _this = this;
             this.$scope = $scope;
             this.NetResourceService = NetResourceService;
             this.$timeout = $timeout;
             this.cfpLoadingBar = cfpLoadingBar;
             this.usSpinnerService = usSpinnerService;
-            this.$sce = $sce;
-            this.$interpolate = $interpolate;
             this.Constants = Constants;
             //the $resource in angular to derive the map tree node info
             this.mapResourceService = NetResourceService.getMapTreeResource();
@@ -24,8 +22,9 @@ var App;
             $scope.mode = "normal";
             $scope.mapHtmlVar = "";
             $scope.currentMapIcon = [];
-            $scope.iconDiameter = this.Constants.iconDiameter;
-            $scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
+            $scope.iconRadius = this.Constants.iconRadius;
+            $scope.currentSettingIconList = [];
+            //$scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
             //this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
             //this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
             $scope.appleSelected = function (branch) {
@@ -44,9 +43,10 @@ var App;
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-                { name: "first", shape: "circle", location: { X: 100, Y: 100 }, iconUrl: "icon/green.png" },
-                { name: "second", shape: "circle", location: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
+                { name: "first", shape: "circle", locationCoordinate: { X: 100, Y: 100 }, iconUrl: "icon/green.png" },
+                { name: "second", shape: "circle", locationCoordinate: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
             ];
+            $scope.currentSettingIconList = $scope.currentIconList;
             console.log("constructor");
         }
         //#region map
@@ -68,12 +68,13 @@ var App;
                 var array = [];
                 array.push(angular.fromJson(angular.toJson(mapTreeData)));
                 _this.$scope.mapTreeData = array;
+                //this.$scope.currentSettingIconList = this.$scope.currentMapIcon;
                 //this.usSpinnerService.spin('spinner-my');//show spinner
                 console.log("treeData", _this.$scope.mapTreeData);
             });
         };
         //#endregion
-        //region icon
+        //#region icon
         HomeCtrl.prototype.locateIcon = function ($event) {
             var x = $event.x;
             var y = $event.y;
@@ -83,8 +84,10 @@ var App;
             console.log($event, x, y, offsetX, offsetY);
         };
         HomeCtrl.prototype.changeMode = function () {
-            if (this.$scope.mode === "setting")
+            if (this.$scope.mode === "setting") {
+                console.log("currentIconList", this.$scope.currentIconList);
                 this.$scope.mode = "normal";
+            }
             else if (this.$scope.mode === "normal")
                 this.$scope.mode = "setting";
         };
@@ -107,23 +110,19 @@ var App;
                 //if (this.$scope.currentMapIcon && this.isInsideExistIconScale(this.$scope.offsetX, this.$scope.offsetX)) {
                 //    alert("This position has exist icon!");
                 //}
-                var locationIcon = { locationCoordinate: { X: this.$scope.offsetX, Y: this.$scope.offsetY } };
-                this.$scope.currentMapIcon.push(locationIcon);
-                console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY, this.Constants.iconDiameter);
-                this.$scope.mapHtmlVar = this.$scope.mapHtmlVar +
-                    '<img class="_icon img-circle _cursor-pointer" ' +
-                    'style="left: {{offsetX - iconDiameter}}px; top: {{offsetY - iconDiameter}}px;" ' +
-                    'src="http://www.runoob.com/images/pulpit.jpg" ' +
-                    'ng-class="{"_icon-selected": newAddedIcon.selected}" ' +
-                    'ng-model="newAddedIcon" ' +
-                    'ng-init="currentMapIcon.push(newAddedIcon)" ' +
-                    'ng-click="vm.test()" >';
-                this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
-                this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
+                var locationIcon = {
+                    name: "first", shape: "circle",
+                    locationCoordinate: { X: this.$scope.offsetX - this.$scope.iconRadius, Y: this.$scope.offsetY - this.$scope.iconRadius },
+                    iconUrl: "icon/green.png"
+                };
+                this.$scope.currentSettingIconList.push(locationIcon);
+                console.log(this.$scope.currentSettingIconList);
+                console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY, this.Constants.iconRadius);
             }
         };
-        //selectIcon($event) {
-        //}
+        HomeCtrl.prototype.selectIcon = function (icon) {
+            icon.selected = !icon.selected;
+        };
         HomeCtrl.prototype.clickMap = function ($event) {
             //if (this.$scope.mode === "normal") {
             //    this.selectIcon($event);
@@ -134,10 +133,15 @@ var App;
                 this.disposeIcon($event);
             }
         };
-        HomeCtrl.prototype.clickIcon = function (icon) {
-            if (icon)
-                icon.selected = !icon.selected;
-            console.log('currentMapIcon', this.$scope.currentMapIcon);
+        HomeCtrl.prototype.clickIcon = function () {
+        };
+        HomeCtrl.prototype.pressKey = function ($event) {
+            var key = $event.keyCode || $event.which;
+            console.log("key", key);
+            if (key === this.Constants.keyCodes.Delete) {
+                this.$scope.currentSettingIconList = this.$scope.currentSettingIconList.filter(function (t) { return !t.selected; });
+            }
+            console.log('currentSettingIconList', this.$scope.currentSettingIconList);
         };
         //#endregion
         //tryAsyncLoad() {
@@ -179,12 +183,9 @@ var App;
             '$timeout',
             'cfpLoadingBar',
             'usSpinnerService',
-            '$sce',
-            '$interpolate',
             'Constants'
         ];
         return HomeCtrl;
     }());
     App.HomeCtrl = HomeCtrl;
 })(App || (App = {}));
-//# sourceMappingURL=homeCtrl.js.map

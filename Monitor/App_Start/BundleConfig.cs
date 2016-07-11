@@ -36,8 +36,8 @@ namespace Monitor
                       "~/Scripts/libs/spin.js",
                       "~/Scripts/libs/angular-spinner.js",
                       "~/Scripts/directives/right-click.js",
-                      "~/dist/menu_component.js",
-                      "~/dist/compile.js"
+                      "~/dist/menu_component.js"
+                      //"~/dist/compile.js"
                      //"~/dist/right_menu.js"
 
                      //"~/dist/tree_component.js"
@@ -64,7 +64,7 @@ namespace Monitor
                       "~/Scripts/services/Constants.js",
 
                       // directives
-                      "~/Scripts/directives/angular-compile.js",
+                      
 
                       // controllers
                       "~/Scripts/controllers/homeCtrl.js",

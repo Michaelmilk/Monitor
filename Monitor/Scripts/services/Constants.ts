@@ -6,7 +6,8 @@ module App {
     export class Constants {
         static get Default(): any {
             return {
-                iconDiameter: 10
+                iconRadius: 10,
+                keyCodes: { 'Enter': 13, 'Delete': 46 }
             }
         }
     }

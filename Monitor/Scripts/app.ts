@@ -32,19 +32,6 @@ module App {
         .service('NetResourceService', NetResourceService)
 
         // Directives
-        //.directive('angularCompile', AngularCompile.factory())
-        .directive('dir', ($compile, $parse) => {
-            return {
-                restrict: 'E',
-                link: (scope, element, attr: IAttrs) => {
-                    scope.$watch(attr.content, () => {
-                        element.html($parse(attr.content)(scope));
-                        $compile(element.contents())(scope);
-                        console.log("compile");
-                    }, true);
-                }
-            }
-        })
 
         // Controllers
         .controller('HomeCtrl', HomeCtrl)

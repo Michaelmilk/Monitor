@@ -11,7 +11,7 @@
 /// <reference path='services/Constants.ts' />
 
 //directives
-/// <reference path='directives/angular-compile.ts' />
+
 
 //controllers
 /// <reference path='controllers/homeCtrl.ts' /> 

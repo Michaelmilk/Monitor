@@ -8,7 +8,8 @@ var App;
         Object.defineProperty(Constants, "Default", {
             get: function () {
                 return {
-                    iconDiameter: 10
+                    iconRadius: 10,
+                    keyCodes: { 'Enter': 13, 'Delete': 46 }
                 };
             },
             enumerable: true,
@@ -18,4 +19,3 @@ var App;
     }());
     App.Constants = Constants;
 })(App || (App = {}));
-//# sourceMappingURL=Constants.js.map
