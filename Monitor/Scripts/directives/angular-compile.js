@@ -28,4 +28,3 @@ var App;
     }());
     App.AngularCompile = AngularCompile;
 })(App || (App = {}));
-//# sourceMappingURL=angular-compile.js.map

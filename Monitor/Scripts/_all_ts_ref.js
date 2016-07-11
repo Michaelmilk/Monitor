@@ -11,4 +11,3 @@
 /// <reference path='directives/angular-compile.ts' />
 //controllers
 /// <reference path='controllers/homeCtrl.ts' />  
-//# sourceMappingURL=_all_ts_ref.js.map

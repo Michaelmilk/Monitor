@@ -9,6 +9,7 @@
 module App {
     'use strict';
 
+
     interface IAttrs extends ng.IAttributes {
         content: string;
     }

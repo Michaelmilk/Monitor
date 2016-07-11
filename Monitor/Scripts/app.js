@@ -32,4 +32,3 @@ var App;
     })
         .controller('HomeCtrl', App.HomeCtrl);
 })(App || (App = {}));
-//# sourceMappingURL=app.js.map
