@@ -39,9 +39,6 @@ module App {
             $scope.currentMapIcon = [];
             $scope.iconRadius = this.Constants.iconRadius;
             $scope.currentSettingIconList = [];
-            //$scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
-            //this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
-            //this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
 
             $scope.appleSelected = (branch) => {
                 return this.$scope.output = "APPLE! : " + branch.label;
@@ -64,7 +61,7 @@ module App {
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
                 { name: "first", shape: "circle", locationCoordinate: { X: 100, Y: 100 }, iconUrl: "icon/green.png"},
-                { name: "second", shape: "circle", locationCoordinate: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
+                { name: "second", shape: "circle", locationCoordinate: { X: 190, Y: 290 }, iconUrl: "icon/green.png"}
             ];
             $scope.currentSettingIconList = $scope.currentIconList;
             console.log("constructor");

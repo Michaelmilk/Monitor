@@ -24,9 +24,6 @@ var App;
             $scope.currentMapIcon = [];
             $scope.iconRadius = this.Constants.iconRadius;
             $scope.currentSettingIconList = [];
-            //$scope.mapHtmlVar = "<img class='_map' src='{{currentMapPicLink}}'/>";
-            //this.$scope.mapHtmlVar = this.$interpolate(this.$scope.mapHtmlVar)(this.$scope);
-            //this.$scope.mapHtml = this.$sce.trustAsHtml(this.$scope.mapHtmlVar);
             $scope.appleSelected = function (branch) {
                 return _this.$scope.output = "APPLE! : " + branch.label;
             };
