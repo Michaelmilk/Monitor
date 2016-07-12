@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Monitor.Data.Interface;
 
-namespace Monitor.Data.Model
+namespace Monitor.Data.Interface
 {
-    public class MapConfig
+    public class IMapNode
     {
         public int iconCount { get; set; }
         public List<ILocationIcon> iconList { get; set; }
 
-        public MapConfig()
+        public IMapNode()
         {
             iconCount = 0;
             iconList = new List<ILocationIcon>();

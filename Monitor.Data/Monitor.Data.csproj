@@ -49,9 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="Interface\LocationIcon.cs" />
+    <Compile Include="Interface\ILocationIcon.cs" />
     <Compile Include="Helper\ScanDirectoryAsJson.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
+    <Compile Include="Interface\IMapNode.cs" />
     <Compile Include="Model\MapConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

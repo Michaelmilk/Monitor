@@ -20,8 +20,15 @@ module App {
                 isArray: false
             };
 
+            var saveIconDisposition: ng.resource.IActionDescriptor = {
+                method: 'POST',
+                params: { action: "save-icon-disposition" },
+                isArray: false
+            };
+
             return <IMapNodeResource>this.$resource("/api/monitor/:action/:id/:label", {}, {
-                getMapTree: getMapTree
+                getMapTree: getMapTree,
+                saveIconDisposition: saveIconDisposition
             });
         }
     }

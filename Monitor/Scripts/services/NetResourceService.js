@@ -15,8 +15,14 @@ var App;
                 params: { action: "get-map-tree" },
                 isArray: false
             };
+            var saveIconDisposition = {
+                method: 'POST',
+                params: { action: "save-icon-disposition" },
+                isArray: false
+            };
             return this.$resource("/api/monitor/:action/:id/:label", {}, {
-                getMapTree: getMapTree
+                getMapTree: getMapTree,
+                saveIconDisposition: saveIconDisposition
             });
         };
         NetResourceService.$inject = [

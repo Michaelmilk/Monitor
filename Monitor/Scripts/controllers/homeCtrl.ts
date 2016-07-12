@@ -39,6 +39,16 @@ module App {
             $scope.currentMapIcon = [];
             $scope.iconRadius = this.Constants.iconRadius;
             $scope.currentSettingIconList = [];
+            $scope.menuLabel = {
+                label1: "",
+                label2: "",
+                label3: "Dispose",
+                label4: "",
+                label5: "",
+                label6: "",
+                label7: "",
+                label8: ""
+            }
 
             $scope.appleSelected = (branch) => {
                 return this.$scope.output = "APPLE! : " + branch.label;
@@ -60,14 +70,14 @@ module App {
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-                { name: "first", shape: "circle", locationCoordinate: { X: 100, Y: 100 }, iconUrl: "icon/green.png"},
-                { name: "second", shape: "circle", locationCoordinate: { X: 190, Y: 290 }, iconUrl: "icon/green.png"}
+                {id: 1, "name": "first", "shape": "circle", "locationCoordinate": { X: 100, Y: 100 }, "iconUrl": "icon/green.png"},
+                {id: 2, "name": "second", "shape": "circle", "locationCoordinate": { X: 190, Y: 290 }, "iconUrl": "icon/green.png"}
             ];
             $scope.currentSettingIconList = $scope.currentIconList;
             console.log("constructor");
         }
 
-
+        
         //#region map
 
         showSelectedTreeNodeInfo(branch) {
@@ -113,9 +123,17 @@ module App {
             if (this.$scope.mode === "setting") {
                 console.log("currentIconList", this.$scope.currentIconList);
                 this.$scope.mode = "normal";
+                this.$scope.currentIconList = this.$scope.currentSettingIconList;
+                this.$scope.menuLabel.label3 = "Dispose";
                 //this.$scope.currentIconList = this.$scope.currentIconList.map(t => t.selected = false);
-            } else if (this.$scope.mode === "normal")
+            } else if (this.$scope.mode === "normal") {
                 this.$scope.mode = "setting";
+                this.$scope.menuLabel.label3 = "Save";
+            }
+        }
+
+        saveIconDisposition() {
+            this.mapResourceService.saveIconDisposition()
         }
 
         isInsideExistIconScale(xCoord: number, yCoord: number): boolean {

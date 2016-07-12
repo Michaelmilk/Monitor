@@ -10,5 +10,6 @@ module App {
         id?: number;
         name?: string;
         locationCoordinate: IPoint;
+        iconUrl: string;
     };
 }

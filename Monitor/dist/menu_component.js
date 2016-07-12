@@ -29,10 +29,10 @@
     var startPoint = { x: 0, y: 0 }, stopPoint = { x: 0, y: 0 };
 
 
-    $('.selector #7').click(function (e) {
-        //alert("dsfadfasdfasdf");
-        toggleOptions('.selector');
-    });
+    //$('.selector #7').click(function (e) {
+    //    //alert("dsfadfasdfasdf");
+    //    toggleOptions('.selector');
+    //});
 
 
     $('.selector').draggable({

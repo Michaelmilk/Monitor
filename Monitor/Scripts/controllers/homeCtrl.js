@@ -24,6 +24,16 @@ var App;
             $scope.currentMapIcon = [];
             $scope.iconRadius = this.Constants.iconRadius;
             $scope.currentSettingIconList = [];
+            $scope.menuLabel = {
+                label1: "",
+                label2: "",
+                label3: "Dispose",
+                label4: "",
+                label5: "",
+                label6: "",
+                label7: "",
+                label8: ""
+            };
             $scope.appleSelected = function (branch) {
                 return _this.$scope.output = "APPLE! : " + branch.label;
             };
@@ -40,8 +50,8 @@ var App;
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
             $scope.currentIconList = [
-                { name: "first", shape: "circle", locationCoordinate: { X: 100, Y: 100 }, iconUrl: "icon/green.png" },
-                { name: "second", shape: "circle", locationCoordinate: { X: 190, Y: 290 }, iconUrl: "icon/green.png" }
+                { id: 1, "name": "first", "shape": "circle", "locationCoordinate": { X: 100, Y: 100 }, "iconUrl": "icon/green.png" },
+                { id: 2, "name": "second", "shape": "circle", "locationCoordinate": { X: 190, Y: 290 }, "iconUrl": "icon/green.png" }
             ];
             $scope.currentSettingIconList = $scope.currentIconList;
             console.log("constructor");
@@ -84,9 +94,16 @@ var App;
             if (this.$scope.mode === "setting") {
                 console.log("currentIconList", this.$scope.currentIconList);
                 this.$scope.mode = "normal";
+                this.$scope.currentIconList = this.$scope.currentSettingIconList;
+                this.$scope.menuLabel.label3 = "Dispose";
             }
-            else if (this.$scope.mode === "normal")
+            else if (this.$scope.mode === "normal") {
                 this.$scope.mode = "setting";
+                this.$scope.menuLabel.label3 = "Save";
+            }
+        };
+        HomeCtrl.prototype.saveIconDisposition = function () {
+            this.mapResourceService.saveIconDisposition();
         };
         HomeCtrl.prototype.isInsideExistIconScale = function (xCoord, yCoord) {
             if (this.$scope.currentMapIcon.filter(function (t) {

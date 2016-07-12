@@ -58,8 +58,8 @@ namespace Monitor.Data.Test
         [TestMethod]
         public void XMLTest()
         {
-            LocationIcon icon1 = new LocationIcon();
-            LocationIcon icon2 = new LocationIcon();
+            ILocationIcon icon1 = new ILocationIcon();
+            ILocationIcon icon2 = new ILocationIcon();
             MapConfig mapConfig = new MapConfig();
             mapConfig.AddIcon(icon1);
             mapConfig.AddIcon(icon2);
