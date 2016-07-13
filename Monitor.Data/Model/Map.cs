@@ -7,12 +7,12 @@ using Monitor.Data.Interface;
 
 namespace Monitor.Data.Model
 {
-    public class MapConfig
+    public class Map
     {
         public int iconCount { get; set; }
         public List<ILocationIcon> iconList { get; set; }
 
-        public MapConfig()
+        public Map()
         {
             iconCount = 0;
             iconList = new List<ILocationIcon>();

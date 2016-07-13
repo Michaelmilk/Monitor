@@ -19,5 +19,13 @@ namespace Monitor.Controllers
             var locationMap = await Task.FromResult(ScanDirectoryAsJson.GetMapTree());
             return Ok(locationMap);
         }
+
+        [HttpPost]
+        [Route("api/monitor/save-icon-disposition")]
+        public async Task<IHttpActionResult> SaveIconDisposition()
+        {
+            var locationMap = await Task.FromResult(ScanDirectoryAsJson.GetMapTree());
+            return Ok(locationMap);
+        }
     }
 }

@@ -96,14 +96,17 @@ var App;
                 this.$scope.mode = "normal";
                 this.$scope.currentIconList = this.$scope.currentSettingIconList;
                 this.$scope.menuLabel.label3 = "Dispose";
+                this.saveIconDisposition(this.$scope.currentSettingIconList);
             }
             else if (this.$scope.mode === "normal") {
                 this.$scope.mode = "setting";
                 this.$scope.menuLabel.label3 = "Save";
             }
         };
-        HomeCtrl.prototype.saveIconDisposition = function () {
-            this.mapResourceService.saveIconDisposition();
+        HomeCtrl.prototype.saveIconDisposition = function (currentSettingIconList) {
+            this.mapResourceService.saveIconDisposition(currentSettingIconList)
+                .$promise.then(function () {
+            });
         };
         HomeCtrl.prototype.isInsideExistIconScale = function (xCoord, yCoord) {
             if (this.$scope.currentMapIcon.filter(function (t) {
@@ -203,3 +206,4 @@ var App;
     }());
     App.HomeCtrl = HomeCtrl;
 })(App || (App = {}));
+//# sourceMappingURL=homeCtrl.js.map

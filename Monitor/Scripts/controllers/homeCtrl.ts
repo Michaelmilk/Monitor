@@ -125,6 +125,7 @@ module App {
                 this.$scope.mode = "normal";
                 this.$scope.currentIconList = this.$scope.currentSettingIconList;
                 this.$scope.menuLabel.label3 = "Dispose";
+                this.saveIconDisposition(this.$scope.currentSettingIconList);
                 //this.$scope.currentIconList = this.$scope.currentIconList.map(t => t.selected = false);
             } else if (this.$scope.mode === "normal") {
                 this.$scope.mode = "setting";
@@ -132,8 +133,11 @@ module App {
             }
         }
 
-        saveIconDisposition() {
-            this.mapResourceService.saveIconDisposition()
+        saveIconDisposition(currentSettingIconList) {
+            this.mapResourceService.saveIconDisposition(currentSettingIconList)
+                .$promise.then(() => {
+                    
+                });
         }
 
         isInsideExistIconScale(xCoord: number, yCoord: number): boolean {

@@ -60,7 +60,7 @@ namespace Monitor.Data.Test
         {
             ILocationIcon icon1 = new ILocationIcon();
             ILocationIcon icon2 = new ILocationIcon();
-            MapConfig mapConfig = new MapConfig();
+            Map mapConfig = new Map();
             mapConfig.AddIcon(icon1);
             mapConfig.AddIcon(icon2);
             XmlHelper.SerializeToFile(mapConfig);

@@ -9,10 +9,10 @@ namespace Monitor.Data.Helper
 {
     public class XmlHelper
     {
-        public static void SerializeToFile(MapConfig obj)
+        public static void SerializeToFile(Map obj)
         {
             System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(MapConfig));
+                new System.Xml.Serialization.XmlSerializer(typeof(Map));
 
             System.IO.FileStream file = System.IO.File.Create(@"D:\E\github\Monitor\xml\test.xml");
 
@@ -20,12 +20,12 @@ namespace Monitor.Data.Helper
             file.Close();
         }
 
-        public static MapConfig DeserializeToFile()
+        public static Map DeserializeToFile()
         {
             System.Xml.Serialization.XmlSerializer reader =
-                new System.Xml.Serialization.XmlSerializer(typeof(MapConfig));
+                new System.Xml.Serialization.XmlSerializer(typeof(Map));
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\E\github\Monitor\xml\test.xml");
-            MapConfig mapConfig = (MapConfig)reader.Deserialize(file);
+            Map mapConfig = (Map)reader.Deserialize(file);
             file.Close();
 
             Console.WriteLine(mapConfig.ToString());
