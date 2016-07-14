@@ -49,12 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="Interface\ILocationIcon.cs" />
+    <Compile Include="Model\LocationIcon.cs" />
     <Compile Include="Helper\ScanDirectoryAsJson.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
-    <Compile Include="Interface\IMapNode.cs" />
+    <Compile Include="Model\MapNode.cs" />
     <Compile Include="Model\Map.cs" />
+    <Compile Include="Model\MapNodeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,7 +4,6 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Monitor.Data.Helper;
 using Monitor.Data.Model;
-using Monitor.Data.Interface;
 using EnvDTE;
 using EnvDTE100;
 
@@ -58,13 +57,24 @@ namespace Monitor.Data.Test
         [TestMethod]
         public void XMLTest()
         {
-            ILocationIcon icon1 = new ILocationIcon();
-            ILocationIcon icon2 = new ILocationIcon();
-            Map mapConfig = new Map();
-            mapConfig.AddIcon(icon1);
-            mapConfig.AddIcon(icon2);
-            XmlHelper.SerializeToFile(mapConfig);
-            XmlHelper.DeserializeToFile();
+            //LocationIcon icon1 = new LocationIcon();
+            //LocationIcon icon2 = new LocationIcon();
+            //Map mapConfig = new Map();
+            //mapConfig.AddIcon(icon1);
+            //mapConfig.AddIcon(icon2);
+            //XmlHelper.SerializeToFile(mapConfig);
+            //XmlHelper.DeserializeToFile();
+        }
+
+
+        [TestMethod]
+        public void MapNodeTest()
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(DateTime.Now);
+            MapNode mapNode = MapNode.GetMapTree();
+            //Console.WriteLine(MapNode.GetMapTree().ToString());
+            mapNode.OutPutAllNodes();
         }
     }
 }

@@ -1,27 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.IO;
-using Monitor.Data.Model;
+using Monitor.Data.Helper;
+using Newtonsoft.Json;
 
-namespace Monitor.Data.Helper
+namespace Monitor.Data.Model
 {
-    public class ScanDirectoryAsJson
+    public class MapNode
     {
+        public int id { get; set; }
         public string label { get; set; }
         public string picturePath { get; set; }
         //public string pictureName { get; set; }
         //public bool isFolder { get; set; }
         //public string key { get; set; }
         public string configPath { get; set; }
-        public List<ScanDirectoryAsJson> children { get; set; }//child directory tree
-        public List<LocationIcon> LocationIconList { get; set; }//location info list
+        public List<MapNode> children { get; set; }//child directory tree
+        public int iconCount { get; set; }
+        public List<LocationIcon> locationIconList { get; set; }
 
-        //public ScanDirectoryAsJson2(ScanDirectoryAsJson2 parent, FileSystemInfo fileSystemInfo)
-        public ScanDirectoryAsJson(FileSystemInfo fileSystemInfo)
+        public static Dictionary<int, MapNodeInfo> mapNodes = new Dictionary<int, MapNodeInfo>();
+        public static int idCount = 0;
+        public MapNode()
         {
-            label = fileSystemInfo.Name;
-            children = new List<ScanDirectoryAsJson>();
+            id = -1;
+            label = "";
+            picturePath = "";
+            configPath = "";
+            iconCount = 0;
+            children = new List<MapNode>();
+            locationIconList = new List<LocationIcon>();
+        }
+
+        public MapNode(FileSystemInfo fileSystemInfo)
+        {
+            MapNodeInfo mapNodeInfo = new MapNodeInfo();
+            mapNodeInfo.id = id = idCount++;
+            mapNodeInfo.label = label = fileSystemInfo.Name;
+            children = new List<MapNode>();
+            mapNodes.Add(id, mapNodeInfo);
 
             if (fileSystemInfo.Attributes == FileAttributes.Directory)
             {
@@ -30,7 +47,7 @@ namespace Monitor.Data.Helper
                 {
                     if (f.Attributes == FileAttributes.Directory)
                     {
-                        children.Add(new ScanDirectoryAsJson(f));
+                        children.Add(new MapNode(f));
                     }
                     else
                     {
@@ -53,26 +70,33 @@ namespace Monitor.Data.Helper
                         {
                             if (Array.IndexOf(new string[] { ".jpg", ".bmp", ".png" }, f.Extension) != -1)
                             {
-                                picturePath = f.FullName;
+                                mapNodeInfo.picturePath = picturePath = f.FullName;
                             }
 
                             if (f.Extension == ".prj")
                             {
-                                configPath = f.FullName;
+                                mapNodeInfo.configPath = configPath = f.FullName;
                             }
                         }
-                        
                     }
                 }
             }
         }
 
-        //get local picture path, the map folder is in root of Monitor directory(Monitor/map/...),
-        //so just get the path start from map/...
         public string GetLocalPictureParh(string fullNamePath)
         {
             int pos = fullNamePath.IndexOf("map", StringComparison.Ordinal);
             return fullNamePath.Substring(pos);
+        }
+
+        public void AddIcon(LocationIcon icon)
+        {
+            locationIconList.Add(icon);
+        }
+
+        public void DeleteIcon(LocationIcon icon)
+        {
+            locationIconList.Remove(icon);
         }
 
         public override string ToString()
@@ -80,14 +104,18 @@ namespace Monitor.Data.Helper
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
-        public static string GetMapJsonString()
+        public static MapNode GetMapTree()
         {
-            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapPath)).ToString();
+            //return new MapNode(new DirectoryInfo(Config.MapPath));
+            return new MapNode(new DirectoryInfo(@"D:\E\github\Monitor\Monitor\map"));
         }
 
-        public static ScanDirectoryAsJson GetMapTree()
+        public void OutPutAllNodes()
         {
-            return new ScanDirectoryAsJson(new DirectoryInfo(Config.MapPath));
+            foreach (var node in mapNodes)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(node, Formatting.Indented));
+            }
         }
     }
 }

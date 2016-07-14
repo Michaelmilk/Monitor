@@ -1,41 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Monitor.Data.Interface;
+using System.IO;
+using Monitor.Data.Helper;
 
 namespace Monitor.Data.Model
 {
     public class Map
     {
-        public int iconCount { get; set; }
-        public List<ILocationIcon> iconList { get; set; }
+        public List<MapNode> mapNodes;
+        public MapNode rootMapNode;
 
         public Map()
         {
-            iconCount = 0;
-            iconList = new List<ILocationIcon>();
+            rootMapNode = new MapNode();
         }
 
-        public void AddIcon(ILocationIcon icon)
+        public Map(FileSystemInfo fileSystemInfo)
         {
-            iconList.Add(icon);
+            rootMapNode = new MapNode(fileSystemInfo);
         }
 
-        public void DeleteIcon(ILocationIcon icon)
+        public string GetLocalPictureParh(string fullNamePath)
         {
-            iconList.Remove(icon);
+            int pos = fullNamePath.IndexOf("map", StringComparison.Ordinal);
+            return fullNamePath.Substring(pos);
         }
 
-        public override string ToString()
+        public static MapNode GetMapTree()
         {
-            var nodes = "";
-            foreach (var icon in iconList)
-            {
-                nodes += string.Format("Pointer:{0}, {1}, url:{2} \n", icon.locationCoordinate.X, icon.locationCoordinate.Y, icon.iconUrl);
-            }
-            return nodes;
+            return new MapNode(new DirectoryInfo(Config.MapPath));
         }
     }
 }
