@@ -34,6 +34,7 @@ namespace Monitor.Data.Model
 
         public MapNode(FileSystemInfo fileSystemInfo)
         {
+            //MapNodeInfo is used for convenience to generate dictionary
             MapNodeInfo mapNodeInfo = new MapNodeInfo();
             mapNodeInfo.id = id = idCount++;
             mapNodeInfo.label = label = fileSystemInfo.Name;
@@ -42,7 +43,6 @@ namespace Monitor.Data.Model
 
             if (fileSystemInfo.Attributes == FileAttributes.Directory)
             {
-                //isFolder = true;
                 foreach (FileSystemInfo f in (fileSystemInfo as DirectoryInfo).GetFileSystemInfos())
                 {
                     if (f.Attributes == FileAttributes.Directory)
@@ -51,7 +51,6 @@ namespace Monitor.Data.Model
                     }
                     else
                     {
-                        //isFolder = false;
                         //Todo: picturePath = Config.LocalDevelop ? GetLocalPictureParh(f.FullName) : f.FullName;
                         //if local develop, then use local picture path
                         if (Config.LocalDevelop)
@@ -106,8 +105,8 @@ namespace Monitor.Data.Model
 
         public static MapNode GetMapTree()
         {
-            //return new MapNode(new DirectoryInfo(Config.MapPath));
-            return new MapNode(new DirectoryInfo(@"D:\E\github\Monitor\Monitor\map"));
+            return new MapNode(new DirectoryInfo(Config.MapPath));
+            //return new MapNode(new DirectoryInfo(@"D:\E\github\Monitor\Monitor\map"));
         }
 
         public void OutPutAllNodes()

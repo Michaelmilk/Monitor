@@ -73,8 +73,8 @@
                 <!--normal map -->
                 <div ng-switch-when="normal">
                     <img class="_icon img-circle _cursor-pointer" 
-                         ng-src="{{icon.iconUrl || '//:0'}}" 
-                         style="left: {{icon.locationCoordinate.X}}px; top: {{icon.locationCoordinate.Y}}px; "
+                         ng-src="{{icon.iconUrl || '//:0'}}"
+                         ng-style="{'left': icon.locationCoordinate.X, 'top': icon.locationCoordinate.Y}"
                          ng-repeat="icon in currentIconList"
                          ng-click="vm.clickIcon(icon)"/>
                 </div><!--normal map -->
@@ -83,7 +83,7 @@
                 <div ng-switch-when="setting">
                     <img class="_icon img-circle _cursor-pointer"
                          ng-src="{{icon.iconUrl || '//:0'}}"
-                         style="left: {{icon.locationCoordinate.X}}px; top: {{icon.locationCoordinate.Y}}px; "
+                         ng-style="{'left': icon.locationCoordinate.X, 'top': icon.locationCoordinate.Y}"
                          ng-repeat="icon in currentSettingIconList"
                          ng-class="{'_icon-selected': icon.selected}"
                          ng-click="vm.selectIcon(icon)"

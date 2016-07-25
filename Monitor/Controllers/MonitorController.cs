@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Monitor.Data.Helper;
+using Monitor.Data.Model;
 
 namespace Monitor.Controllers
 {
@@ -16,7 +17,7 @@ namespace Monitor.Controllers
         [Route("api/monitor/get-map-tree")]
         public async Task<IHttpActionResult> GetMaps()
         {
-            var locationMap = await Task.FromResult(ScanDirectoryAsJson.GetMapTree());
+            var locationMap = await Task.FromResult(MapNode.GetMapTree());
             return Ok(locationMap);
         }
 
