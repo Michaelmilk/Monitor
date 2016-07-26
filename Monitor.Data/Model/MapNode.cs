@@ -19,6 +19,7 @@ namespace Monitor.Data.Model
         public int iconCount { get; set; }
         public List<LocationIcon> locationIconList { get; set; }
 
+        //map mapId to mapInfo
         public static Dictionary<int, MapNodeInfo> mapNodes = new Dictionary<int, MapNodeInfo>();
         public static int idCount = 0;
         public MapNode()

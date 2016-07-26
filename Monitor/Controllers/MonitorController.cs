@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Monitor.Data.Helper;
 using Monitor.Data.Model;
+using Newtonsoft.Json;
 
 namespace Monitor.Controllers
 {
@@ -17,16 +18,21 @@ namespace Monitor.Controllers
         [Route("api/monitor/get-map-tree")]
         public async Task<IHttpActionResult> GetMaps()
         {
+            //MapNode.idCount = 0;
             var locationMap = await Task.FromResult(MapNode.GetMapTree());
             return Ok(locationMap);
         }
 
         [HttpPost]
-        [Route("api/monitor/save-icon-disposition")]
-        public async Task<IHttpActionResult> SaveIconDisposition()
+        [Route("api/monitor/save-icon-disposition/{id}")]
+        public async Task<IHttpActionResult> SaveIconDisposition(int id, List<LocationIcon> locationIcons)
         {
-            var locationMap = await Task.FromResult(ScanDirectoryAsJson.GetMapTree());
-            return Ok(locationMap);
+            var mapNodeInfo = MapNode.mapNodes[id];
+            List<LocationIcon> icons = JsonIOHelper.ReadFromJsonFile(mapNodeInfo.configPath);
+            icons.AddRange(locationIcons);
+            JsonIOHelper.WriteToJsonFile(icons, mapNodeInfo.configPath);
+            var iconList = await Task.FromResult(icons);
+            return Ok(iconList);
         }
     }
 }

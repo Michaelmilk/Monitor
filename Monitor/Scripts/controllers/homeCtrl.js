@@ -16,9 +16,10 @@ var App;
             // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
             // for its methods to be accessible from view / HTML
             $scope.vm = this;
-            $scope.currentMapPicLink = null;
-            $scope.currentMapConfig = null;
-            $scope.currentIconList = null;
+            $scope.currentMapNode = null;
+            //$scope.currentMapPicLink = null;
+            //$scope.currentMapConfig = null;
+            //$scope.currentIconList = null;
             $scope.mode = "normal";
             $scope.mapHtmlVar = "";
             $scope.currentMapIcon = [];
@@ -66,6 +67,7 @@ var App;
             //    return this.$scope.output += '(' + branch.data.description + ')';
             //}
             this.$scope.currentMapPicLink = branch.picturePath;
+            console.log("branch", branch);
             console.log("$scope.currentMapPicLink", this.$scope.currentMapPicLink);
         };
         HomeCtrl.prototype.getMapTree = function () {
@@ -104,8 +106,9 @@ var App;
             }
         };
         HomeCtrl.prototype.saveIconDisposition = function (currentSettingIconList) {
-            this.mapResourceService.saveIconDisposition(currentSettingIconList)
-                .$promise.then(function () {
+            this.mapResourceService.saveIconDisposition({}, {
+                currentSettingIconList: currentSettingIconList
+            }).$promise.then(function () {
             });
         };
         HomeCtrl.prototype.isInsideExistIconScale = function (xCoord, yCoord) {

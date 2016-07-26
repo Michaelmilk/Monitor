@@ -31,9 +31,10 @@ module App {
             // for its methods to be accessible from view / HTML
             $scope.vm = this;
 
-            $scope.currentMapPicLink = null;
-            $scope.currentMapConfig = null;
-            $scope.currentIconList = null;
+            $scope.currentMapNode = null;
+            //$scope.currentMapPicLink = null;
+            //$scope.currentMapConfig = null;
+            //$scope.currentIconList = null;
             $scope.mode = "normal";
             $scope.mapHtmlVar = "";
             $scope.currentMapIcon = [];
@@ -89,6 +90,7 @@ module App {
             //    return this.$scope.output += '(' + branch.data.description + ')';
             //}
             this.$scope.currentMapPicLink = branch.picturePath;
+            console.log("branch", branch);
             console.log("$scope.currentMapPicLink", this.$scope.currentMapPicLink);
         }
 
@@ -134,8 +136,13 @@ module App {
         }
 
         saveIconDisposition(currentSettingIconList) {
-            this.mapResourceService.saveIconDisposition(currentSettingIconList)
-                .$promise.then(() => {
+            this.mapResourceService.saveIconDisposition(
+            {
+               // currentMapNode.Id
+            },
+            {
+                currentSettingIconList
+            }).$promise.then(() => {
                     
                 });
         }
