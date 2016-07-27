@@ -6,9 +6,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Monitor.Data;
 using Monitor.Data.Helper;
 using Monitor.Data.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Monitor.Controllers
 {
@@ -26,12 +28,16 @@ namespace Monitor.Controllers
 
         [HttpPost]
         [Route("api/monitor/save-icon-disposition/{id}")]
-        public async Task<IHttpActionResult> SaveIconDisposition(int id, List<LocationIcon> locationIcons)
+        public async Task<IHttpActionResult> SaveIconDisposition(int id, Dictionary<string, object> fc)
         {
             var mapNodeInfo = MapNode.mapNodes[id];
-            List<LocationIcon> icons = JsonIOHelper.ReadFromJsonFile(mapNodeInfo.configPath);
-            icons.AddRange(locationIcons);
-            JsonIOHelper.WriteToJsonFile(icons, mapNodeInfo.configPath);
+            var hashScheme = ((JArray)fc["hashscheme"]).ToObject<List<LocationIcon>>();
+            var absConfigFilePath = Path.Combine(Config.ServerPath, mapNodeInfo.configPath);
+            List<LocationIcon> icons = JsonIOHelper.ReadFromJsonFile(absConfigFilePath);
+            if (icons == null)
+                icons = new List<LocationIcon>();
+            icons.AddRange(hashScheme);
+            JsonIOHelper.WriteToJsonFile(icons, absConfigFilePath);
             var iconList = await Task.FromResult(icons);
             return Ok(iconList);
         }

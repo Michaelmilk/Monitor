@@ -131,10 +131,10 @@ module App {
                 id: this.$scope.currentMapNode.id
             },
             {
-                currentSettingIconList
+                "hashscheme": currentSettingIconList
             }).$promise.then(() => {
                     
-                });
+            });
         }
 
         isInsideExistIconScale(xCoord: number, yCoord: number): boolean {

@@ -46,9 +46,10 @@ namespace Monitor.Data.Test
             string solutionDirectory = ((EnvDTE.DTE)System.Runtime
                                               .InteropServices
                                               .Marshal
-                                              .GetActiveObject("VisualStudio.DTE.12.0"))
+                                              .GetActiveObject("VisualStudio.DTE.14.0"))
                                    .Solution
                                    .FullName;
+            Console.WriteLine(solutionDirectory);
             solutionDirectory = System.IO.Path.GetDirectoryName(solutionDirectory);
             Console.WriteLine(solutionDirectory);
         }

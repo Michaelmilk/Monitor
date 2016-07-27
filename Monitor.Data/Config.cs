@@ -14,7 +14,9 @@ namespace Monitor.Data
     {
         public static bool LocalDevelop = true;
         //public static string MapDirectory = GetCurrentSolutionDirectory() + "map";//
-        static string GetCurrentSolutionLocalPath()
+
+        //tester access use this.
+        public static string GetCurrentSolutionLocalPath()
         {
             //this solution direction depend on VS's version
             //string solutionDirectory = ((EnvDTE.DTE)System.Runtime
@@ -32,7 +34,8 @@ namespace Monitor.Data
             return solutionPath;
         }
 
-        static string GetCurrentSolutionWebServerPath(HttpContext httpContext)
+        //if access through web page, use this
+        public static string GetCurrentSolutionWebServerPath(HttpContext httpContext)
         {
             string appPath = httpContext.Request.ApplicationPath.ToLower();
                         
@@ -69,6 +72,22 @@ namespace Monitor.Data
                 else
                 {
                     return Path.Combine(GetCurrentSolutionWebServerPath(httpRequest), "map");
+                }
+            }
+        }
+
+        public static string ServerPath
+        {
+            get
+            {
+                var httpRequest = System.Web.HttpContext.Current;
+                if (httpRequest == null) //it's local run
+                {
+                    return GetCurrentSolutionLocalPath();
+                }
+                else
+                {
+                    return GetCurrentSolutionWebServerPath(httpRequest);
                 }
             }
         }

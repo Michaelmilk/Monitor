@@ -99,7 +99,7 @@ var App;
             this.mapResourceService.saveIconDisposition({
                 id: this.$scope.currentMapNode.id
             }, {
-                currentSettingIconList: currentSettingIconList
+                "hashscheme": currentSettingIconList
             }).$promise.then(function () {
             });
         };
