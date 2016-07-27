@@ -18,7 +18,8 @@ namespace Monitor.Controllers
         [Route("api/monitor/get-map-tree")]
         public async Task<IHttpActionResult> GetMaps()
         {
-            //MapNode.idCount = 0;
+            MapNode.idCount = 0;
+            MapNode.mapNodes.Clear();
             var locationMap = await Task.FromResult(MapNode.GetMapTree());
             return Ok(locationMap);
         }

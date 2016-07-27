@@ -58,12 +58,12 @@ namespace Monitor.Data.Model
                         {
                             if (Array.IndexOf(new string[] { ".jpg", ".bmp", ".png" }, f.Extension) != -1)
                             {
-                                picturePath = GetLocalPictureParh(f.FullName);
+                                mapNodeInfo.picturePath = picturePath = GetLocalPictureParh(f.FullName);
                             }
 
                             if (f.Extension == ".prj")
                             {
-                                configPath = GetLocalPictureParh(f.FullName);
+                                mapNodeInfo.configPath = configPath = GetLocalPictureParh(f.FullName);
                             }
                         }
                         else

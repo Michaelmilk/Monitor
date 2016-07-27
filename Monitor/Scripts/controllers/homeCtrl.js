@@ -16,9 +16,7 @@ var App;
             // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
             // for its methods to be accessible from view / HTML
             $scope.vm = this;
-            $scope.currentMapNode = null;
-            //$scope.currentMapPicLink = null;
-            //$scope.currentMapConfig = null;
+            $scope.currentMapNode = {};
             //$scope.currentIconList = null;
             $scope.mode = "normal";
             $scope.mapHtmlVar = "";
@@ -59,16 +57,8 @@ var App;
         }
         //#region map
         HomeCtrl.prototype.showSelectedTreeNodeInfo = function (branch) {
-            //var ref;
-            //this.$scope.output = "You selected: " + branch.label;
-            //if (branch.label === "Dog")
-            //    this.$scope.src = branch.data.src;
-            //if ((ref = branch.data) != null ? ref.description : void 0) {
-            //    return this.$scope.output += '(' + branch.data.description + ')';
-            //}
-            this.$scope.currentMapPicLink = branch.picturePath;
-            console.log("branch", branch);
-            console.log("$scope.currentMapPicLink", this.$scope.currentMapPicLink);
+            this.$scope.currentMapNode = branch;
+            console.log("branch, currentMapNode", branch, this.$scope.currentMapNode);
         };
         HomeCtrl.prototype.getMapTree = function () {
             var _this = this;
@@ -106,7 +96,9 @@ var App;
             }
         };
         HomeCtrl.prototype.saveIconDisposition = function (currentSettingIconList) {
-            this.mapResourceService.saveIconDisposition({}, {
+            this.mapResourceService.saveIconDisposition({
+                id: this.$scope.currentMapNode.id
+            }, {
                 currentSettingIconList: currentSettingIconList
             }).$promise.then(function () {
             });

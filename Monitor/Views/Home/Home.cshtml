@@ -62,7 +62,7 @@
             <br/>
             <div class="_pos-absolute" ng-switch="mode">
                 <img class="_map" 
-                     ng-src="{{ currentMapPicLink || '//:0'}}"
+                     ng-src="{{ currentMapNode.picturePath || '//:0'}}"
                      ng-click="vm.disposeIcon($event)"
                      ng-class="{'_cursor-crosshair': mode == 'setting'}"/>
                 @*<span us-spinner="{radius:30, width:6, length: 20}" spinner-key="spinner-my"></span>*@
