@@ -22,7 +22,7 @@ var App;
             $scope.mapHtmlVar = "";
             $scope.currentMapIcon = [];
             $scope.iconRadius = this.Constants.iconRadius;
-            $scope.currentSettingIconList = [];
+            $scope.settingLocationIconList = [];
             $scope.menuLabel = {
                 label1: "",
                 label2: "",
@@ -48,11 +48,12 @@ var App;
             //this.tryAsyncLoad();
             $scope.mapTree = this.mapTree = {};
             $scope.output = "dsfsdfss";
-            $scope.currentIconList = [
-                { id: 1, "name": "first", "shape": "circle", "locationCoordinate": { X: 100, Y: 100 }, "iconUrl": "icon/green.png" },
-                { id: 2, "name": "second", "shape": "circle", "locationCoordinate": { X: 190, Y: 290 }, "iconUrl": "icon/green.png" }
-            ];
-            $scope.currentSettingIconList = $scope.currentIconList;
+            //$scope.currentMapNode.locationIconList = [
+            //    {id: 1, "name": "first", "shape": "circle", "locationCoordinate": { X: 100, Y: 100 }, "iconUrl": "icon/green.png"},
+            //    {id: 2, "name": "second", "shape": "circle", "locationCoordinate": { X: 190, Y: 290 }, "iconUrl": "icon/green.png"}
+            //];
+            if (!!$scope.currentMapNode.locationIconList)
+                $scope.settingLocationIconList = $scope.currentMapNode.locationIconList;
             console.log("constructor");
         }
         //#region map
@@ -84,23 +85,27 @@ var App;
         };
         HomeCtrl.prototype.changeMode = function () {
             if (this.$scope.mode === "setting") {
-                console.log("currentIconList", this.$scope.currentIconList);
+                console.log("currentMapNode.locationIconList", this.$scope.currentMapNode.locationIconList);
                 this.$scope.mode = "normal";
-                this.$scope.currentIconList = this.$scope.currentSettingIconList;
+                this.$scope.currentMapNode.locationIconList = this.$scope.settingLocationIconList;
                 this.$scope.menuLabel.label3 = "Dispose";
-                this.saveIconDisposition(this.$scope.currentSettingIconList);
+                this.saveIconDisposition(this.$scope.settingLocationIconList);
             }
             else if (this.$scope.mode === "normal") {
                 this.$scope.mode = "setting";
                 this.$scope.menuLabel.label3 = "Save";
+                if (!!this.$scope.currentMapNode.locationIconList)
+                    this.$scope.settingLocationIconList = this.$scope.currentMapNode.locationIconList;
             }
         };
-        HomeCtrl.prototype.saveIconDisposition = function (currentSettingIconList) {
+        HomeCtrl.prototype.saveIconDisposition = function (settingLocationIconList) {
+            var _this = this;
             this.mapResourceService.saveIconDisposition({
                 id: this.$scope.currentMapNode.id
             }, {
-                "hashscheme": currentSettingIconList
-            }).$promise.then(function () {
+                "iconList": settingLocationIconList
+            }).$promise.then(function (iconList) {
+                _this.$scope.currentMapNode.locationIconList = iconList;
             });
         };
         HomeCtrl.prototype.isInsideExistIconScale = function (xCoord, yCoord) {
@@ -123,12 +128,14 @@ var App;
                 //    alert("This position has exist icon!");
                 //}
                 var locationIcon = {
-                    name: "first", shape: "circle",
+                    id: this.$scope.currentMapNode.iconCount++,
+                    name: "first",
                     locationCoordinate: { X: this.$scope.offsetX - this.$scope.iconRadius, Y: this.$scope.offsetY - this.$scope.iconRadius },
                     iconUrl: "icon/green.png"
                 };
-                this.$scope.currentSettingIconList.push(locationIcon);
-                console.log(this.$scope.currentSettingIconList);
+                console.log("settingLocationIconList", this.$scope.settingLocationIconList);
+                this.$scope.settingLocationIconList.push(locationIcon);
+                console.log(this.$scope.settingLocationIconList);
                 console.log($event, x, y, this.$scope.offsetX, this.$scope.offsetY, this.Constants.iconRadius);
             }
         };
@@ -151,9 +158,9 @@ var App;
             var key = $event.keyCode || $event.which;
             console.log("key", key);
             if (key === this.Constants.keyCodes.Delete) {
-                this.$scope.currentSettingIconList = this.$scope.currentSettingIconList.filter(function (t) { return !t.selected; });
+                this.$scope.settingLocationIconList = this.$scope.settingLocationIconList.filter(function (t) { return !t.selected; });
             }
-            console.log('currentSettingIconList', this.$scope.currentSettingIconList);
+            console.log('settingLocationIconList', this.$scope.settingLocationIconList);
         };
         //#endregion
         //tryAsyncLoad() {

@@ -75,7 +75,7 @@
                     <img class="_icon img-circle _cursor-pointer" 
                          ng-src="{{icon.iconUrl || '//:0'}}"
                          ng-style="{'left': icon.locationCoordinate.X, 'top': icon.locationCoordinate.Y}"
-                         ng-repeat="icon in currentIconList"
+                         ng-repeat="icon in currentMapNode.locationIconList"
                          ng-click="vm.clickIcon(icon)"/>
                 </div><!--normal map -->
 
@@ -84,7 +84,7 @@
                     <img class="_icon img-circle _cursor-pointer"
                          ng-src="{{icon.iconUrl || '//:0'}}"
                          ng-style="{'left': icon.locationCoordinate.X, 'top': icon.locationCoordinate.Y}"
-                         ng-repeat="icon in currentSettingIconList"
+                         ng-repeat="icon in settingLocationIconList"
                          ng-class="{'_icon-selected': icon.selected}"
                          ng-click="vm.selectIcon(icon)"
                          tabindex="1"

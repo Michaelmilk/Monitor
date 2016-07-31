@@ -18,7 +18,7 @@ var App;
             var saveIconDisposition = {
                 method: 'POST',
                 params: { action: "save-icon-disposition" },
-                isArray: false
+                isArray: true
             };
             return this.$resource("/api/monitor/:action/:id/:label", {}, {
                 getMapTree: getMapTree,

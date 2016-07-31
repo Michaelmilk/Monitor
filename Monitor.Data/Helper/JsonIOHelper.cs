@@ -23,7 +23,7 @@ namespace Monitor.Data.Helper
 
         public static void WriteToJsonFile(List<LocationIcon> json, string path)
         {
-            using (StreamWriter w = new StreamWriter(path))
+            using (StreamWriter w = new StreamWriter(path, false))//second param ture: if file not exist, create it; or overwrite it
             {
                 string jsonWriteToFile = JsonConvert.SerializeObject(json);
                 w.Write(jsonWriteToFile);

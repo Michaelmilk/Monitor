@@ -56,18 +56,22 @@ namespace Monitor.Data.Model
                         //if local develop, then use local picture path
                         if (Config.LocalDevelop)
                         {
+                            mapNodeInfo.configPath = configPath = GetRelatedMapPicturePath(Path.Combine(Path.GetDirectoryName(f.FullName), mapNodeInfo.label + ".prj"));
                             if (Array.IndexOf(new string[] { ".jpg", ".bmp", ".png" }, f.Extension) != -1)
                             {
-                                mapNodeInfo.picturePath = picturePath = GetLocalPictureParh(f.FullName);
+                                mapNodeInfo.picturePath = picturePath = GetRelatedMapPicturePath(f.FullName);
                             }
 
                             if (f.Extension == ".prj")
                             {
-                                mapNodeInfo.configPath = configPath = GetLocalPictureParh(f.FullName);
+                                mapNodeInfo.configPath = configPath = GetRelatedMapPicturePath(f.FullName);
+                                mapNodeInfo.locationIconList =
+                                    locationIconList = JsonIOHelper.ReadFromJsonFile(f.FullName);
                             }
                         }
                         else
                         {
+                            mapNodeInfo.configPath = configPath = Path.GetDirectoryName(f.FullName) + mapNodeInfo.label + ".prj";
                             if (Array.IndexOf(new string[] { ".jpg", ".bmp", ".png" }, f.Extension) != -1)
                             {
                                 mapNodeInfo.picturePath = picturePath = f.FullName;
@@ -76,6 +80,8 @@ namespace Monitor.Data.Model
                             if (f.Extension == ".prj")
                             {
                                 mapNodeInfo.configPath = configPath = f.FullName;
+                                mapNodeInfo.locationIconList =
+                                    locationIconList = JsonIOHelper.ReadFromJsonFile(f.FullName);
                             }
                         }
                     }
@@ -83,7 +89,8 @@ namespace Monitor.Data.Model
             }
         }
 
-        public string GetLocalPictureParh(string fullNamePath)
+        //get map path. eg: c://..//map//..., to  map//...
+        public string GetRelatedMapPicturePath(string fullNamePath)
         {
             int pos = fullNamePath.IndexOf("map", StringComparison.Ordinal);
             return fullNamePath.Substring(pos);

@@ -23,7 +23,7 @@ module App {
             var saveIconDisposition: ng.resource.IActionDescriptor = {
                 method: 'POST',
                 params: { action: "save-icon-disposition" },
-                isArray: false
+                isArray: true
             };
 
             return <IMapNodeResource>this.$resource("/api/monitor/:action/:id/:label", {}, {

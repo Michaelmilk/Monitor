@@ -28,15 +28,18 @@ namespace Monitor.Controllers
 
         [HttpPost]
         [Route("api/monitor/save-icon-disposition/{id}")]
-        public async Task<IHttpActionResult> SaveIconDisposition(int id, Dictionary<string, object> fc)
+        public async Task<IHttpActionResult> SaveIconDisposition(int id, Dictionary<string, object> iconPositionInfo)
         {
             var mapNodeInfo = MapNode.mapNodes[id];
-            var hashScheme = ((JArray)fc["hashscheme"]).ToObject<List<LocationIcon>>();
+            var newIconList = ((JArray)iconPositionInfo["iconList"]).ToObject<List<LocationIcon>>();
             var absConfigFilePath = Path.Combine(Config.ServerPath, mapNodeInfo.configPath);
-            List<LocationIcon> icons = JsonIOHelper.ReadFromJsonFile(absConfigFilePath);
-            if (icons == null)
-                icons = new List<LocationIcon>();
-            icons.AddRange(hashScheme);
+            List<LocationIcon> icons = new List<LocationIcon>();
+            if (File.Exists(absConfigFilePath))
+            {
+                icons = JsonIOHelper.ReadFromJsonFile(absConfigFilePath);
+            }
+            
+            icons.AddRange(newIconList);
             JsonIOHelper.WriteToJsonFile(icons, absConfigFilePath);
             var iconList = await Task.FromResult(icons);
             return Ok(iconList);
