@@ -15,7 +15,7 @@ module App {
         
         private mapResourceService;
         //private mapTreeData;
-        private mapTree;
+        private mapTree; //use for tryAsyncLoad(maybe useless)
 
         constructor(private $scope,
             private NetResourceService,
@@ -94,6 +94,7 @@ module App {
                     //this.$scope.currentSettingIconList = this.$scope.currentMapIcon;
                     //this.usSpinnerService.spin('spinner-my');//show spinner
                     console.log("treeData", this.$scope.mapTreeData);
+                    this.$scope.mapTree.expand_all();
                 });
         }
 

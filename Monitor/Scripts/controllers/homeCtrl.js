@@ -71,6 +71,7 @@ var App;
                 //this.$scope.currentSettingIconList = this.$scope.currentMapIcon;
                 //this.usSpinnerService.spin('spinner-my');//show spinner
                 console.log("treeData", _this.$scope.mapTreeData);
+                _this.$scope.mapTree.expand_all();
             });
         };
         //#endregion
@@ -208,4 +209,3 @@ var App;
     }());
     App.HomeCtrl = HomeCtrl;
 })(App || (App = {}));
-//# sourceMappingURL=homeCtrl.js.map

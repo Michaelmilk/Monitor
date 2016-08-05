@@ -32,4 +32,3 @@ var App;
     }());
     App.NetResourceService = NetResourceService;
 })(App || (App = {}));
-//# sourceMappingURL=NetResourceService.js.map
