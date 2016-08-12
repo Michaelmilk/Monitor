@@ -228,13 +228,26 @@
               root_branch = _ref[_i];
               _results.push(add_branch_to_list(1, root_branch, true));
             }
+            
+            /**
+            * provide new feature by michaelmilk
+            * 
+            * when treeData change, reselect the initialSelection
+            */
+            if (attrs.initialSelection != null) {
+                for_each_branch(function (b) {
+                    if (b.label === attrs.initialSelection) {
+                        return $timeout(function () {
+                            return select_branch(b);
+                        });
+                    }
+                });
+            }
             return _results;
           };
           scope.$watch('treeData', on_treeData_change, true);
           if (attrs.initialSelection != null) {
-              //console.log("gjx-initialsection", attrs.initialSelection);
               for_each_branch(function (b) {
-                  //console.log("gjx-initialsection2", b.label, attrs.initialSelection);
               if (b.label === attrs.initialSelection) {
                 return $timeout(function() {
                   return select_branch(b);

@@ -93,8 +93,17 @@ var App;
                 var array = [];
                 array.push(angular.fromJson(angular.toJson(mapTreeData)));
                 _this.$scope.mapTreeData = array;
+                ///delete
                 //this.$scope.currentSettingIconList = this.$scope.currentMapIcon;
+                //this.$scope.mapTree.expand_all();
+                //console.log("cur", this.mapTree.get_selected_branch());
+                //reuse
                 //this.usSpinnerService.spin('spinner-my');//show spinner
+                //use timeout to expand, or write onclick in html, need time to sync treectl with mapTree object
+                //this.$timeout(() => {
+                //    this.get_selected_branch();
+                //    return this.mapTree.expand_all();
+                //}, 1);
                 console.log("treeData", _this.$scope.mapTreeData);
             });
         };
@@ -218,8 +227,14 @@ var App;
         //        }
         //    });
         //}
+        //test
         HomeCtrl.prototype.test = function () {
             alert("abcdefg");
+        };
+        HomeCtrl.prototype.get_selected_branch = function () {
+            var b;
+            b = this.mapTree.get_selected_branch();
+            console.log("cur", b);
         };
         HomeCtrl.$inject = [
             '$scope',
