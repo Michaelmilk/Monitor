@@ -100,10 +100,14 @@ var App;
                 //reuse
                 //this.usSpinnerService.spin('spinner-my');//show spinner
                 //use timeout to expand, or write onclick in html, need time to sync treectl with mapTree object
-                //this.$timeout(() => {
-                //    this.get_selected_branch();
-                //    return this.mapTree.expand_all();
-                //}, 1);
+                _this.$timeout(function () {
+                    _this.get_selected_branch();
+                    return _this.mapTree.expand_all();
+                }, 1);
+                _this.$timeout(function () {
+                    _this.get_selected_branch();
+                    return _this.mapTree.collapse_all();
+                }, 1000);
                 console.log("treeData", _this.$scope.mapTreeData);
             });
         };

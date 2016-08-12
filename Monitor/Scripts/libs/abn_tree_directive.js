@@ -233,6 +233,7 @@
             * provide new feature by michaelmilk
             * 
             * when treeData change, reselect the initialSelection
+            * 
             */
             if (attrs.initialSelection != null) {
                 for_each_branch(function (b) {
@@ -264,6 +265,17 @@
           if (scope.treeControl != null) {
             if (angular.isObject(scope.treeControl)) {
               tree = scope.treeControl;
+              tree.initializeSelection = function() {
+                  if (attrs.initialSelection != null) {
+                      for_each_branch(function (b) {
+                          if (b.label === attrs.initialSelection) {
+                              return $timeout(function () {
+                                  return select_branch(b);
+                              });
+                          }
+                      });
+                  }
+              };
               tree.expand_all = function() {
                 return for_each_branch(function(b, level) {
                   return b.expanded = true;
