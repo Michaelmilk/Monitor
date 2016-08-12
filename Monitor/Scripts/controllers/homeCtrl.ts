@@ -64,6 +64,32 @@ module App {
 
             //this.$scope.mapTreeData = null;
             this.$scope.mapTreeData = [];//must assign [], or error to load tree control
+            //{
+            //        label: 'Animal',
+            //        children: [
+            //            {
+            //                label: 'Dog',
+            //                data: {
+            //                    description: "man's best friend",
+            //                    src: "http://localhost:7782/pic/1.jpg"
+            //                }
+            //            }, {
+            //                label: 'America',
+            //                data: {
+            //                    description: "Felis catus"
+            //                }
+            //            }, {
+            //                label: 'Hippopotamus',
+            //                data: {
+            //                    description: "hungry, hungry"
+            //                }
+            //            }, {
+            //                label: 'Chicken',
+            //                children: ['White Leghorn', 'Rhode Island Red', 'Jersey Giant']
+            //            }
+            //        ]
+            //}];
+
             //this.tryAsyncLoad();
 
             $scope.mapTree = this.mapTree = {};
@@ -94,7 +120,6 @@ module App {
                     //this.$scope.currentSettingIconList = this.$scope.currentMapIcon;
                     //this.usSpinnerService.spin('spinner-my');//show spinner
                     console.log("treeData", this.$scope.mapTreeData);
-                    this.$scope.mapTree.expand_all();
                 });
         }
 
@@ -210,8 +235,8 @@ module App {
         //    //this.$scope.mapTreeData = [];
         //    this.$scope.doing_async = true;
         //    return this.$timeout(() => {
-        //        this.$scope.mapTreeData = this.mapTreeData;
-        //        this.$scope.doing_async = false;
+        //        this.$scope.mapTreeData = this.$scope.tt;
+        //        //this.$scope.doing_async = false;
         //        return this.mapTree.expand_all();
         //    }, 1000);
         //}

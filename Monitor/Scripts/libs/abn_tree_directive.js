@@ -13,7 +13,7 @@
         scope: {
           treeData: '=',
           onSelect: '&',
-          initialSelection: '@',
+          initialSelection: '=',
           treeControl: '='
         },
         link: function(scope, element, attrs) {
@@ -232,7 +232,9 @@
           };
           scope.$watch('treeData', on_treeData_change, true);
           if (attrs.initialSelection != null) {
-            for_each_branch(function(b) {
+              //console.log("gjx-initialsection", attrs.initialSelection);
+              for_each_branch(function (b) {
+                  //console.log("gjx-initialsection2", b.label, attrs.initialSelection);
               if (b.label === attrs.initialSelection) {
                 return $timeout(function() {
                   return select_branch(b);
