@@ -17,11 +17,17 @@ namespace Monitor.Data.Model
         public string name { get; set; }
         public Point locationCoordinate { get; set; }
         public string iconUrl { get; set; }
-
+        public SensorStatus status { get; set; }
+        public SensorData sensorData { get; set; }
         public LocationIcon()
         {
             locationCoordinate = new Point(0, 0);
             iconUrl = "icon/green.png";
+        }
+
+        public void SetStatus(EventStatus eventStatus)
+        {
+            status.SetStatus(eventStatus);
         }
     }
 }

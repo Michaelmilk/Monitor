@@ -64,7 +64,7 @@ module App {
 
             //this.$scope.mapTreeData = null;
             this.$scope.mapTreeData = [];//must assign [], or error to load tree control
-            //{
+            //[{
             //        label: 'Animal',
             //        children: [
             //            {
@@ -108,7 +108,7 @@ module App {
 
         showSelectedTreeNodeInfo(branch) {
             this.$scope.currentMapNode = branch;
-            console.log("branch, currentMapNode", branch, this.$scope.currentMapNode );
+            //console.log("branch, currentMapNode", branch, this.$scope.currentMapNode );
         }
 
         getMapTree() {
@@ -130,13 +130,14 @@ module App {
                     //use timeout to expand, or write onclick in html, need time to sync treectl with mapTree object
                     this.$timeout(() => {
                         this.get_selected_branch();
-                        return this.mapTree.expand_all();
+                        //this.mapTree.expand_all();
+                        console.log("getBranch:", this.mapTree.getBranch("Hoston"));
                     }, 1);
 
-                    this.$timeout(() => {
-                        this.get_selected_branch();
-                        return this.mapTree.collapse_all();
-                    }, 1000);
+                    //this.$timeout(() => {
+                    //    this.get_selected_branch();
+                    //    return this.mapTree.collapse_all();
+                    //}, 1000);
                     console.log("treeData", this.$scope.mapTreeData);
                 });
         }

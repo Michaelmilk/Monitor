@@ -45,7 +45,7 @@ var App;
             this.getMapTree();
             //this.$scope.mapTreeData = null;
             this.$scope.mapTreeData = []; //must assign [], or error to load tree control
-            //{
+            //[{
             //        label: 'Animal',
             //        children: [
             //            {
@@ -84,7 +84,7 @@ var App;
         //#region map
         HomeCtrl.prototype.showSelectedTreeNodeInfo = function (branch) {
             this.$scope.currentMapNode = branch;
-            console.log("branch, currentMapNode", branch, this.$scope.currentMapNode);
+            //console.log("branch, currentMapNode", branch, this.$scope.currentMapNode );
         };
         HomeCtrl.prototype.getMapTree = function () {
             var _this = this;
@@ -102,12 +102,13 @@ var App;
                 //use timeout to expand, or write onclick in html, need time to sync treectl with mapTree object
                 _this.$timeout(function () {
                     _this.get_selected_branch();
-                    return _this.mapTree.expand_all();
+                    //this.mapTree.expand_all();
+                    console.log("getBranch:", _this.mapTree.getBranch("Hoston"));
                 }, 1);
-                _this.$timeout(function () {
-                    _this.get_selected_branch();
-                    return _this.mapTree.collapse_all();
-                }, 1000);
+                //this.$timeout(() => {
+                //    this.get_selected_branch();
+                //    return this.mapTree.collapse_all();
+                //}, 1000);
                 console.log("treeData", _this.$scope.mapTreeData);
             });
         };

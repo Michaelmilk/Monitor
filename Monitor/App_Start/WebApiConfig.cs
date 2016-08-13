@@ -11,6 +11,11 @@ namespace Monitor
         {
             // Web API configuration and services
 
+
+            // This allows cross-origin requests from WebClient
+            config.EnableCors();
+
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
