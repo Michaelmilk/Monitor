@@ -105,7 +105,7 @@ namespace Monitor.Data.Model
 
         public void SetStatus(SensorData sensorData)
         {
-            SetStatus(sensorData.CheckSensorStatus());
+            SetStatus(sensorData.GetSensorEventStatus());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Monitor.Data.Model
             this.threshold = threshold;
         }
 
-        public EventStatus CheckSensorStatus()
+        public EventStatus GetSensorEventStatus()
         {
             if (threshold <= preSignal1Threshold)
                 return EventStatus.normal;

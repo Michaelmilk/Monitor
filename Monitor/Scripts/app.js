@@ -20,4 +20,3 @@ var App;
         .service('NetResourceService', App.NetResourceService)
         .controller('HomeCtrl', App.HomeCtrl);
 })(App || (App = {}));
-//# sourceMappingURL=app.js.map

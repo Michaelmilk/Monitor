@@ -26,9 +26,16 @@ module App {
                 isArray: true
             };
 
+            var getSensorStatus: ng.resource.IActionDescriptor = {
+                method: 'GET',
+                params: { action: "get-sensor-status" },
+                isArray: false
+            };
+
             return <IMapNodeResource>this.$resource("/api/monitor/:action/:id/:label", {}, {
                 getMapTree: getMapTree,
-                saveIconDisposition: saveIconDisposition
+                saveIconDisposition: saveIconDisposition,
+                getSensorStatus: getSensorStatus
             });
         }
     }

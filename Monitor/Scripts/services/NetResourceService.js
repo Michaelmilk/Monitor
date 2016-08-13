@@ -20,9 +20,15 @@ var App;
                 params: { action: "save-icon-disposition" },
                 isArray: true
             };
+            var getSensorStatus = {
+                method: 'GET',
+                params: { action: "get-sensor-status" },
+                isArray: false
+            };
             return this.$resource("/api/monitor/:action/:id/:label", {}, {
                 getMapTree: getMapTree,
-                saveIconDisposition: saveIconDisposition
+                saveIconDisposition: saveIconDisposition,
+                getSensorStatus: getSensorStatus
             });
         };
         NetResourceService.$inject = [
@@ -32,4 +38,3 @@ var App;
     }());
     App.NetResourceService = NetResourceService;
 })(App || (App = {}));
-//# sourceMappingURL=NetResourceService.js.map
