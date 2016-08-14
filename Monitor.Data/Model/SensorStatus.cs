@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// ReSharper disable InconsistentNaming
 
 namespace Monitor.Data.Model
 {
@@ -12,16 +13,17 @@ namespace Monitor.Data.Model
         preSignal1,
         preSignal2,
         preSignal3,
-        alarm,
         fault,
-        offline
+        offline,
+        alarm
     }
 
     
     public class SensorStatus
     {
-        private EventStatus status;
-        private string statusIcon;
+        //member must public, or can't be convert to json
+        public EventStatus status;
+        public string statusIcon;
 
         public SensorStatus()
         {
@@ -33,7 +35,6 @@ namespace Monitor.Data.Model
         {
             status = EventStatus.normal;
             statusIcon = @"icon/normal.png";
-
         }
 
         public void SetAlarm()

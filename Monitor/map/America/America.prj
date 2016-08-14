@@ -1,1 +1,1 @@
-[{"id":1,"name":"first","locationCoordinate":{"X":100,"Y":100},"iconUrl":"icon/green.png"},{"id":2,"name":"second","locationCoordinate":{"X":190,"Y":290},"iconUrl":"icon/green.png"}]
+[{"mapNodeLabel":"America","mapNodeId":1,"id":0,"name":"America","locationCoordinate":{"X":245,"Y":131},"iconUrl":"icon/green.png","status":{},"sensorData":{"threshold":60.0}},{"mapNodeLabel":"America","mapNodeId":1,"id":1,"name":"America","locationCoordinate":{"X":236,"Y":294},"iconUrl":"icon/green.png","status":{},"sensorData":{"threshold":60.0}}]

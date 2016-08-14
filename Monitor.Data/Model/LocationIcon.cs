@@ -13,6 +13,8 @@ namespace Monitor.Data.Model
     }
     public class LocationIcon
     {
+        public string mapNodeLabel { get; set; }
+        public int mapNodeId { get; set; }
         public int id { get; set; }
         public string name { get; set; }
         public Point locationCoordinate { get; set; }
@@ -22,6 +24,8 @@ namespace Monitor.Data.Model
         public LocationIcon()
         {
             locationCoordinate = new Point(0, 0);
+            status = new SensorStatus();
+            sensorData = new SensorData();
             iconUrl = "icon/green.png";
         }
 

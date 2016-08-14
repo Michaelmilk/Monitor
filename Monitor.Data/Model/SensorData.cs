@@ -16,6 +16,11 @@ namespace Monitor.Data.Model
 
         public double threshold;
 
+        public SensorData()
+        {
+            threshold = normalThreshold;
+        }
+
         public SensorData(double threshold)
         {
             this.threshold = threshold;

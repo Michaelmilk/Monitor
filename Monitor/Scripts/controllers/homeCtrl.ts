@@ -207,8 +207,10 @@ module App {
                 //}
 
                 var locationIcon = {
+                    mapNodeId: this.$scope.currentMapNode.id,
+                    mapNodeLabel: this.$scope.currentMapNode.label,
                     id: this.$scope.currentMapNode.iconCount++,
-                    name: "first",
+                    name: this.$scope.currentMapNode.label,
                     locationCoordinate: { X: this.$scope.offsetX - this.$scope.iconRadius, Y: this.$scope.offsetY - this.$scope.iconRadius },
                     iconUrl: "icon/green.png"
                 };
@@ -295,6 +297,14 @@ module App {
             var b;
             b = this.mapTree.get_selected_branch();
             console.log("cur", b);
+        }
+
+        getStatus() {
+            this.mapResourceService.getSensorStatus()
+                .$promise.then((mapNodes) => {
+                    this.$scope.mapNodes = mapNodes;
+                    console.log("mapNodes", this.$scope.mapNodes);
+                });
         }
     }
 }

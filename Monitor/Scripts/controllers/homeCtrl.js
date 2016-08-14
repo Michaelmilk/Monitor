@@ -167,8 +167,10 @@ var App;
                 //    alert("This position has exist icon!");
                 //}
                 var locationIcon = {
+                    mapNodeId: this.$scope.currentMapNode.id,
+                    mapNodeLabel: this.$scope.currentMapNode.label,
                     id: this.$scope.currentMapNode.iconCount++,
-                    name: "first",
+                    name: this.$scope.currentMapNode.label,
                     locationCoordinate: { X: this.$scope.offsetX - this.$scope.iconRadius, Y: this.$scope.offsetY - this.$scope.iconRadius },
                     iconUrl: "icon/green.png"
                 };
@@ -241,6 +243,14 @@ var App;
             b = this.mapTree.get_selected_branch();
             console.log("cur", b);
         };
+        HomeCtrl.prototype.getStatus = function () {
+            var _this = this;
+            this.mapResourceService.getSensorStatus()
+                .$promise.then(function (mapNodes) {
+                _this.$scope.mapNodes = mapNodes;
+                console.log("mapNodes", _this.$scope.mapNodes);
+            });
+        };
         HomeCtrl.$inject = [
             '$scope',
             'NetResourceService',
@@ -253,3 +263,4 @@ var App;
     }());
     App.HomeCtrl = HomeCtrl;
 })(App || (App = {}));
+//# sourceMappingURL=homeCtrl.js.map

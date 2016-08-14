@@ -56,9 +56,13 @@ namespace Monitor.Controllers
         {
             foreach (var mapNode in MapNode.mapNodes)
             {
+                if (mapNode.Value.locationIconList == null || mapNode.Value.locationIconList.Count == 0)
+                    continue;
                 foreach (var sensor in mapNode.Value.locationIconList)
                 {
-                    sensor.status.SetStatus(GenerateSensorData.Generate());
+                    var sensorData = GenerateSensorData.Generate();
+                    sensor.status.SetStatus(sensorData);
+                    sensor.sensorData = sensorData;
                 }
             }
 
